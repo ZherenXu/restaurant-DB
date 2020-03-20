@@ -112,12 +112,12 @@ public class TerminalTransactions {
 			phoneNumber = readInteger(true);
 		}
 		
-		BranchModel model = new BranchModel(address,
-											city,
-											id,
-											name,
-											phoneNumber);
-		delegate.insertBranch(model);
+//		BranchModel model = new BranchModel(address,
+//											city,
+//											id,
+//											name,
+//											phoneNumber);
+//		delegate.insertBranch(model);
 	}
 	
 	private void handleQuitOption() {
