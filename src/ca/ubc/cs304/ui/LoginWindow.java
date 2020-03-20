@@ -53,6 +53,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 		passwordField.setEchoChar('*');
 
 		JButton loginButton = new JButton("Log In");
+		JButton jumpButton = new JButton("Jump To");
 
 		JPanel contentPane = new JPanel();
 		this.setContentPane(contentPane);
@@ -95,8 +96,18 @@ public class LoginWindow extends JFrame implements ActionListener {
 		gb.setConstraints(loginButton, c);
 		contentPane.add(loginButton);
 
+		// place the jump button
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		c.insets = new Insets(5, 10, 10, 10);
+		c.anchor = GridBagConstraints.CENTER;
+		gb.setConstraints(jumpButton, c);
+		contentPane.add(jumpButton);
+
 		// register login button with action event handler
 		loginButton.addActionListener(this);
+		jumpButton.addActionListener(this);
+		loginButton.setActionCommand("Login");
+		jumpButton.setActionCommand("Open");
 
 		// anonymous inner class for closing the window
 		this.addWindowListener(new WindowAdapter() {
@@ -134,6 +145,13 @@ public class LoginWindow extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		delegate.login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+		String cmd = e.getActionCommand();
+		if (cmd.equals("Login")) {
+			delegate.login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+		}
+		else if (cmd.equals("Open")) {
+			dispose();
+			new MenuWindow();
+		}
 	}
 }
