@@ -60,26 +60,27 @@ public class DatabaseConnectionHandler {
 	}
 	
 	public void insertBranch(BranchModel model) {
-		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO branch VALUES (?,?,?,?,?)");
-			ps.setInt(1, model.getId());
-			ps.setString(2, model.getName());
-			ps.setString(3, model.getAddress());
-			ps.setString(4, model.getCity());
-			if (model.getPhoneNumber() == 0) {
-				ps.setNull(5, java.sql.Types.INTEGER);
-			} else {
-				ps.setInt(5, model.getPhoneNumber());
-			}
-
-			ps.executeUpdate();
-			connection.commit();
-
-			ps.close();
-		} catch (SQLException e) {
-			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-			rollbackConnection();
-		}
+//		try {
+//			PreparedStatement ps = connection.prepareStatement("INSERT INTO branch VALUES (?,?,?,?,?)");
+//			ps.setInt(1, model.getId());
+//			ps.setString(2, model.getName());
+//			ps.setString(3, model.getAddress());
+//			ps.setString(4, model.getCity());
+//			if (model.getPhoneNumber() == 0) {
+//				ps.setNull(5, java.sql.Types.INTEGER);
+//			} else {
+//				ps.setInt(5, model.getPhoneNumber());
+//			}
+//
+//			ps.executeUpdate();
+//			connection.commit();
+//
+//			ps.close();
+//		} catch (SQLException e) {
+//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+//			rollbackConnection();
+//		}
+		return;
 	}
 	
 	public BranchModel[] getBranchInfo() {
@@ -101,12 +102,13 @@ public class DatabaseConnectionHandler {
 //    		}
 			
 			while(rs.next()) {
-				BranchModel model = new BranchModel(rs.getString("branch_addr"),
-													rs.getString("branch_city"),
-													rs.getInt("branch_id"),
-													rs.getString("branch_name"),
-													rs.getInt("branch_phone"));
-				result.add(model);
+//				BranchModel model = new BranchModel(rs.getString("branch_addr"),
+//													rs.getString("branch_city"),
+//													rs.getInt("branch_id"),
+//													rs.getString("branch_name"),
+//													rs.getInt("branch_phone"));
+//				result.add(model);
+				break;
 			}
 
 			rs.close();

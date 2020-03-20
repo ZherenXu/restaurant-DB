@@ -5,36 +5,25 @@ package ca.ubc.cs304.model;
  */
 public class BranchModel {
 	private final String address;
-	private final String city;
-	private final int id;
-	private final String name;	
-	private final int phoneNumber;
-	
-	public BranchModel(String address, String city, int id, String name, int phoneNumber) {
-		this.address = address;
-		this.city = city;
-		this.id = id;
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-	}
+	private final String contact;
+	private final String managerName;
 
+	public BranchModel(String address, String contact, String managerName) {
+		this.address = address;
+		this.contact = contact;
+		this.managerName = managerName;
+	}
 	public String getAddress() {
 		return address;
 	}
 
-	public String getCity() {
-		return city;
+	public String getContact() {
+		return contact;
 	}
 
-	public int getId() {
-		return id;
+	public String getManagerName() {
+		return managerName;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public int getPhoneNumber() {
-		return phoneNumber;
-	}
 }

@@ -88,19 +88,19 @@ public class Bank implements LoginWindowDelegate, TerminalTransactionsDelegate {
     		BranchModel model = models[i];
     		
     		// simplified output formatting; truncation may occur
-    		System.out.printf("%-10.10s", model.getId());
-    		System.out.printf("%-20.20s", model.getName());
-    		if (model.getAddress() == null) {
-    			System.out.printf("%-20.20s", " ");
-    		} else {
-    			System.out.printf("%-20.20s", model.getAddress());
-    		}
-    		System.out.printf("%-15.15s", model.getCity());
-    		if (model.getPhoneNumber() == 0) {
-    			System.out.printf("%-15.15s", " ");
-    		} else {
-    			System.out.printf("%-15.15s", model.getPhoneNumber());
-    		}
+//    		System.out.printf("%-10.10s", model.getId());
+//    		System.out.printf("%-20.20s", model.getName());
+//    		if (model.getAddress() == null) {
+//    			System.out.printf("%-20.20s", " ");
+//    		} else {
+//    			System.out.printf("%-20.20s", model.getAddress());
+//    		}
+//    		System.out.printf("%-15.15s", model.getCity());
+//    		if (model.getPhoneNumber() == 0) {
+//    			System.out.printf("%-15.15s", " ");
+//    		} else {
+//    			System.out.printf("%-15.15s", model.getPhoneNumber());
+//    		}
     		
     		System.out.println();
     	}
