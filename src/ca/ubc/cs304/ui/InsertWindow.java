@@ -1,10 +1,16 @@
 package ca.ubc.cs304.ui;
 
+import ca.ubc.cs304.database.DatabaseConnectionHandler;
+import ca.ubc.cs304.model.DishesModel;
+import ca.ubc.cs304.model.OrdersModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,9 +22,13 @@ import javax.swing.JTextField;
 
 public class InsertWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
+    private DatabaseConnectionHandler dbhandler;
+    private JTextField orderNumField;
+    private JTextField orderDishField;
 
-    public InsertWindow() {
+    public InsertWindow(DatabaseConnectionHandler dbhandler) {
         super("Insert Window");
+        this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel testLabel = new JLabel("TEST");
@@ -33,10 +43,11 @@ public class InsertWindow extends JFrame implements ActionListener{
         JLabel dishChefLabel = new JLabel("Chef: ");
 
         JTextField chefField = new JTextField(TEXT_FIELD_WIDTH);
-        JTextField orderDishField = new JPasswordField(TEXT_FIELD_WIDTH);
-        JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
+        orderDishField = new JPasswordField(TEXT_FIELD_WIDTH);
+        orderNumField = new JTextField(TEXT_FIELD_WIDTH);
         JTextField ingredientField = new JTextField(TEXT_FIELD_WIDTH);
         JTextField dishChefField = new JTextField(TEXT_FIELD_WIDTH);
+
 
         JButton insetOrderBtn = new JButton("Insert");
         JButton insetDishBtn = new JButton("Insert");
@@ -164,6 +175,10 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         backBtn.addActionListener(this);
         backBtn.setActionCommand("back");
+        insetDishBtn.addActionListener(this);
+        insetDishBtn.setActionCommand("dish");
+        insetOrderBtn.addActionListener(this);
+        insetDishBtn.setActionCommand("order");
 
         pack();
 
@@ -178,9 +193,22 @@ public class InsertWindow extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-        if (cmd.equals("back")) {
-            dispose();
-            new MenuWindow();
+        switch(cmd){
+            case "order":
+                OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
+                dbhandler.insertOrder(order);
+                break;
+            case "dish":
+                DishesModel dish = new DishesModel(orderDishField.getText(), Integer.valueOf(orderNumField.getText()), null);
+                dbhandler.insertDish(dish);
+                break;
+            case "back":
+                dispose();
+                new MenuWindow(dbhandler);
+                break;
+            default:
+                break;
         }
     }
+
 }

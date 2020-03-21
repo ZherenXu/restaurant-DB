@@ -1,14 +1,11 @@
 package ca.ubc.cs304.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 import ca.ubc.cs304.model.BranchModel;
+import ca.ubc.cs304.model.DishesModel;
+import ca.ubc.cs304.model.OrdersModel;
 
 /**
  * This class handles all database related transactions
@@ -57,6 +54,48 @@ public class DatabaseConnectionHandler {
 			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
 			rollbackConnection();
 		}
+	}
+
+	public void insertDish(DishesModel model){
+		try {
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO DISHES VALUES (?,?,?)");
+			ps.setString(1, model.getName());
+			ps.setInt(2, model.getOrderNumber());
+			if(model.getTastePreference() == null) {
+				ps.setNull(3, Types.CHAR);
+			}
+			else{
+				ps.setString(3, model.getTastePreference());
+			}
+
+			ps.executeUpdate();
+			connection.commit();
+
+			ps.close();
+		} catch (SQLException e) {
+			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+			rollbackConnection();
+		}
+
+		return;
+	}
+
+	public void insertOrder(OrdersModel model){
+		try {
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO ORDERS VALUES (?,?)");
+			ps.setInt(1, model.getOrderNumber());
+			ps.setTimestamp(2, model.getTime());
+
+			ps.executeUpdate();
+			connection.commit();
+
+			ps.close();
+		} catch (SQLException e) {
+			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+			rollbackConnection();
+		}
+
+		return;
 	}
 	
 	public void insertBranch(BranchModel model) {

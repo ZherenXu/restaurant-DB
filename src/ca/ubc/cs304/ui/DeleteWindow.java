@@ -1,5 +1,7 @@
 package ca.ubc.cs304.ui;
 
+import ca.ubc.cs304.database.DatabaseConnectionHandler;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,9 +18,11 @@ import javax.swing.JTextField;
 
 public class DeleteWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
+    private DatabaseConnectionHandler dbhandler;
 
-    public DeleteWindow() {
+    public DeleteWindow(DatabaseConnectionHandler dbhandler) {
         super("Delete Window");
+        this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel testLabel = new JLabel("TEST");
@@ -104,7 +108,7 @@ public class DeleteWindow extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         if (cmd.equals("back")) {
             dispose();
-            new MenuWindow();
+            new MenuWindow(dbhandler);
         }
     }
 }

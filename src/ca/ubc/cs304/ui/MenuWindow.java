@@ -1,5 +1,7 @@
 package ca.ubc.cs304.ui;
 
+import ca.ubc.cs304.database.DatabaseConnectionHandler;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +17,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class MenuWindow extends JFrame implements ActionListener{
-    public MenuWindow() {
+    private DatabaseConnectionHandler dbhandler;
+    public MenuWindow(DatabaseConnectionHandler dbhandler) {
         super("Menu Window");
+        this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel titleLabel = new JLabel("MENU");
@@ -88,15 +92,15 @@ public class MenuWindow extends JFrame implements ActionListener{
         switch(cmd) {
             case "insert":
                 dispose();
-                new InsertWindow();
+                new InsertWindow(dbhandler);
                 break;
             case "update":
                 dispose();
-                new UpdateWindow();
+                new UpdateWindow(dbhandler);
                 break;
             case "delete":
                 dispose();
-                new DeleteWindow();
+                new DeleteWindow(dbhandler);
                 break;
             default:
                 break;

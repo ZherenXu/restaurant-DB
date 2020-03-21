@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import ca.ubc.cs304.database.DatabaseConnectionHandler;
 import ca.ubc.cs304.delegates.LoginWindowDelegate;
 
 /**
@@ -36,9 +38,11 @@ public class LoginWindow extends JFrame implements ActionListener {
 	
 	// delegate
 	private LoginWindowDelegate delegate;
+	private DatabaseConnectionHandler dbhandler;
 
-	public LoginWindow() {
+	public LoginWindow(DatabaseConnectionHandler dbhandler) {
 		super("User Login");
+		this.dbhandler = dbhandler;
 	}
 
 	public void showFrame(LoginWindowDelegate delegate) {
@@ -151,7 +155,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 		}
 		else if (cmd.equals("Open")) {
 			dispose();
-			new MenuWindow();
+			new MenuWindow(dbhandler);
 		}
 	}
 }

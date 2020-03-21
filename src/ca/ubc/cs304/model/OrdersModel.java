@@ -2,11 +2,13 @@ package ca.ubc.cs304.model;
 
 import oracle.sql.TIMESTAMP;
 
+import java.sql.Timestamp;
+
 public class OrdersModel {
     private final int orderNumber;
-    private final TIMESTAMP time;
+    private final Timestamp time;
 
-    public OrdersModel(int orderNumber, TIMESTAMP time) {
+    public OrdersModel(int orderNumber, Timestamp time) {
         this.orderNumber = orderNumber;
         this.time = time;
     }
@@ -15,7 +17,7 @@ public class OrdersModel {
         return orderNumber;
     }
 
-    public TIMESTAMP getTime() {
+    public Timestamp getTime() {
         return time;
     }
 }

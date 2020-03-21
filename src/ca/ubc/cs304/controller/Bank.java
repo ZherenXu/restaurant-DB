@@ -19,7 +19,7 @@ public class Bank implements LoginWindowDelegate, TerminalTransactionsDelegate {
 	}
 	
 	private void start() {
-		loginWindow = new LoginWindow();
+		loginWindow = new LoginWindow(dbHandler);
 		loginWindow.showFrame(this);
 	}
 	
