@@ -23,34 +23,28 @@ import javax.swing.JTextField;
 public class InsertWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
-    private JTextField orderNumField;
-    private JTextField orderDishField;
+
+    private JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
+    private JTextField dishOrderNumField = new JTextField(TEXT_FIELD_WIDTH);
+    private JTextField dishField = new JTextField(TEXT_FIELD_WIDTH);
+    private JTextField tastePreferenceField = new JTextField(TEXT_FIELD_WIDTH);
 
     public InsertWindow(DatabaseConnectionHandler dbhandler) {
         super("Insert Window");
         this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel testLabel = new JLabel("TEST");
-
         JLabel titleLabel = new JLabel("INSERT DATA");
         JLabel insertOrderLabel = new JLabel("Order:");
-        JLabel chefLabel = new JLabel(" Chef: ");
-        JLabel dishLabel = new JLabel(" Dish: ");
         JLabel orderNumLabel = new JLabel(" Order #: ");
         JLabel insertDishLabel = new JLabel("Dish:");
-        JLabel ingredientLabel = new JLabel("ingredient: ");
-        JLabel dishChefLabel = new JLabel("Chef: ");
-
-        JTextField chefField = new JTextField(TEXT_FIELD_WIDTH);
-        orderDishField = new JPasswordField(TEXT_FIELD_WIDTH);
-        orderNumField = new JTextField(TEXT_FIELD_WIDTH);
-        JTextField ingredientField = new JTextField(TEXT_FIELD_WIDTH);
-        JTextField dishChefField = new JTextField(TEXT_FIELD_WIDTH);
+        JLabel dishOrderNumLabel = new JLabel("Order #: ");
+        JLabel dishLabel = new JLabel(" Dish: ");
+        JLabel tastePreferenceLabel = new JLabel("Teste Preference: ");
 
 
-        JButton insetOrderBtn = new JButton("Insert");
-        JButton insetDishBtn = new JButton("Insert");
+        JButton insertOrderBtn = new JButton("Insert");
+        JButton insertDishBtn = new JButton("Insert");
         JButton backBtn = new JButton("Back");
 
         // Set the Window
@@ -93,36 +87,12 @@ public class InsertWindow extends JFrame implements ActionListener{
         gb.setConstraints(orderNumField, c);
         contentPane.add(orderNumField);
 
-        // Chef(order) label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(chefLabel, c);
-        contentPane.add(chefLabel);
-
-        // Chef(order) text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(chefField, c);
-        contentPane.add(chefField);
-
-        // Dish(order) label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(dishLabel, c);
-        contentPane.add(dishLabel);
-
-        // Dish(order) text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderDishField, c);
-        contentPane.add(orderDishField);
-
         // Insert order button
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(insetOrderBtn, c);
-        contentPane.add(insetOrderBtn);
+        gb.setConstraints(insertOrderBtn, c);
+        contentPane.add(insertOrderBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         //////////////////////////////INSERT DISHES/////////////////////////////////
@@ -134,36 +104,48 @@ public class InsertWindow extends JFrame implements ActionListener{
         gb.setConstraints(insertDishLabel, c);
         contentPane.add(insertDishLabel);
 
-        // Ingredient label
+        // Dish Order# label
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(ingredientLabel, c);
-        contentPane.add(ingredientLabel);
+        gb.setConstraints(dishOrderNumLabel, c);
+        contentPane.add(dishOrderNumLabel);
 
-        // Ingredient text field
+        // Dish Order# text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(ingredientField, c);
-        contentPane.add(ingredientField);
+        gb.setConstraints(dishOrderNumField, c);
+        contentPane.add(dishOrderNumField);
 
-        // Chef(dish) label
+        // Dish label
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(dishChefLabel, c);
-        contentPane.add(dishChefLabel);
+        gb.setConstraints(dishLabel, c);
+        contentPane.add(dishLabel);
 
-        // Chef(dish) text field
+        // Dish text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(dishChefField, c);
-        contentPane.add(dishChefField);
+        gb.setConstraints(dishField, c);
+        contentPane.add(dishField);
+
+        // Taste Preference label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(tastePreferenceLabel, c);
+        contentPane.add(tastePreferenceLabel);
+
+        // Taste Preference field
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(tastePreferenceField, c);
+        contentPane.add(tastePreferenceField);
 
         // Insert dish button
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(insetDishBtn, c);
-        contentPane.add(insetDishBtn);
+        gb.setConstraints(insertDishBtn, c);
+        contentPane.add(insertDishBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
@@ -175,10 +157,10 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         backBtn.addActionListener(this);
         backBtn.setActionCommand("back");
-        insetDishBtn.addActionListener(this);
-        insetDishBtn.setActionCommand("dish");
-        insetOrderBtn.addActionListener(this);
-        insetDishBtn.setActionCommand("order");
+        insertDishBtn.addActionListener(this);
+        insertDishBtn.setActionCommand("dish");
+        insertOrderBtn.addActionListener(this);
+        insertOrderBtn.setActionCommand("order");
 
         pack();
 
@@ -195,12 +177,12 @@ public class InsertWindow extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         switch(cmd){
             case "order":
-                OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
-                dbhandler.insertOrder(order);
+                //OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
+                //dbhandler.insertOrder(order);
                 break;
             case "dish":
-                DishesModel dish = new DishesModel(orderDishField.getText(), Integer.valueOf(orderNumField.getText()), null);
-                dbhandler.insertDish(dish);
+                //DishesModel dish = new DishesModel(orderDishField.getText(), Integer.valueOf(orderNumField.getText()), null);
+                //dbhandler.insertDish(dish);
                 break;
             case "back":
                 dispose();

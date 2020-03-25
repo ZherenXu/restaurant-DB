@@ -28,6 +28,8 @@ public class MenuWindow extends JFrame implements ActionListener{
         JButton insertBtn = new JButton("Insert");
         JButton updateBtn = new JButton("Update");
         JButton deleteBtn = new JButton("Delete");
+        JButton selectBtn = new JButton("Select");
+        JButton statBtn = new JButton("Statistic");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -68,13 +70,31 @@ public class MenuWindow extends JFrame implements ActionListener{
         gb.setConstraints(deleteBtn, c);
         contentPane.add(deleteBtn);
 
+        // Select button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(selectBtn, c);
+        contentPane.add(selectBtn);
+
+        // Statistic button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(statBtn, c);
+        contentPane.add(statBtn);
+
         // Set btn action listener
         insertBtn.addActionListener(this);
         updateBtn.addActionListener(this);
         deleteBtn.addActionListener(this);
+        selectBtn.addActionListener(this);
+        statBtn.addActionListener(this);
         insertBtn.setActionCommand("insert");
         updateBtn.setActionCommand("update");
         deleteBtn.setActionCommand("delete");
+        selectBtn.setActionCommand("select");
+        statBtn.setActionCommand("statistic");
 
         pack();
 
@@ -101,6 +121,14 @@ public class MenuWindow extends JFrame implements ActionListener{
             case "delete":
                 dispose();
                 new DeleteWindow(dbhandler);
+                break;
+            case "select":
+//                dispose();
+//                new SelectWindow(dbhandler);
+                break;
+            case "statistic":
+                dispose();
+                new StatWindow(dbhandler);
                 break;
             default:
                 break;
