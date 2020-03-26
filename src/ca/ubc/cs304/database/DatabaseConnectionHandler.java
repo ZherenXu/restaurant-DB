@@ -86,6 +86,17 @@ public class DatabaseConnectionHandler {
 		return DishesHandler.getDishesColumn(connection);
 	}
 
+	public Vector<Vector<String>> minIngredient(){
+		return StatisticHandler.minIngredient(connection);
+	}
+
+	public Vector<Vector<String>> maxIngredient(){
+		return StatisticHandler.maxIngredient(connection);
+	}
+
+	public Vector<String> minMaxColumn(){
+		return StatisticHandler.minMaxColumn(connection);
+	}
 	
 	public void insertBranch(BranchModel model) {
 //		try {
