@@ -167,4 +167,118 @@ public class StatisticHandler {
         return avg;
     }
 
+    protected static Vector<Vector<String>> ICountDishes(Connection connection) {
+        Vector<Vector<String>> summary = new Vector<>();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT I.name AS ingredient, COUNT(DISTINCT C.dishesName) AS numOfDishes" +
+                            "FROM INGREDIENTS I, CONSUME C" +
+                            "WHERE I.lotNumber = C.lotNumber" +
+                            "GROUP BY I.name");
+
+            while(rs.next()) {
+                Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString("ingredient"));
+                tuple.add(Integer.toString(rs.getInt("numOfDishes")));
+
+                summary.add(tuple);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return summary;
+    }
+
+    protected static Vector<String> ICountColumn(Connection connection){
+        Vector<String> column = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT I.name AS ingredient, COUNT(DISTINCT C.dishesName) AS numOfDishes" +
+                            "FROM INGREDIENTS I, CONSUME C" +
+                            "WHERE I.lotNumber = C.lotNumber" +
+                            "GROUP BY I.name");
+
+            // get info on ResultSet
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            // display column names;
+            for (int i = 0; i < rsmd.getColumnCount(); i++) {
+                // get column name
+                column.add(rsmd.getColumnName(i+1));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+
+        return column;
+    }
+
+
+    protected static Vector<Vector<String>> DPCountIngredient(Connection connection) {
+        Vector<Vector<String>> summary = new Vector<>();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT I.SIN AS sin, D.name AS name, COUNT(I.lotNumber) AS frequency" +
+                            "FROM INGREDIENTS I, DELEVERYPEOPLE D" +
+                            "WHERE I.sin = D.sin" +
+                            "GROUP BY I.sin");
+
+            while(rs.next()) {
+                Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString("sin"));
+                tuple.add(rs.getString("name"));
+                tuple.add(Integer.toString(rs.getInt("frequency")));
+
+                summary.add(tuple);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return summary;
+    }
+
+    protected static Vector<String> DPCountColumn(Connection connection){
+        Vector<String> column = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT I.SIN AS sin, D.name AS name, COUNT(I.lotNumber) AS frequency" +
+                            "FROM INGREDIENTS I, DELEVERYPEOPLE D" +
+                            "WHERE I.sin = D.sin" +
+                            "GROUP BY I.sin");
+
+            // get info on ResultSet
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            // display column names;
+            for (int i = 0; i < rsmd.getColumnCount(); i++) {
+                // get column name
+                column.add(rsmd.getColumnName(i+1));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+
+        return column;
+    }
+
+
+
 }

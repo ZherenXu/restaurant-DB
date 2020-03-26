@@ -110,6 +110,22 @@ public class DatabaseConnectionHandler {
 		return StatisticHandler.avgTempFreezer(connection);
 	}
 
+	public Vector<Vector<String>> ICountDishes(){
+		return StatisticHandler.ICountDishes(connection);
+	}
+
+	public Vector<String> ICountColumn(){
+		return StatisticHandler.ICountColumn(connection);
+	}
+
+	public Vector<Vector<String>> DPCountIngredient(){
+		return StatisticHandler.DPCountIngredient(connection);
+	}
+
+	public Vector<String> DPCountColumn(){
+		return StatisticHandler.DPCountColumn(connection);
+	}
+
 	public void insertBranch(BranchModel model) {
 //		try {
 //			PreparedStatement ps = connection.prepareStatement("INSERT INTO branch VALUES (?,?,?,?,?)");
