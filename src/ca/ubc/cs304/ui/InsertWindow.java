@@ -41,6 +41,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         JButton insertOrderBtn = new JButton("Insert");
         JButton insertDishBtn = new JButton("Insert");
         JButton backBtn = new JButton("Back");
+        JButton refreshBtn = new JButton("Refresh");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -150,12 +151,21 @@ public class InsertWindow extends JFrame implements ActionListener{
         gb.setConstraints(backBtn, c);
         contentPane.add(backBtn);
 
+        // Refresh button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(refreshBtn, c);
+        contentPane.add(refreshBtn);
+
         backBtn.addActionListener(this);
         backBtn.setActionCommand("back");
         insertDishBtn.addActionListener(this);
         insertDishBtn.setActionCommand("dish");
         insertOrderBtn.addActionListener(this);
         insertOrderBtn.setActionCommand("order");
+        refreshBtn.addActionListener(this);
+        refreshBtn.setActionCommand("refresh");
 
         pack();
 
@@ -184,6 +194,9 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
+                break;
+            case "refresh":
+                ////////change this////////
                 break;
             default:
                 break;
