@@ -1,8 +1,12 @@
 package ca.ubc.cs304.database;
 
+import ca.ubc.cs304.model.BranchModel;
 import ca.ubc.cs304.model.OrdersModel;
+import oracle.sql.TIMESTAMP;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection;
 
@@ -46,6 +50,58 @@ public class OrderHandler {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
             rollbackConnection();
         }
+    }
+
+    protected static Vector<Vector<String>> getAllOrder(Connection connection) {
+        Vector<Vector<String>> Orders = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ORDERS");
+
+            while(rs.next()) {
+                Vector<String> tuple = new Vector<>();
+                tuple.add(Integer.toString(rs.getInt("OrderNumber")));
+                System.out.println("Order number: " + tuple.get(0));
+
+                tuple.add(rs.getTimestamp("Time").toString());
+                System.out.println("Time: " + tuple.get(1));
+
+                Orders.add(tuple);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return Orders;
+    }
+
+    protected static Vector<String> getOrderColumn(Connection connection){
+
+        Vector<String> column = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ORDERS");
+
+    		// get info on ResultSet
+    		ResultSetMetaData rsmd = rs.getMetaData();
+
+    		// display column names;
+    		for (int i = 0; i < rsmd.getColumnCount(); i++) {
+    			// get column name
+                column.add(rsmd.getColumnName(i+1));
+    		}
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+
+        return column;
     }
 
 

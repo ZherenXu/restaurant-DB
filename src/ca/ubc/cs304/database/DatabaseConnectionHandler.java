@@ -2,6 +2,7 @@ package ca.ubc.cs304.database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import ca.ubc.cs304.model.BranchModel;
 import ca.ubc.cs304.model.DishesModel;
@@ -68,6 +69,23 @@ public class DatabaseConnectionHandler {
 		DishesHandler.deleteAllDishes(OrderNumber, connection);
 		OrderHandler.deleteOrder(OrderNumber, connection);
 	}
+
+	public Vector<Vector<String>> getAllOrder(){
+		return OrderHandler.getAllOrder(connection);
+	}
+
+	public Vector<String> getOrderColumn(){
+		return OrderHandler.getOrderColumn(connection);
+	}
+
+	public Vector<Vector<String>> getAllDishes(){
+		return DishesHandler.getAllDishes(connection);
+	}
+
+	public Vector<String> getDishesColumn(){
+		return DishesHandler.getDishesColumn(connection);
+	}
+
 	
 	public void insertBranch(BranchModel model) {
 //		try {
