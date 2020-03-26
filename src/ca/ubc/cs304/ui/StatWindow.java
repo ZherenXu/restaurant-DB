@@ -27,7 +27,7 @@ public class StatWindow extends JFrame implements ActionListener{
     private JTextField resultField = new JTextField(TEXT_FIELD_WIDTH);
 
     public StatWindow(DatabaseConnectionHandler dbhandler) {
-        super("Insert Window");
+        super("STATISTIC");
         this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
