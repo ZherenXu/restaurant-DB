@@ -15,7 +15,7 @@ public class DatabaseConnectionHandler {
 	private static final String EXCEPTION_TAG = "[EXCEPTION]";
 	private static final String WARNING_TAG = "[WARNING]";
 	
-	private Connection connection = null;
+	private static Connection connection = null;
 	
 	public DatabaseConnectionHandler() {
 		try {
@@ -57,45 +57,16 @@ public class DatabaseConnectionHandler {
 	}
 
 	public void insertDish(DishesModel model){
-		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO DISHES VALUES (?,?,?)");
-			ps.setString(1, model.getName());
-			ps.setInt(2, model.getOrderNumber());
-			if(model.getTastePreference() == null) {
-				ps.setNull(3, Types.CHAR);
-			}
-			else{
-				ps.setString(3, model.getTastePreference());
-			}
-
-			ps.executeUpdate();
-			connection.commit();
-
-			ps.close();
-		} catch (SQLException e) {
-			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-			rollbackConnection();
-		}
-
-		return;
+		DishesHandler.insertDish(model, connection);
 	}
 
 	public void insertOrder(OrdersModel model){
-		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO ORDERS VALUES (?,?)");
-			ps.setInt(1, model.getOrderNumber());
-			ps.setTimestamp(2, model.getTime());
+		OrderHandler.insertOrder(model, connection);
+	}
 
-			ps.executeUpdate();
-			connection.commit();
-
-			ps.close();
-		} catch (SQLException e) {
-			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-			rollbackConnection();
-		}
-
-		return;
+	public void deleteOrder(int OrderNumber){
+		DishesHandler.deleteAllDishes(OrderNumber, connection);
+		OrderHandler.deleteOrder(OrderNumber, connection);
 	}
 	
 	public void insertBranch(BranchModel model) {
@@ -196,7 +167,7 @@ public class DatabaseConnectionHandler {
 		}
 	}
 
-	private void rollbackConnection() {
+	protected static void rollbackConnection() {
 		try  {
 			connection.rollback();	
 		} catch (SQLException e) {
