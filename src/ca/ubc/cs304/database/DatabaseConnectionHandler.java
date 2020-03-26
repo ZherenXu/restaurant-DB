@@ -86,7 +86,46 @@ public class DatabaseConnectionHandler {
 		return DishesHandler.getDishesColumn(connection);
 	}
 
-	
+	public Vector<Vector<String>> minIngredient(){
+		return StatisticHandler.minIngredient(connection);
+	}
+
+	public Vector<Vector<String>> maxIngredient(){
+		return StatisticHandler.maxIngredient(connection);
+	}
+
+	public Vector<String> minMaxColumn(){
+		return StatisticHandler.minMaxColumn(connection);
+	}
+
+	public float avgTempShelf(){
+		return StatisticHandler.avgTempShelf(connection);
+	}
+
+	public float avgTempRef(){
+		return StatisticHandler.avgTempRef(connection);
+	}
+
+	public float avgTempFreezer(){
+		return StatisticHandler.avgTempFreezer(connection);
+	}
+
+	public Vector<Vector<String>> ICountDishes(){
+		return StatisticHandler.ICountDishes(connection);
+	}
+
+	public Vector<String> ICountColumn(){
+		return StatisticHandler.ICountColumn(connection);
+	}
+
+	public Vector<Vector<String>> DPCountIngredient(){
+		return StatisticHandler.DPCountIngredient(connection);
+	}
+
+	public Vector<String> DPCountColumn(){
+		return StatisticHandler.DPCountColumn(connection);
+	}
+
 	public void insertBranch(BranchModel model) {
 //		try {
 //			PreparedStatement ps = connection.prepareStatement("INSERT INTO branch VALUES (?,?,?,?,?)");
