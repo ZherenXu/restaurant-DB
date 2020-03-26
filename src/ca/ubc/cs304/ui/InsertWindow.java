@@ -19,7 +19,7 @@ public class InsertWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
     private TableWindow tb;
-
+    private boolean choose = true;
     private JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     private JTextField dishOrderNumField = new JTextField(TEXT_FIELD_WIDTH);
     private JTextField dishField = new JTextField(TEXT_FIELD_WIDTH);
@@ -183,15 +183,16 @@ public class InsertWindow extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-        boolean choose = true;
         switch(cmd){
             case "order":
                 OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
                 dbhandler.insertOrder(order);
+                choose = true;
                 break;
             case "dish":
                 DishesModel dish = new DishesModel(dishField.getText(), Integer.valueOf(dishOrderNumField.getText()), tastePreferenceField.getText());
                 dbhandler.insertDish(dish);
+                choose = false;
                 break;
             case "back":
                 dispose();
