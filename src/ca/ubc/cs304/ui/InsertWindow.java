@@ -174,12 +174,12 @@ public class InsertWindow extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         switch(cmd){
             case "order":
-                //OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
-                //dbhandler.insertOrder(order);
+                OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
+                dbhandler.insertOrder(order);
                 break;
             case "dish":
-                //DishesModel dish = new DishesModel(orderDishField.getText(), Integer.valueOf(orderNumField.getText()), null);
-                //dbhandler.insertDish(dish);
+                DishesModel dish = new DishesModel(dishField.getText(), Integer.valueOf(orderNumField.getText()), null);
+                dbhandler.insertDish(dish);
                 break;
             case "back":
                 dispose();
