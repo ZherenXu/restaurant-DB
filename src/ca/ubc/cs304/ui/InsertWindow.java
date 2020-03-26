@@ -175,7 +175,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         Rectangle r = this.getBounds();
         this.setLocation( (d.width - r.width)/2, (d.height - r.height)/2 );
 
-        tb = new TableWindow(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Order");
+        tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
 
         setVisible(true);
     }
@@ -200,10 +200,10 @@ public class InsertWindow extends JFrame implements ActionListener{
                 break;
             case "refresh":
                 if(choose) {
-                    tb.updateTable(dbhandler.getAllOrder(),dbhandler.getOrderColumn());
+                    tb.updateTable(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"Order");
                 }
                 else{
-                    tb.updateTable(dbhandler.getAllDishes(),dbhandler.getDishesColumn());
+                    tb.updateTable(dbhandler.getAllDishes(),dbhandler.getDishesColumn(),"Dish");
                 }
                 break;
             default:
