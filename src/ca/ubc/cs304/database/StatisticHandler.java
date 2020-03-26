@@ -97,4 +97,74 @@ public class StatisticHandler {
 
         return column;
     }
+
+    /* If there is no tuples in the table, the average will return 999.999 */
+    protected static float avgTempShelf(Connection connection) {
+        float avg;
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT AVG(RoomTemp) AS avgTemp FROM SHELF");
+            if(!rs.next()){
+                System.out.println(EXCEPTION_TAG + " " + "There is no tuples in the table");
+                avg = (float)999.999;
+            }
+            else{
+                avg = rs.getFloat("avgTemp");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            avg = (float) 999.999;
+        }
+        return avg;
+    }
+
+    /* If there is no tuples in the table, the average will return 999.999 */
+    protected static float avgTempRef(Connection connection) {
+        float avg;
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT AVG(RoomTemp) AS avgTemp FROM REFRIGERATOR");
+            if(!rs.next()){
+                System.out.println(EXCEPTION_TAG + " " + "There is no tuples in the table");
+                avg = (float)999.999;
+            }
+            else{
+                avg = rs.getFloat("avgTemp");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            avg = (float) 999.999;
+        }
+        return avg;
+    }
+
+    /* If there is no tuples in the table, the average will return 999.999 */
+    protected static float avgTempFreezer(Connection connection) {
+        float avg;
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT AVG(RoomTemp) AS avgTemp FROM FREEZER");
+            if(!rs.next()){
+                System.out.println(EXCEPTION_TAG + " " + "There is no tuples in the table");
+                avg = (float)999.999;
+            }
+            else{
+                avg = rs.getFloat("avgTemp");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            avg = (float) 999.999;
+        }
+        return avg;
+    }
+
 }

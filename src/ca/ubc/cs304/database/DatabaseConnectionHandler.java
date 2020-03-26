@@ -97,7 +97,19 @@ public class DatabaseConnectionHandler {
 	public Vector<String> minMaxColumn(){
 		return StatisticHandler.minMaxColumn(connection);
 	}
-	
+
+	public float avgTempShelf(){
+		return StatisticHandler.avgTempShelf(connection);
+	}
+
+	public float avgTempRef(){
+		return StatisticHandler.avgTempRef(connection);
+	}
+
+	public float avgTempFreezer(){
+		return StatisticHandler.avgTempFreezer(connection);
+	}
+
 	public void insertBranch(BranchModel model) {
 //		try {
 //			PreparedStatement ps = connection.prepareStatement("INSERT INTO branch VALUES (?,?,?,?,?)");
