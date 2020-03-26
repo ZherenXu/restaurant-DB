@@ -11,14 +11,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Vector;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class InsertWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
@@ -168,6 +163,8 @@ public class InsertWindow extends JFrame implements ActionListener{
         Dimension d = this.getToolkit().getScreenSize();
         Rectangle r = this.getBounds();
         this.setLocation( (d.width - r.width)/2, (d.height - r.height)/2 );
+
+        new TableWindow(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Order");
 
         setVisible(true);
     }
