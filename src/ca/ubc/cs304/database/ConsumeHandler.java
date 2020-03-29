@@ -3,9 +3,8 @@ package ca.ubc.cs304.database;
 import ca.ubc.cs304.model.ChefAddressModel;
 import ca.ubc.cs304.model.ConsumeModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Vector;
 
 import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection;
 
@@ -32,5 +31,56 @@ public class ConsumeHandler {
         }
 
         return;
+    }
+
+    protected static Vector<Vector<String>> getAllConsume(Connection connection) {
+        Vector<Vector<String>> Consume = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM CONSUME");
+
+            while(rs.next()) {
+                Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString("DishesName"));
+                tuple.add(Integer.toString(rs.getInt("OrderNumber")));
+                tuple.add(rs.getString("LotNumber"));
+                tuple.add(Integer.toString(rs.getInt("Quantity")));
+
+                Consume.add(tuple);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return Consume;
+    }
+
+    protected static Vector<String> getConsumeColumn(Connection connection){
+
+        Vector<String> column = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM CONSUME");
+
+            // get info on ResultSet
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            // display column names;
+            for (int i = 0; i < rsmd.getColumnCount(); i++) {
+                // get column name
+                column.add(rsmd.getColumnName(i+1));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+
+        return column;
     }
 }

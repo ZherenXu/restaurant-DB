@@ -119,6 +119,76 @@ public class DatabaseConnectionHandler {
 		return DishesHandler.getDishesColumn(connection);
 	}
 
+	/* Select all tuples in ingredients */
+	public Vector<Vector<String>> getAllIngredients(){
+		return IngredientHandler.getAllIngreidents(connection);
+	}
+
+	/* Columns names in ingredients */
+	public Vector<String> getIngredientsColumn(){
+		return IngredientHandler.getIngredientsColumn(connection);
+	}
+
+	/* Select all tuples in cook */
+	public Vector<Vector<String>> getAllCook(){
+		return CookHandler.getAllCook(connection);
+	}
+
+	/* Columns names in cook */
+	public Vector<String> getCookColumn(){
+		return CookHandler.getCookColumn(connection);
+	}
+
+	/* Select all tuples in chef */
+	public Vector<Vector<String>> getAllChef(){
+		return ChefHandler.getAllChef(connection);
+	}
+
+	/* Columns names in chef */
+	public Vector<String> getChefColumn(){
+		return ChefHandler.getChefColumn(connection);
+	}
+
+	/* Select all tuples in delivery people */
+	public Vector<Vector<String>> getAllDeliveryPeople(){
+		return DeliveryPeopleHandler.getAllDeliveryPeople(connection);
+	}
+
+	/* Columns names in delivery people */
+	public Vector<String> getDeliveryPeopleColumn(){
+		return DeliveryPeopleHandler.getDeliveryPeopleColumn(connection);
+	}
+
+	/* Select all tuples in consume */
+	public Vector<Vector<String>> getAllConsume(){
+		return ConsumeHandler.getAllConsume(connection);
+	}
+
+	/* Columns names in consume */
+	public Vector<String> getConsumeColumn(){
+		return ConsumeHandler.getConsumeColumn(connection);
+	}
+
+	/* Select all tuples in food supplier */
+	public Vector<Vector<String>> getAllFoodSupplier(){
+		return FoodSupplierHandler.getAllFoodSupplier(connection);
+	}
+
+	/* Columns names in food supplier */
+	public Vector<String> getFoodSupplierColumn(){
+		return FoodSupplierHandler.getFoodSupplierColumn(connection);
+	}
+
+	/* Select all tuples in provide */
+	public Vector<Vector<String>> getAllProvide(){
+		return ProvideHandler.getAllProvide(connection);
+	}
+
+	/* Columns names in provide */
+	public Vector<String> getProvideColumn(){
+		return ProvideHandler.getProvideColumn(connection);
+	}
+
 	/* Ingredients that are not popular / ingredients with minimum quantity in consume */
 	public Vector<Vector<String>> minIngredient(){
 		return StatisticHandler.minIngredient(connection);

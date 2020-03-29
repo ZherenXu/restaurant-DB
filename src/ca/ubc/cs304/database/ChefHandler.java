@@ -67,4 +67,66 @@ public class ChefHandler {
             rollbackConnection();
         }
     }
+
+    protected static Vector<Vector<String>> getAllChef(Connection connection) {
+        Vector<Vector<String>> Chef = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT C.Name AS Name, C.SIN AS SIN, " +
+                            "C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, " +
+                            "CA.BranchAddress AS BranchAddress" +
+                    "FROM CHEF C, CHEFADDRESS CA " +
+                    "WHERE C.HomeAddress = CA.HomeAddress");
+
+            while(rs.next()) {
+                Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString("Name"));
+                tuple.add(rs.getString("SIN"));
+                tuple.add(rs.getString("ContactNumber"));
+                tuple.add(rs.getString("HomeAddress"));
+                tuple.add(rs.getString("BranchAddress"));
+
+                Chef.add(tuple);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return Chef;
+    }
+
+    protected static Vector<String> getChefColumn(Connection connection){
+
+        Vector<String> column = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT C.Name AS Name, C.SIN AS SIN, " +
+                            "C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, " +
+                            "CA.BranchAddress AS BranchAddress" +
+                            "FROM CHEF C, CHEFADDRESS CA " +
+                            "WHERE C.HomeAddress = CA.HomeAddress");
+
+            // get info on ResultSet
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            // display column names;
+            for (int i = 0; i < rsmd.getColumnCount(); i++) {
+                // get column name
+                column.add(rsmd.getColumnName(i+1));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+
+        return column;
+    }
 }
