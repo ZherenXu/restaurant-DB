@@ -30,8 +30,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
         this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel testLabel = new JLabel("TEST");
-
         JLabel titleLabel = new JLabel("DELETE DATA");
         JLabel deleteOrderLabel = new JLabel("Order:");
         JLabel orderNumLabel = new JLabel(" Order #: ");
@@ -198,11 +196,13 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(backBtn);
 
         backBtn.addActionListener(this);
+        refreshBtn.addActionListener(this);
         deleteOrderBtn.addActionListener(this);
         deleteChefBtn.addActionListener(this);
         deleteDeliveryPeopleBtn.addActionListener(this);
         deleteFoodSupplierBtn.addActionListener(this);
         backBtn.setActionCommand("back");
+        refreshBtn.setActionCommand("refresh");
         deleteOrderBtn.setActionCommand("order");
         deleteChefBtn.setActionCommand("chef");
         deleteDeliveryPeopleBtn.setActionCommand("delivery people");
@@ -234,6 +234,8 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
+            case "refresh":
+                //break;
             default:
                 break;
         }
