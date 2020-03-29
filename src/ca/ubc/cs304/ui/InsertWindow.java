@@ -1,16 +1,18 @@
 package ca.ubc.cs304.ui;
 
 import ca.ubc.cs304.database.DatabaseConnectionHandler;
-import ca.ubc.cs304.model.DishesModel;
-import ca.ubc.cs304.model.OrdersModel;
+import ca.ubc.cs304.model.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -18,8 +20,8 @@ import javax.swing.*;
 public class InsertWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
-    private TableWindow tb;
-    private boolean choose = true;
+    private TableWindow tb = new TableWindow();
+    private int choose = 0;
     private JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     private JTextField dishOrderNumField = new JTextField(TEXT_FIELD_WIDTH);
     private JTextField dishField = new JTextField(TEXT_FIELD_WIDTH);
@@ -610,37 +612,90 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "order":
                 OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
                 dbhandler.insertOrder(order);
-                choose = true;
+                choose = 1;
                 break;
             case "dish":
                 DishesModel dish = new DishesModel(dishField.getText(), Integer.valueOf(dishOrderNumField.getText()), tastePreferenceField.getText());
                 dbhandler.insertDish(dish);
-                choose = false;
+                choose = 2;
                 break;
             case "ingredient":
-                //break;
+                try {
+                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    java.util.Date date = formatter.parse(ingredientsDateField.getText());
+                    IngredientsModel ingred = new IngredientsModel(ingredientsLotField.getText(),
+                            ingredientsNameField.getText(),
+                            new java.sql.Date(date.getTime()),
+                            Integer.valueOf(ingredientsQuantityField.getText()),
+                            Integer.valueOf(ingredientsPosIDField.getText()),
+                            ingredientsSINField.getText()
+                    );
+                    CategoryModel cate = new CategoryModel(ingredientsNameField.getText(),ingredientsTypeField.getText());
+                    dbhandler.insertIngredient(ingred, cate);
+                } catch(Exception g){
+                    System.out.println("Exception :" + g);
+                }
+
+                break;
             case "cook":
-                //;
+                CookModel cook = new CookModel(cookSINField.getText(), cookDishNameField.getText(), Integer.valueOf(cookOrderNumberField.getText()));
+                dbhandler.insertCook(cook);
+                break;
             case "chef":
-                //break;
+                ChefModel chef = new ChefModel(chefNameField.getText(), chefSINField.getText(), chefContactNumberField.getText(),chefHomeAddressField.getText());
+                ChefAddressModel chefAddr = new ChefAddressModel(chefHomeAddressField.getText(),chefBranchAddressField.getText());
+                dbhandler.insertChef(chef,chefAddr);
+                break;
             case "delivery people":
-                //break;
+                DeliveryPeopleModel delivPep = new DeliveryPeopleModel(deliveryPeopleSINField.getText(), deliveryPeopleNameField.getText(),
+                        deliveryPeopleContactNumberField.getText(), deliveryPeopleAddressField.getText());
+                dbhandler.insertDeliveryPeople(delivPep);
+                break;
             case "consume":
-                //break;
+                ConsumeModel consume = new ConsumeModel(consumeDishNameField.getText(),
+                        Integer.valueOf(consumeOrderNumberField.getText()), consumeLotNumberField.getText(),
+                        Integer.valueOf(consumeQuantityField.getText())
+                );
+                dbhandler.insertConsume(consume);
+                break;
             case "food supplier":
-                //break;
+                FoodSupplierModel fSupplier = new FoodSupplierModel(foodSupplierCompanyNameField.getText(),foodSupplierAddressField.getText(),
+                foodSupplierContactNumberField.getText(),foodSupplierEmailField.getText());
+                dbhandler.insertFoodSupplier(fSupplier);
+                break;
             case "provide":
-                //break;
+
+                ProvideModel provide = new ProvideModel(provideCompanyNameField.getText(),provideLotNumberField.getText());
+                dbhandler.insertProvide(provide);
+                break;
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
             case "refresh":
-                if(choose) {
-                    tb.updateTable(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"Order");
-                }
-                else{
-                    tb.updateTable(dbhandler.getAllDishes(),dbhandler.getDishesColumn(),"Dish");
+                switch(choose) {
+                    case 1:
+                        tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Order");
+                        break;
+                    case 2:
+                        tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dish");
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    default:
+                        break;
                 }
                 break;
             default:

@@ -25,6 +25,7 @@ public class StatWindow extends JFrame implements ActionListener{
     private DatabaseConnectionHandler dbhandler;
 
     private JTextField resultField = new JTextField(TEXT_FIELD_WIDTH);
+    private TableWindow tb;
 
     public StatWindow(DatabaseConnectionHandler dbhandler) {
         super("Stat Window");
@@ -45,6 +46,8 @@ public class StatWindow extends JFrame implements ActionListener{
         JButton countIngredientsDeliveryBtn = new JButton("# of Ingredients for Delivery People");
         JButton countDishByIngredientsBtn = new JButton("# of Dishes Used by Certain Ingredients");
         JButton backBtn = new JButton("Back");
+
+        TableWindow tb = new TableWindow();
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -185,25 +188,25 @@ public class StatWindow extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         switch(cmd){
             case "get max consume":
-                resultField.setText("MAX CONSUME");    //Change this//
+                tb.updateTable(dbhandler.maxIngredient(),dbhandler.minMaxColumn(),"popular ingredients");
                 break;
             case "get min consume":
-                resultField.setText("MIN CONSUME");    //Change this//
+                tb.updateTable(dbhandler.minIngredient(),dbhandler.minMaxColumn(),"unpopular ingredients");
                 break;
             case "get average shelf temperature":
-                resultField.setText("AVE SHELF TEMP");    //Change this//
+                resultField.setText(Float.toString(dbhandler.avgTempShelf()));
                 break;
             case "get average refrigerator temperature":
-                resultField.setText("AVE REFRIGERATOR TEMP");    //Change this//
+                resultField.setText(Float.toString(dbhandler.avgTempRef()));
                 break;
             case "get average freezer temperature":
-                resultField.setText("AVE FREEZER TEMP");    //Change this//
+                resultField.setText(Float.toString(dbhandler.avgTempFreezer()));    //Change this//
                 break;
             case "# of Ingredients for Delivery People":
-                resultField.setText("# OF INGREDIENTS");    //Change this//
+                tb.updateTable(dbhandler.DPCountIngredient(),dbhandler.DPCountColumn(),"# of Ingredients for Delivery People");
                 break;
             case "# of Dishes Used by Certain Ingredients":
-                resultField.setText("# OF DISHES");    //Change this//
+                tb.updateTable(dbhandler.ICountDishes(),dbhandler.ICountColumn(),"# of Dishes Used by Certain Ingredients");
                 break;
             case "back":
                 dispose();
