@@ -4,9 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import ca.ubc.cs304.model.BranchModel;
-import ca.ubc.cs304.model.DishesModel;
-import ca.ubc.cs304.model.OrdersModel;
+import ca.ubc.cs304.model.*;
 
 /**
  * This class handles all database related transactions
@@ -57,6 +55,34 @@ public class DatabaseConnectionHandler {
 		}
 	}
 
+	public void insertChef(ChefModel model, ChefAddressModel aModel){
+		ChefHandler.insertChef(model, aModel, connection);
+	}
+
+	public void insertDeliveryPeople(DeliveryPeopleModel model){
+		DeliveryPeopleHandler.insertDeliveryPeople(model, connection);
+	}
+
+	public void insertIngredient(IngredientsModel iModel, CategoryModel cModel){
+		IngredientHandler.insertIngredient(iModel, cModel, connection);
+	}
+
+	public void insertCook(CookModel model){
+		CookHandler.insertCook(model, connection);
+	}
+
+	public void insertConsume(ConsumeModel model){
+		ConsumeHandler.insertConsume(model, connection);
+	}
+
+	public void insertFoodSupplier(FoodSupplierModel model){
+		FoodSupplierHandler.insertFoodSupplier(model, connection);
+	}
+
+	public void insertProvide(ProvideModel model){
+		ProvideHandler.insertProvide(model, connection);
+	}
+
 	public void insertDish(DishesModel model){
 		DishesHandler.insertDish(model, connection);
 	}
@@ -68,6 +94,18 @@ public class DatabaseConnectionHandler {
 	public void deleteOrder(int OrderNumber){
 		DishesHandler.deleteAllDishes(OrderNumber, connection);
 		OrderHandler.deleteOrder(OrderNumber, connection);
+	}
+
+	public void deleteChef(String sin){
+		ChefHandler.deleteChef(sin, connection);
+	}
+
+	public void deleteDeliveryPeople(String sin){
+		DeliveryPeopleHandler.deleteDeliveryPeople(sin, connection);
+	}
+
+	public void deleteFoodSupplier(String company_name){
+		FoodSupplierHandler.deleteFoodSupplier(company_name, connection);
 	}
 
 	public Vector<Vector<String>> getAllOrder(){
@@ -125,6 +163,8 @@ public class DatabaseConnectionHandler {
 	public Vector<String> DPCountColumn(){
 		return StatisticHandler.DPCountColumn(connection);
 	}
+
+
 
 	public void insertBranch(BranchModel model) {
 //		try {

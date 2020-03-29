@@ -1,7 +1,7 @@
 drop table Cook; 
 drop table Has; 
-drop table Chef; 
 drop table ChefAddress; 
+drop table Chef; 
 drop table Consume; 
 drop table Dishes; 
 drop table Orders; 
@@ -15,6 +15,8 @@ drop table Storage;
 drop table DeliveryPeople; 
 drop table Category; 
 drop table FoodSupplier; 
+
+purge recyclebin; 
 
 CREATE TABLE FoodSupplier
 (
@@ -143,11 +145,11 @@ CREATE TABLE Ingredients
   Name                CHAR(20),
   ProductionDate      DATE,
   Quantity            INTEGER,
-  PosId               INTEGER NOT NULL UNIQUE,
-  SIN                 CHAR(9) NOT NULL,
-  FOREIGN KEY (PosId) REFERENCES Storage      ON DELETE CASCADE,
-  FOREIGN KEY (SIN)   REFERENCES DeliveryPeople   ON DELETE CASCADE,
-  FOREIGN KEY (Name)  REFERENCES Category ON DELETE SET NULL
+  PosId               INTEGER UNIQUE,
+  SIN                 CHAR(9),
+  FOREIGN KEY (PosId) REFERENCES Storage      ON DELETE SET NULL,
+  FOREIGN KEY (SIN)   REFERENCES DeliveryPeople   ON DELETE SET NULL,
+  FOREIGN KEY (Name)  REFERENCES Category ON DELETE CASCADE 
 );
  
 INSERT INTO Ingredients 
@@ -177,7 +179,7 @@ CREATE TABLE Provide(
  CompanyName     CHAR(20)    NOT NULL,
  LotNumber       CHAR(20),
  PRIMARY KEY (CompanyName, LotNumber),
- FOREIGN KEY (CompanyName) REFERENCES FoodSupplier,
+ FOREIGN KEY (CompanyName) REFERENCES FoodSupplier ON DELETE SET NULL,
  FOREIGN KEY (LotNumber) REFERENCES Ingredients
 );
 INSERT INTO Provide
@@ -216,7 +218,7 @@ CREATE TABLE Dishes(
  OrderNumber         INTEGER,
  TastePreference     CHAR(40),
  CONSTRAINT  pk_dishes PRIMARY KEY (Name, OrderNumber),
- FOREIGN KEY (OrderNumber) REFERENCES Orders
+ FOREIGN KEY (OrderNumber) REFERENCES Orders ON DELETE CASCADE 
 );
 
 INSERT INTO Dishes 
@@ -252,10 +254,29 @@ VALUES ('Grilled beef tognue', 0004, '12446346034576371342', 2);
 INSERT INTO Consume 
 VALUES ('Tomato soup', 0012, '00121201231074812345', 2); 
  
+  
+CREATE TABLE Chef(
+ Name            CHAR(20),
+ SIN             CHAR(9) PRIMARY KEY,
+ ContactNumber   CHAR(10) UNIQUE,
+ HomeAddress     CHAR(40)
+);
+INSERT INTO Chef
+VALUES ('Superman','122985423','1234567890','3124 Delivery Street');
+INSERT INTO Chef
+VALUES ('Spiderman','144225344','1540173729','1235 Guy Street');
+INSERT INTO Chef
+VALUES ('Iron man','213605003','3473869572','1683 53rd Ave');
+INSERT INTO Chef
+VALUES ('Wonder Women','625785404','3834523490','220 Landsdowne St.');
+INSERT INTO Chef
+VALUES ('Godzilla','543938233','7831097230','776 BroadWay');
+
 CREATE TABLE ChefAddress(
   HomeAddress CHAR(40)    PRIMARY KEY,
   BranchAddress   CHAR(40)    NOT NULL,
-  FOREIGN KEY (BranchAddress) REFERENCES Branch ON DELETE CASCADE
+  FOREIGN KEY (BranchAddress) REFERENCES Branch ON DELETE CASCADE, 
+  FOREIGN KEY (HomeAddress) REFERENCES Chef ON DELETE CASCADE
 );
  
 INSERT INTO ChefAddress 
@@ -268,24 +289,7 @@ INSERT INTO ChefAddress
 VALUES ('220 Landsdowne St.', '1235 41st Ave'); 
 INSERT INTO ChefAddress
 VALUES ('776 BroadWay', '1234 40th Ave'); 
- 
-CREATE TABLE Chef(
- Name            CHAR(20),
- SIN             CHAR(9) PRIMARY KEY,
- ContactNumber   CHAR(10) UNIQUE,
- HomeAddress     CHAR(40),
- FOREIGN KEY (HomeAddress) REFERENCES ChefAddress ON DELETE CASCADE
-);
-INSERT INTO Chef
-VALUES ('Superman','122985423','1234567890','3124 Delivery Street');
-INSERT INTO Chef
-VALUES ('Spiderman','144225344','1540173729','1235 Guy Street');
-INSERT INTO Chef
-VALUES ('Iron man','213605003','3473869572','1683 53rd Ave');
-INSERT INTO Chef
-VALUES ('Wonder Women','625785404','3834523490','220 Landsdowne St.');
-INSERT INTO Chef
-VALUES ('Godzilla','543938233','7831097230','776 BroadWay');
+
  
 CREATE TABLE Has(
   Address     CHAR(40) NOT NULL,
