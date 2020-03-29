@@ -55,111 +55,116 @@ public class DatabaseConnectionHandler {
 		}
 	}
 
+	/* Insert tuples in database */
 	public void insertChef(ChefModel model, ChefAddressModel aModel){
 		ChefHandler.insertChef(model, aModel, connection);
 	}
-
 	public void insertDeliveryPeople(DeliveryPeopleModel model){
 		DeliveryPeopleHandler.insertDeliveryPeople(model, connection);
 	}
-
 	public void insertIngredient(IngredientsModel iModel, CategoryModel cModel){
 		IngredientHandler.insertIngredient(iModel, cModel, connection);
 	}
-
 	public void insertCook(CookModel model){
 		CookHandler.insertCook(model, connection);
 	}
-
 	public void insertConsume(ConsumeModel model){
 		ConsumeHandler.insertConsume(model, connection);
 	}
-
 	public void insertFoodSupplier(FoodSupplierModel model){
 		FoodSupplierHandler.insertFoodSupplier(model, connection);
 	}
-
 	public void insertProvide(ProvideModel model){
 		ProvideHandler.insertProvide(model, connection);
 	}
-
 	public void insertDish(DishesModel model){
 		DishesHandler.insertDish(model, connection);
 	}
-
 	public void insertOrder(OrdersModel model){
 		OrderHandler.insertOrder(model, connection);
 	}
 
+	/* Delete tuples in database */
 	public void deleteOrder(int OrderNumber){
 		DishesHandler.deleteAllDishes(OrderNumber, connection);
 		OrderHandler.deleteOrder(OrderNumber, connection);
 	}
-
 	public void deleteChef(String sin){
 		ChefHandler.deleteChef(sin, connection);
 	}
-
 	public void deleteDeliveryPeople(String sin){
 		DeliveryPeopleHandler.deleteDeliveryPeople(sin, connection);
 	}
-
 	public void deleteFoodSupplier(String company_name){
 		FoodSupplierHandler.deleteFoodSupplier(company_name, connection);
 	}
 
+	/* Select all tuples in orders */
 	public Vector<Vector<String>> getAllOrder(){
 		return OrderHandler.getAllOrder(connection);
 	}
 
+	/* Column names in orders */
 	public Vector<String> getOrderColumn(){
 		return OrderHandler.getOrderColumn(connection);
 	}
 
+	/* Select all tuples in dishes */
 	public Vector<Vector<String>> getAllDishes(){
 		return DishesHandler.getAllDishes(connection);
 	}
 
+	/* Columns names in orders */
 	public Vector<String> getDishesColumn(){
 		return DishesHandler.getDishesColumn(connection);
 	}
 
+	/* Ingredients that are not popular / ingredients with minimum quantity in consume */
 	public Vector<Vector<String>> minIngredient(){
 		return StatisticHandler.minIngredient(connection);
 	}
 
+	/* Ingredients that are most popular / ingredients with maximum quantity in consume */
 	public Vector<Vector<String>> maxIngredient(){
 		return StatisticHandler.maxIngredient(connection);
 	}
 
+	/* Column names of min/max ingredients */
 	public Vector<String> minMaxColumn(){
 		return StatisticHandler.minMaxColumn(connection);
 	}
 
+	/* average temperature of shelf */
 	public float avgTempShelf(){
 		return StatisticHandler.avgTempShelf(connection);
 	}
 
+	/* average temperature of refrigerator */
 	public float avgTempRef(){
 		return StatisticHandler.avgTempRef(connection);
 	}
 
+	/* average temperature of freezer */
 	public float avgTempFreezer(){
 		return StatisticHandler.avgTempFreezer(connection);
 	}
 
+	/* Number of dishes for each ingredient */
 	public Vector<Vector<String>> ICountDishes(){
 		return StatisticHandler.ICountDishes(connection);
 	}
 
+	/* Column names of ICountDishes */
 	public Vector<String> ICountColumn(){
 		return StatisticHandler.ICountColumn(connection);
 	}
 
+	/* Number of ingredients delivered by each delivery people */
 	public Vector<Vector<String>> DPCountIngredient(){
 		return StatisticHandler.DPCountIngredient(connection);
 	}
 
+	/* Column names of DPCountIngredients */
 	public Vector<String> DPCountColumn(){
 		return StatisticHandler.DPCountColumn(connection);
 	}
