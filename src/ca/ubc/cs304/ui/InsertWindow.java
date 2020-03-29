@@ -556,18 +556,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
+        // Refresh button
+        c.gridwidth = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(refreshBtn, c);
+        contentPane.add(refreshBtn);
+
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(backBtn, c);
         contentPane.add(backBtn);
-
-        // Refresh button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
 
 
         insertDishBtn.addActionListener(this);
@@ -601,7 +600,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         Rectangle r = this.getBounds();
         this.setLocation( (d.width - r.width)/2, (d.height - r.height)/2 );
 
-        //tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
+        tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
 
         setVisible(true);
     }

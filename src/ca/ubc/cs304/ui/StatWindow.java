@@ -28,7 +28,7 @@ public class StatWindow extends JFrame implements ActionListener{
     private TableWindow tb;
 
     public StatWindow(DatabaseConnectionHandler dbhandler) {
-        super("STATISTIC");
+        super("Stat Window");
         this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

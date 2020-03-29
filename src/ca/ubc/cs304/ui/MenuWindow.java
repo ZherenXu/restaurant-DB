@@ -133,8 +133,8 @@ public class MenuWindow extends JFrame implements ActionListener{
                 new DeleteWindow(dbhandler);
                 break;
             case "select":
-//                dispose();
-//                new SelectWindow(dbhandler);
+                dispose();
+                new SelectWindow(dbhandler);
                 break;
             case "statistic":
                 dispose();
