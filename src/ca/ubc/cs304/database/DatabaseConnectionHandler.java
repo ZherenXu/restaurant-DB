@@ -86,7 +86,6 @@ public class DatabaseConnectionHandler {
 
 	/* Delete tuples in database */
 	public void deleteOrder(int OrderNumber){
-		DishesHandler.deleteAllDishes(OrderNumber, connection);
 		OrderHandler.deleteOrder(OrderNumber, connection);
 	}
 	public void deleteChef(String sin){
@@ -277,6 +276,46 @@ public class DatabaseConnectionHandler {
 	/* Column names of findSupplierByOrder */
 	public Vector<String> supplierOrderColumn(){
 		return SelectHandler.supplierOrderColumn(connection);
+	}
+
+	/* Storage temperature given the order number */
+	public Vector<Vector<String>> findTempByOrder(int OrderNumber){
+		return SelectHandler.findTempByOrder(OrderNumber, connection);
+	}
+
+	/* Column names of findTempByOrder */
+	public Vector<String> tempOrderColumn(){
+		return SelectHandler.tempOrderColumn(connection);
+	}
+
+	/* Order number given time and location */
+	public Vector<Vector<String>> findOrder(Timestamp timeStart, Timestamp timeEnd, String location){
+		return SelectHandler.findOrder(timeStart, timeEnd, location, connection);
+	}
+
+	/* Column names of findOrder */
+	public Vector<String> orderColumn(){
+		return SelectHandler.orderColumn(connection);
+	}
+
+	/* Dishes information given the lot number */
+	public Vector<Vector<String>> findDishesByIngredient(String lotNumber){
+		return SelectHandler.findDishesByIngredient(lotNumber, connection);
+	}
+
+	/* Column names of findDishesByIngredient */
+	public Vector<String> dishesIngredientColumn(){
+		return SelectHandler.dishesIngreidentColumn(connection);
+	}
+
+	/* Name of ingredients which are used by all chefs */
+	public Vector<Vector<String>> division(){
+		return SelectHandler.division(connection);
+	}
+
+	/* Column names of division */
+	public Vector<String> divisionColumn(){
+		return SelectHandler.divisionColumn(connection);
 	}
 
 

@@ -240,7 +240,7 @@ CREATE TABLE Consume(
  Quantity        INTEGER,
  PRIMARY KEY (DishesName, OrderNumber, LotNumber),
  FOREIGN KEY (LotNumber) REFERENCES Ingredients, 
- CONSTRAINT fk_dishes FOREIGN KEY (DishesName, OrderNumber) REFERENCES Dishes(Name, OrderNumber)
+ CONSTRAINT fk_dishes FOREIGN KEY (DishesName, OrderNumber) REFERENCES Dishes(Name, OrderNumber) ON DELETE CASCADE
 );
  
 INSERT INTO Consume 
@@ -316,7 +316,7 @@ CREATE TABLE Cook(
  OrderNumber     INTEGER,
  PRIMARY KEY (SIN, DishName, OrderNumber),
  FOREIGN KEY (SIN) REFERENCES Chef,
- FOREIGN KEY (DishName, OrderNumber) REFERENCES Dishes
+ FOREIGN KEY (DishName, OrderNumber) REFERENCES Dishes ON DELETE CASCADE 
 );
  
 INSERT INTO Cook

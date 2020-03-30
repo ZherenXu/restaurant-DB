@@ -35,8 +35,10 @@ public class OrderHandler {
 
     protected static void deleteOrder(int OrderNumber, Connection connection) {
         try {
+            System.out.println("printed");
             PreparedStatement ps = connection.prepareStatement("DELETE FROM ORDERS WHERE OrderNumber = ?");
             ps.setInt(1, OrderNumber);
+            System.out.println("deleted");
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
@@ -44,6 +46,7 @@ public class OrderHandler {
             }
 
             connection.commit();
+            System.out.println("commited");
 
             ps.close();
         } catch (SQLException e) {
