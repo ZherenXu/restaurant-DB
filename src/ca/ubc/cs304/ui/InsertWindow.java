@@ -600,7 +600,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         Rectangle r = this.getBounds();
         this.setLocation( (d.width - r.width)/2, (d.height - r.height)/2 );
 
-        tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
+        tb = new TableWindow();
 
         setVisible(true);
     }
@@ -632,6 +632,7 @@ public class InsertWindow extends JFrame implements ActionListener{
                     );
                     CategoryModel cate = new CategoryModel(ingredientsNameField.getText(),ingredientsTypeField.getText());
                     dbhandler.insertIngredient(ingred, cate);
+                    choose = 3;
                 } catch(Exception g){
                     System.out.println("Exception :" + g);
                 }
@@ -640,16 +641,19 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "cook":
                 CookModel cook = new CookModel(cookSINField.getText(), cookDishNameField.getText(), Integer.valueOf(cookOrderNumberField.getText()));
                 dbhandler.insertCook(cook);
+                choose = 4;
                 break;
             case "chef":
                 ChefModel chef = new ChefModel(chefNameField.getText(), chefSINField.getText(), chefContactNumberField.getText(),chefHomeAddressField.getText());
                 ChefAddressModel chefAddr = new ChefAddressModel(chefHomeAddressField.getText(),chefBranchAddressField.getText());
                 dbhandler.insertChef(chef,chefAddr);
+                choose = 5;
                 break;
             case "delivery people":
                 DeliveryPeopleModel delivPep = new DeliveryPeopleModel(deliveryPeopleSINField.getText(), deliveryPeopleNameField.getText(),
                         deliveryPeopleContactNumberField.getText(), deliveryPeopleAddressField.getText());
                 dbhandler.insertDeliveryPeople(delivPep);
+                choose = 6;
                 break;
             case "consume":
                 ConsumeModel consume = new ConsumeModel(consumeDishNameField.getText(),
@@ -657,46 +661,56 @@ public class InsertWindow extends JFrame implements ActionListener{
                         Integer.valueOf(consumeQuantityField.getText())
                 );
                 dbhandler.insertConsume(consume);
+                choose = 7;
                 break;
             case "food supplier":
                 FoodSupplierModel fSupplier = new FoodSupplierModel(foodSupplierCompanyNameField.getText(),foodSupplierAddressField.getText(),
                 foodSupplierContactNumberField.getText(),foodSupplierEmailField.getText());
                 dbhandler.insertFoodSupplier(fSupplier);
+                choose = 8;
                 break;
             case "provide":
 
                 ProvideModel provide = new ProvideModel(provideCompanyNameField.getText(),provideLotNumberField.getText());
                 dbhandler.insertProvide(provide);
+                choose = 9;
                 break;
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
             case "refresh":
-                switch(choose) {
-                    case 1:
-                        tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Order");
-                        break;
-                    case 2:
-                        tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dish");
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-                        break;
-                    case 9:
-                        break;
-                    default:
-                        break;
-                }
+                break;
+            default:
+                break;
+        }
+        switch(choose) {
+            case 1:
+                tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
+                break;
+            case 2:
+                tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dishes");
+                break;
+            case 3:
+                tb.updateTable(dbhandler.getAllIngredients(),dbhandler.getIngredientsColumn(),"Ingredients");
+                break;
+            case 4:
+                tb.updateTable(dbhandler.getAllCook(),dbhandler.getCookColumn(),"Cook");
+                break;
+            case 5:
+                tb.updateTable(dbhandler.getAllChef(),dbhandler.getChefColumn(),"Chefs");
+                break;
+            case 6:
+                tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
+                break;
+            case 7:
+                tb.updateTable(dbhandler.getAllConsume(),dbhandler.getConsumeColumn(),"Consume");
+                break;
+            case 8:
+                tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food suppliers");
+                break;
+            case 9:
+                tb.updateTable(dbhandler.getAllProvide(),dbhandler.getProvideColumn(), "Provide");
                 break;
             default:
                 break;
