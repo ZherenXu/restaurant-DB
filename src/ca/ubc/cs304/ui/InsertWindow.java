@@ -603,7 +603,7 @@ public class InsertWindow extends JFrame implements ActionListener{
                 break;
             case "ingredient":
                 try {
-                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss ");
                     java.util.Date date = formatter.parse(ingredientsDateField.getText());
                     IngredientsModel ingred = new IngredientsModel(ingredientsLotField.getText(),
                             ingredientsNameField.getText(),
