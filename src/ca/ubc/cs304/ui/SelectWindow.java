@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Vector;
 
 import javax.swing.*;
 
 public class SelectWindow extends JFrame implements ActionListener {
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
+    private TableWindow tb = new TableWindow();
 
     JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField orderNumberBranchField = new JTextField(TEXT_FIELD_WIDTH);
@@ -283,17 +285,25 @@ public class SelectWindow extends JFrame implements ActionListener {
         String cmd = e.getActionCommand();
         switch(cmd){
             case "find chef":
-                //break;
+                tb.updateTable(dbhandler.findChefByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getChefColumn(), "chefs");
+                break;
             case "find ingredient":
-                //break;
+                tb.updateTable(dbhandler.findIngredientByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getIngredientsColumn(), "Ingredients");
+                break;
             case "find delivery people":
-                //break;
+                tb.updateTable(dbhandler.findDeliveryByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getDeliveryPeopleColumn(), "Delivery People");
+                break;
             case "find food supplier":
-                //break;
+                tb.updateTable(dbhandler.findSupplierByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getFoodSupplierColumn(), "Food Suppliers");
+                break;
             case "find storage temperature":
-                //break;
+                Vector<String> name = new Vector<String>();
+                name.add("PosID");
+                name.add("Temperature");
+                tb.updateTable(dbhandler.findTempByOrder(Integer.valueOf(orderNumField.getText())), name, "Temperatures");
+                break;
             case "select order number":
-                //break;
+                break;
             case "select dishes":
                 //break;
             case "select ingredients":
