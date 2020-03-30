@@ -1,6 +1,7 @@
 package ca.ubc.cs304.ui;
 
 import ca.ubc.cs304.database.DatabaseConnectionHandler;
+import ca.ubc.cs304.model.OrdersModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import javax.swing.JTextField;
 public class DeleteWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
+    private TableWindow tb = new TableWindow();
+    private int choose = 0;
 
     JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField chefSINField = new JTextField(TEXT_FIELD_WIDTH);
@@ -223,19 +226,45 @@ public class DeleteWindow extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         switch(cmd){
             case "order":
-                //break;
+                dbhandler.deleteOrder(Integer.valueOf(orderNumField.getText()));
+                choose = 1;
+                break;
             case "chef":
-                //break;
+                dbhandler.deleteChef(chefSINField.getText());
+                choose = 2;
+                break;
             case "delivery people":
-                //break;
+                dbhandler.deleteDeliveryPeople(deliveryPeopleSINField.getText());
+                choose = 3;
+                break;
             case "food supplier":
-                //break;
+                dbhandler.deleteFoodSupplier(foodSupplierCompanyNameField.getText());
+                choose = 4;
+                break;
             case "back":
+                choose = 0;
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
             case "refresh":
-                //break;
+                break;
+            default:
+                break;
+        }
+
+        switch(choose) {
+            case 1:
+                tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
+                break;
+            case 2:
+                tb.updateTable(dbhandler.getAllChef(), dbhandler.getChefColumn(), "Chefs");
+                break;
+            case 3:
+                tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
+                break;
+            case 4:
+                tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
+                break;
             default:
                 break;
         }

@@ -62,13 +62,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // LABELS
-        JLabel titleLabel = new JLabel("INSERT DATA");
+        //JLabel titleLabel = new JLabel("INSERT DATA");
         JLabel insertOrderLabel = new JLabel("Order:");
         JLabel orderNumLabel = new JLabel(" Order #: ");
         JLabel insertDishLabel = new JLabel("Dish:");
-        JLabel dishOrderNumLabel = new JLabel("Order #: ");
-        JLabel dishLabel = new JLabel(" Dish: ");
-        JLabel tastePreferenceLabel = new JLabel("Teste Preference: ");
+        JLabel dishOrderNumLabel = new JLabel("Order #                        " +
+                                                        "Dish                       " +
+                                                        "Teste Preference");
+        //JLabel dishLabel = new JLabel(" Dish: ");
+        //JLabel tastePreferenceLabel = new JLabel("Teste Preference: ");
         JLabel insertIngredientLabel = new JLabel("Ingredient & Category:");
         JLabel insertIngredientAttributeLabel = new JLabel("       Lot#                                   " +
                                                                 "Name                                " +
@@ -130,12 +132,12 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.setLayout(gb);
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // place the title label
-        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.PLAIN,18));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.insets = new Insets(10, 10, 10, 10);
-        gb.setConstraints(titleLabel, c);
-        contentPane.add(titleLabel);
+//        // place the title label
+//        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.PLAIN,12));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.insets = new Insets(10, 10, 10, 10);
+//        gb.setConstraints(titleLabel, c);
+//        contentPane.add(titleLabel);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT ORDERS///////////////////////////////
@@ -177,34 +179,34 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(insertDishLabel);
 
         // Dish Order# label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(dishOrderNumLabel, c);
         contentPane.add(dishOrderNumLabel);
 
         // Dish Order# text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
         gb.setConstraints(dishOrderNumField, c);
         contentPane.add(dishOrderNumField);
 
-        // Dish label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(dishLabel, c);
-        contentPane.add(dishLabel);
+//        // Dish label
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(1, 10, 1, 0);
+//        gb.setConstraints(dishLabel, c);
+//        contentPane.add(dishLabel);
 
         // Dish text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
         gb.setConstraints(dishField, c);
         contentPane.add(dishField);
 
-        // Taste Preference label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(tastePreferenceLabel, c);
-        contentPane.add(tastePreferenceLabel);
+//        // Taste Preference label
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(1, 10, 1, 0);
+//        gb.setConstraints(tastePreferenceLabel, c);
+//        contentPane.add(tastePreferenceLabel);
 
         // Taste Preference field
         c.gridwidth = GridBagConstraints.HORIZONTAL;
@@ -600,7 +602,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         Rectangle r = this.getBounds();
         this.setLocation( (d.width - r.width)/2, (d.height - r.height)/2 );
 
-        tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
+        tb = new TableWindow();
 
         setVisible(true);
     }
@@ -632,6 +634,7 @@ public class InsertWindow extends JFrame implements ActionListener{
                     );
                     CategoryModel cate = new CategoryModel(ingredientsNameField.getText(),ingredientsTypeField.getText());
                     dbhandler.insertIngredient(ingred, cate);
+                    choose = 3;
                 } catch(Exception g){
                     System.out.println("Exception :" + g);
                 }
@@ -640,16 +643,19 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "cook":
                 CookModel cook = new CookModel(cookSINField.getText(), cookDishNameField.getText(), Integer.valueOf(cookOrderNumberField.getText()));
                 dbhandler.insertCook(cook);
+                choose = 4;
                 break;
             case "chef":
                 ChefModel chef = new ChefModel(chefNameField.getText(), chefSINField.getText(), chefContactNumberField.getText(),chefHomeAddressField.getText());
                 ChefAddressModel chefAddr = new ChefAddressModel(chefHomeAddressField.getText(),chefBranchAddressField.getText());
                 dbhandler.insertChef(chef,chefAddr);
+                choose = 5;
                 break;
             case "delivery people":
                 DeliveryPeopleModel delivPep = new DeliveryPeopleModel(deliveryPeopleSINField.getText(), deliveryPeopleNameField.getText(),
                         deliveryPeopleContactNumberField.getText(), deliveryPeopleAddressField.getText());
                 dbhandler.insertDeliveryPeople(delivPep);
+                choose = 6;
                 break;
             case "consume":
                 ConsumeModel consume = new ConsumeModel(consumeDishNameField.getText(),
@@ -657,46 +663,56 @@ public class InsertWindow extends JFrame implements ActionListener{
                         Integer.valueOf(consumeQuantityField.getText())
                 );
                 dbhandler.insertConsume(consume);
+                choose = 7;
                 break;
             case "food supplier":
                 FoodSupplierModel fSupplier = new FoodSupplierModel(foodSupplierCompanyNameField.getText(),foodSupplierAddressField.getText(),
                 foodSupplierContactNumberField.getText(),foodSupplierEmailField.getText());
                 dbhandler.insertFoodSupplier(fSupplier);
+                choose = 8;
                 break;
             case "provide":
 
                 ProvideModel provide = new ProvideModel(provideCompanyNameField.getText(),provideLotNumberField.getText());
                 dbhandler.insertProvide(provide);
+                choose = 9;
                 break;
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
             case "refresh":
-                switch(choose) {
-                    case 1:
-                        tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Order");
-                        break;
-                    case 2:
-                        tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dish");
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-                        break;
-                    case 9:
-                        break;
-                    default:
-                        break;
-                }
+                break;
+            default:
+                break;
+        }
+        switch(choose) {
+            case 1:
+                tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
+                break;
+            case 2:
+                tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dishes");
+                break;
+            case 3:
+                tb.updateTable(dbhandler.getAllIngredients(),dbhandler.getIngredientsColumn(),"Ingredients");
+                break;
+            case 4:
+                tb.updateTable(dbhandler.getAllCook(),dbhandler.getCookColumn(),"Cook");
+                break;
+            case 5:
+                tb.updateTable(dbhandler.getAllChef(),dbhandler.getChefColumn(),"Chefs");
+                break;
+            case 6:
+                tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
+                break;
+            case 7:
+                tb.updateTable(dbhandler.getAllConsume(),dbhandler.getConsumeColumn(),"Consume");
+                break;
+            case 8:
+                tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food suppliers");
+                break;
+            case 9:
+                tb.updateTable(dbhandler.getAllProvide(),dbhandler.getProvideColumn(), "Provide");
                 break;
             default:
                 break;
