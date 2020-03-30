@@ -62,13 +62,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // LABELS
-        JLabel titleLabel = new JLabel("INSERT DATA");
+        //JLabel titleLabel = new JLabel("INSERT DATA");
         JLabel insertOrderLabel = new JLabel("Order:");
         JLabel orderNumLabel = new JLabel(" Order #: ");
         JLabel insertDishLabel = new JLabel("Dish:");
-        JLabel dishOrderNumLabel = new JLabel("Order #: ");
-        JLabel dishLabel = new JLabel(" Dish: ");
-        JLabel tastePreferenceLabel = new JLabel("Teste Preference: ");
+        JLabel dishOrderNumLabel = new JLabel("Order #                        " +
+                                                        "Dish                       " +
+                                                        "Teste Preference");
+        //JLabel dishLabel = new JLabel(" Dish: ");
+        //JLabel tastePreferenceLabel = new JLabel("Teste Preference: ");
         JLabel insertIngredientLabel = new JLabel("Ingredient & Category:");
         JLabel insertIngredientAttributeLabel = new JLabel("       Lot#                                   " +
                                                                 "Name                                " +
@@ -130,12 +132,12 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.setLayout(gb);
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // place the title label
-        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.PLAIN,18));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.insets = new Insets(10, 10, 10, 10);
-        gb.setConstraints(titleLabel, c);
-        contentPane.add(titleLabel);
+//        // place the title label
+//        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.PLAIN,12));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.insets = new Insets(10, 10, 10, 10);
+//        gb.setConstraints(titleLabel, c);
+//        contentPane.add(titleLabel);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT ORDERS///////////////////////////////
@@ -177,34 +179,34 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(insertDishLabel);
 
         // Dish Order# label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(dishOrderNumLabel, c);
         contentPane.add(dishOrderNumLabel);
 
         // Dish Order# text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
         gb.setConstraints(dishOrderNumField, c);
         contentPane.add(dishOrderNumField);
 
-        // Dish label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(dishLabel, c);
-        contentPane.add(dishLabel);
+//        // Dish label
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(1, 10, 1, 0);
+//        gb.setConstraints(dishLabel, c);
+//        contentPane.add(dishLabel);
 
         // Dish text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
         gb.setConstraints(dishField, c);
         contentPane.add(dishField);
 
-        // Taste Preference label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(tastePreferenceLabel, c);
-        contentPane.add(tastePreferenceLabel);
+//        // Taste Preference label
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(1, 10, 1, 0);
+//        gb.setConstraints(tastePreferenceLabel, c);
+//        contentPane.add(tastePreferenceLabel);
 
         // Taste Preference field
         c.gridwidth = GridBagConstraints.HORIZONTAL;
@@ -600,7 +602,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         Rectangle r = this.getBounds();
         this.setLocation( (d.width - r.width)/2, (d.height - r.height)/2 );
 
-        tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
+        //tb = new TableWindow(dbhandler.getAllOrder(),dbhandler.getOrderColumn(),"order");
 
         setVisible(true);
     }
