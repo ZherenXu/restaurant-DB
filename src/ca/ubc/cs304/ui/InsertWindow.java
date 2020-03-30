@@ -69,8 +69,6 @@ public class InsertWindow extends JFrame implements ActionListener{
         JLabel dishOrderNumLabel = new JLabel("Order #                        " +
                                                         "Dish                       " +
                                                         "Teste Preference");
-        //JLabel dishLabel = new JLabel(" Dish: ");
-        //JLabel tastePreferenceLabel = new JLabel("Teste Preference: ");
         JLabel insertIngredientLabel = new JLabel("Ingredient & Category:");
         JLabel insertIngredientAttributeLabel = new JLabel("       Lot#                                   " +
                                                                 "Name                                " +
@@ -132,12 +130,6 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.setLayout(gb);
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-//        // place the title label
-//        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.PLAIN,12));
-//        c.gridwidth = GridBagConstraints.REMAINDER;
-//        c.insets = new Insets(10, 10, 10, 10);
-//        gb.setConstraints(titleLabel, c);
-//        contentPane.add(titleLabel);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT ORDERS///////////////////////////////
@@ -190,23 +182,11 @@ public class InsertWindow extends JFrame implements ActionListener{
         gb.setConstraints(dishOrderNumField, c);
         contentPane.add(dishOrderNumField);
 
-//        // Dish label
-//        c.gridwidth = GridBagConstraints.HORIZONTAL;
-//        c.insets = new Insets(1, 10, 1, 0);
-//        gb.setConstraints(dishLabel, c);
-//        contentPane.add(dishLabel);
-
         // Dish text field
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
         gb.setConstraints(dishField, c);
         contentPane.add(dishField);
-
-//        // Taste Preference label
-//        c.gridwidth = GridBagConstraints.HORIZONTAL;
-//        c.insets = new Insets(1, 10, 1, 0);
-//        gb.setConstraints(tastePreferenceLabel, c);
-//        contentPane.add(tastePreferenceLabel);
 
         // Taste Preference field
         c.gridwidth = GridBagConstraints.HORIZONTAL;

@@ -16,8 +16,10 @@ public class SelectWindow extends JFrame implements ActionListener {
 
     JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField orderNumberBranchField = new JTextField(TEXT_FIELD_WIDTH);
-    JTextField orderNumberDateField = new JTextField(TEXT_FIELD_WIDTH);
-    JTextField orderNumberTimeField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField orderNumberDateStartField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField orderNumberDateEndField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField orderNumberTimeStartField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField orderNumberTimeEndField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField dishesLotNumberField = new JTextField(TEXT_FIELD_WIDTH);
 
     public SelectWindow(DatabaseConnectionHandler dbhandler) {
@@ -29,8 +31,10 @@ public class SelectWindow extends JFrame implements ActionListener {
         JLabel findByOrderNumberLabel = new JLabel("Find By Order Number:");
         JLabel findTheOrderNumberLabel = new JLabel("Find The Order Number");
         JLabel orderNumberBranchLabel = new JLabel("Branch: ");
-        JLabel orderNumberDateLabel = new JLabel("Date: ");
-        JLabel orderNumberTimeLabel = new JLabel("Time: ");
+        JLabel orderNumberDateStartLabel = new JLabel("Date                                        Start: ");
+        JLabel orderNumberDateEndLabel = new JLabel("End: ");
+        JLabel orderNumberTimeStartLabel = new JLabel("Time                                        Start: ");
+        JLabel orderNumberTimeEndLabel = new JLabel("End: ");
         JLabel findDishesLabel = new JLabel("Find Dishes");
         JLabel dishesLotNumberLabel = new JLabel("Lot#: ");
         JLabel findIngredientsByAllChefLabel = new JLabel("Find Ingredients Used By All Chefs");
@@ -131,29 +135,49 @@ public class SelectWindow extends JFrame implements ActionListener {
         gb.setConstraints(orderNumberBranchField, c);
         contentPane.add(orderNumberBranchField);
 
-        // Date label
+        // Date Start
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(orderNumberDateLabel, c);
-        contentPane.add(orderNumberDateLabel);
+        gb.setConstraints(orderNumberDateStartLabel, c);
+        contentPane.add(orderNumberDateStartLabel);
 
-        // Date text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderNumberDateField, c);
-        contentPane.add(orderNumberDateField);
+        gb.setConstraints(orderNumberDateStartField, c);
+        contentPane.add(orderNumberDateStartField);
 
-        // Time label
+        // Date End
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(orderNumberTimeLabel, c);
-        contentPane.add(orderNumberTimeLabel);
+        gb.setConstraints(orderNumberDateEndLabel, c);
+        contentPane.add(orderNumberDateEndLabel);
 
-        // Time text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderNumberTimeField, c);
-        contentPane.add(orderNumberTimeField);
+        gb.setConstraints(orderNumberDateEndField, c);
+        contentPane.add(orderNumberDateEndField);
+
+        // Time Start
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(orderNumberTimeStartLabel, c);
+        contentPane.add(orderNumberTimeStartLabel);
+
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(orderNumberTimeStartField, c);
+        contentPane.add(orderNumberTimeStartField);
+
+        // Time End
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(orderNumberTimeEndLabel, c);
+        contentPane.add(orderNumberTimeEndLabel);
+
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(orderNumberTimeEndField, c);
+        contentPane.add(orderNumberTimeEndField);
 
         // Select button
         c.gridwidth = GridBagConstraints.REMAINDER;
