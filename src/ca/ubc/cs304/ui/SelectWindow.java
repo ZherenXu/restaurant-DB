@@ -1,12 +1,17 @@
 package ca.ubc.cs304.ui;
 
 import ca.ubc.cs304.database.DatabaseConnectionHandler;
+import ca.ubc.cs304.model.CategoryModel;
+import ca.ubc.cs304.model.IngredientsModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -285,29 +290,36 @@ public class SelectWindow extends JFrame implements ActionListener {
         String cmd = e.getActionCommand();
         switch(cmd){
             case "find chef":
-                tb.updateTable(dbhandler.findChefByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getChefColumn(), "chefs");
+                tb.updateTable(dbhandler.findChefByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.chefOrderColumn(), "chefs");
                 break;
             case "find ingredient":
-                tb.updateTable(dbhandler.findIngredientByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getIngredientsColumn(), "Ingredients");
+                tb.updateTable(dbhandler.findIngredientByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.ingredientOrderColumn(), "Ingredients");
                 break;
             case "find delivery people":
-                tb.updateTable(dbhandler.findDeliveryByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getDeliveryPeopleColumn(), "Delivery People");
+                tb.updateTable(dbhandler.findDeliveryByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.deliveryOrderColumn(), "Delivery People");
                 break;
             case "find food supplier":
-                tb.updateTable(dbhandler.findSupplierByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.getFoodSupplierColumn(), "Food Suppliers");
+                tb.updateTable(dbhandler.findSupplierByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.supplierOrderColumn(), "Food Suppliers");
                 break;
             case "find storage temperature":
-                Vector<String> name = new Vector<String>();
-                name.add("PosID");
-                name.add("Temperature");
-                tb.updateTable(dbhandler.findTempByOrder(Integer.valueOf(orderNumField.getText())), name, "Temperatures");
+                tb.updateTable(dbhandler.findTempByOrder(Integer.valueOf(orderNumField.getText())), dbhandler.tempOrderColumn(), "Temperatures");
                 break;
             case "select order number":
+                try {
+                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    java.util.Date startDate = formatter.parse(orderNumberDateStartField.getText());
+                    java.util.Date endDate = formatter.parse(orderNumberDateEndField.getText());
+                    tb.updateTable(dbhandler.findOrder(new Timestamp(startDate.getTime()), new Timestamp(endDate.getTime()), orderNumberBranchField.getText()), dbhandler.orderColumn(), "Orders");
+                } catch(Exception g){
+                    System.out.println("Exception :" + g);
+                }
                 break;
             case "select dishes":
-                //break;
+                tb.updateTable(dbhandler.findDishesByIngredient(dishesLotNumberField.getText()), dbhandler.dishesIngredientColumn(), "Dishes");
+                break;
             case "select ingredients":
-                //break;
+                tb.updateTable(dbhandler.division(), dbhandler.divisionColumn(), "Ingredients");
+                break;
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
