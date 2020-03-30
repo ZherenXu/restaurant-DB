@@ -66,8 +66,8 @@ public class InsertWindow extends JFrame implements ActionListener{
         JLabel insertOrderLabel = new JLabel("Order:");
         JLabel orderNumLabel = new JLabel(" Order #: ");
         JLabel insertDishLabel = new JLabel("Dish:");
-        JLabel dishOrderNumLabel = new JLabel("Order #                        " +
-                                                        "Dish                       " +
+        JLabel dishOrderNumLabel = new JLabel("      Order #                       " +
+                                                        "Dish                      " +
                                                         "Teste Preference");
         JLabel insertIngredientLabel = new JLabel("Ingredient & Category:");
         JLabel insertIngredientAttributeLabel = new JLabel("       Lot#                                   " +
@@ -107,15 +107,15 @@ public class InsertWindow extends JFrame implements ActionListener{
                                                                 "Lot#");
 
         // BUTTONS
-        JButton insertOrderBtn = new JButton("Insert");
-        JButton insertDishBtn = new JButton("Insert");
-        JButton insertIngredientBtn = new JButton("Insert");
-        JButton insertCookBtn = new JButton("Insert");
-        JButton insertChefBtn = new JButton("Insert");
-        JButton insertDeliveryPeopleBtn = new JButton("Insert");
-        JButton insertConsumeBtn = new JButton("Insert");
-        JButton insertFoodSupplierBtn = new JButton("Insert");
-        JButton insertProvideBtn = new JButton("Insert");
+        JButton insertOrderBtn = new JButton("Insert Order");
+        JButton insertDishBtn = new JButton("Insert Dish");
+        JButton insertIngredientBtn = new JButton("Insert Ingredient");
+        JButton insertCookBtn = new JButton("Insert Cook");
+        JButton insertChefBtn = new JButton("Insert Chef");
+        JButton insertDeliveryPeopleBtn = new JButton("Insert Delivery People");
+        JButton insertConsumeBtn = new JButton("Insert Consume");
+        JButton insertFoodSupplierBtn = new JButton("Insert Food Supplier");
+        JButton insertProvideBtn = new JButton("Insert Provide");
         JButton backBtn = new JButton("Back");
         JButton refreshBtn = new JButton("Refresh");
 
@@ -133,13 +133,13 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT ORDERS///////////////////////////////
-        // Order label
-        insertOrderLabel.setFont(insertOrderLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertOrderLabel, c);
-        contentPane.add(insertOrderLabel);
+//        // Order label
+//        insertOrderLabel.setFont(insertOrderLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertOrderLabel, c);
+//        contentPane.add(insertOrderLabel);
 
         // Order# label
         c.gridwidth = GridBagConstraints.HORIZONTAL;
@@ -162,16 +162,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         //////////////////////////////INSERT DISHES/////////////////////////////////
-        // Dish label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertDishLabel, c);
-        contentPane.add(insertDishLabel);
+//        // Dish label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertDishLabel, c);
+//        contentPane.add(insertDishLabel);
 
         // Dish Order# label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(dishOrderNumLabel, c);
         contentPane.add(dishOrderNumLabel);
@@ -203,16 +204,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT INGREDIENTS//////////////////////////////
-        // Ingredient label
-        insertOrderLabel.setFont(insertOrderLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertIngredientLabel, c);
-        contentPane.add(insertIngredientLabel);
+//        // Ingredient label
+//        insertOrderLabel.setFont(insertOrderLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertIngredientLabel, c);
+//        contentPane.add(insertIngredientLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertIngredientAttributeLabel, c);
         contentPane.add(insertIngredientAttributeLabel);
@@ -268,16 +270,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT COOK//////////////////////////////
-        // Cook label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertCookLabel, c);
-        contentPane.add(insertCookLabel);
+//        // Cook label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertCookLabel, c);
+//        contentPane.add(insertCookLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertCookAttributeLabel, c);
         contentPane.add(insertCookAttributeLabel);
@@ -309,16 +312,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT CHEF/////////////////////////////////
-        // Chef label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertChefLabel, c);
-        contentPane.add(insertChefLabel);
+//        // Chef label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertChefLabel, c);
+//        contentPane.add(insertChefLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertChefAttributeLabel, c);
         contentPane.add(insertChefAttributeLabel);
@@ -362,16 +366,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////INSERT DELIVERY PEOPLE///////////////////////////
-        // Delivery People label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertDeliveryPeopleLabel, c);
-        contentPane.add(insertDeliveryPeopleLabel);
+//        // Delivery People label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertDeliveryPeopleLabel, c);
+//        contentPane.add(insertDeliveryPeopleLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertDeliveryPeopleAttributeLabel, c);
         contentPane.add(insertDeliveryPeopleAttributeLabel);
@@ -409,16 +414,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////INSERT CONSUME///////////////////////////////
-        // CONSUME label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertConsumeLabel, c);
-        contentPane.add(insertConsumeLabel);
+//        // CONSUME label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertConsumeLabel, c);
+//        contentPane.add(insertConsumeLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertConsumeAttributeLabel, c);
         contentPane.add(insertConsumeAttributeLabel);
@@ -456,16 +462,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT FOOD SUPPLIER////////////////////////////
-        // FOOD SUPPLIER label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertFoodSupplierLabel, c);
-        contentPane.add(insertFoodSupplierLabel);
+//        // FOOD SUPPLIER label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertFoodSupplierLabel, c);
+//        contentPane.add(insertFoodSupplierLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertFoodSupplierAttributeLabel, c);
         contentPane.add(insertFoodSupplierAttributeLabel);
@@ -503,16 +510,17 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////INSERT PROVIDE///////////////////////////////
-        // Provide label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertProvideLabel, c);
-        contentPane.add(insertProvideLabel);
+//        // Provide label
+//        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(10, 10, 3, 0);
+//        gb.setConstraints(insertProvideLabel, c);
+//        contentPane.add(insertProvideLabel);
 
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(insertProvideAttributeLabel, c);
         contentPane.add(insertProvideAttributeLabel);
