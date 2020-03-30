@@ -84,16 +84,6 @@ public class MenuWindow extends JFrame implements ActionListener{
         gb.setConstraints(statBtn, c);
         contentPane.add(statBtn);
 
-        // Test button
-        JButton testBtn = new JButton("Test");
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.CENTER;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(testBtn, c);
-        contentPane.add(testBtn);
-        testBtn.addActionListener(this);
-        testBtn.setActionCommand("test");
-
         // Set btn action listener
         insertBtn.addActionListener(this);
         updateBtn.addActionListener(this);
@@ -139,9 +129,6 @@ public class MenuWindow extends JFrame implements ActionListener{
             case "statistic":
                 dispose();
                 new StatWindow(dbhandler);
-            case "test":
-                System.out.println("click test");
-                dbhandler.deleteOrder(0);
                 break;
             default:
                 break;
