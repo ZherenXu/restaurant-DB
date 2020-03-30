@@ -239,6 +239,45 @@ public class DatabaseConnectionHandler {
 		return StatisticHandler.DPCountColumn(connection);
 	}
 
+	/* Chef information given the order number */
+	public Vector<Vector<String>> findChefByOrder(int OrderNumber){
+		return SelectHandler.findChefByOrder(OrderNumber, connection);
+	}
+
+	/* Column names of findChefByOrder */
+	public Vector<String> chefOrderColumn(){
+		return SelectHandler.chefOrderColumn(connection);
+	}
+
+	/* Ingredient information given the order number */
+	public Vector<Vector<String>> findIngredientByOrder(int OrderNumber){
+		return SelectHandler.findIngredientByOrder(OrderNumber, connection);
+	}
+
+	/* Column names of findIngredientByOrder */
+	public Vector<String> ingredientOrderColumn(){
+		return SelectHandler.ingredientOrderColumn(connection);
+	}
+
+	/* Delivery people information given the order number */
+	public Vector<Vector<String>> findDeliveryByOrder(int OrderNumber){
+		return SelectHandler.findDeliveryByOrder(OrderNumber, connection);
+	}
+
+	/* Column names of findDeliveryByOrder */
+	public Vector<String> deliveryOrderColumn(){
+		return SelectHandler.deliveryOrderColumn(connection);
+	}
+
+	/* Food suppplier information given the order number */
+	public Vector<Vector<String>> findSupplierByOrder(int OrderNumber){
+		return SelectHandler.findSupplierByOrder(OrderNumber, connection);
+	}
+
+	/* Column names of findSupplierByOrder */
+	public Vector<String> supplierOrderColumn(){
+		return SelectHandler.supplierOrderColumn(connection);
+	}
 
 
 	public void insertBranch(BranchModel model) {
