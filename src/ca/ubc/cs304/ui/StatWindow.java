@@ -25,7 +25,7 @@ public class StatWindow extends JFrame implements ActionListener{
     private DatabaseConnectionHandler dbhandler;
 
     private JTextField resultField = new JTextField(TEXT_FIELD_WIDTH);
-    private TableWindow tb;
+    private TableWindow tb = new TableWindow();
 
     public StatWindow(DatabaseConnectionHandler dbhandler) {
         super("Stat Window");
