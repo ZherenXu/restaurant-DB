@@ -55,4 +55,25 @@ public class BranchHandler {
 
         return column;
     }
+
+    protected static void updateBranch(String address, String contact, String manager, Connection connection) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE BRANCH SET contact = ?, ManagerName = ? WHERE address = ?");
+            ps.setString(1, contact);
+            ps.setString(2, manager);
+            ps.setString(3, address);
+
+            int rowCount = ps.executeUpdate();
+            if (rowCount == 0) {
+                System.out.println(WARNING_TAG + " Branch " + address + " does not exist!");
+            }
+
+            connection.commit();
+
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            DatabaseConnectionHandler.rollbackConnection();
+        }
+    }
 }

@@ -16,7 +16,7 @@ public class SelectHandler {
                     "SELECT CH.Name AS Name, CH.ContactNumber AS ContactNumber, " +
                             "CA.branchAddress AS Branch " +
                             "FROM CHEF CH, CHEFADDRESS CA, COOK C" +
-                            "WHERE C.SIN = CH.SIN AND CH.HomeAddress = CA.HomeAddress" +
+                            "WHERE C.SIN = CH.SIN AND CH.SIN = CA.SIN" +
                             "AND C.OrderNumber = ?");
             stmt.setInt(1, OrderNumber);
             ResultSet rs = stmt.executeQuery();
@@ -248,7 +248,8 @@ public class SelectHandler {
                             "SELECT I.name AS Name, T.id AS PosID, T.temp AS Temperature, " +
                             "FROM INGREDIENTS I, CONSUME C, temp T" +
                             "WHERE C.lotNumber = I.lotNumber AND I.PosID = T.id" +
-                            "AND C.OrderNumber = ?");
+                            "AND C.OrderNumber = ?; " +
+                            "DROP VIEW Temp");
             stmt.setInt(1, OrderNumber);
             ResultSet rs = stmt.executeQuery();
 

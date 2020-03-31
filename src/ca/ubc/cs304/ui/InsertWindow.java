@@ -587,7 +587,7 @@ public class InsertWindow extends JFrame implements ActionListener{
                 break;
             case "chef":
                 ChefModel chef = new ChefModel(chefNameField.getText(), chefSINField.getText(), chefContactNumberField.getText(),chefHomeAddressField.getText());
-                ChefAddressModel chefAddr = new ChefAddressModel(chefHomeAddressField.getText(),chefBranchAddressField.getText());
+                ChefAddressModel chefAddr = new ChefAddressModel(chefSINField.getText(),chefBranchAddressField.getText());
                 dbhandler.insertChef(chef,chefAddr);
                 choose = 5;
                 break;
