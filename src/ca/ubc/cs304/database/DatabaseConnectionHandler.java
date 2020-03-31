@@ -108,6 +108,36 @@ public class DatabaseConnectionHandler {
 		return OrderHandler.getOrderColumn(connection);
 	}
 
+	/* Select all tuples in branch */
+	public Vector<Vector<String>> getAllBranch(){
+		return BranchHandler.getAllBranch(connection);
+	}
+
+	/* Column names in branch */
+	public Vector<String> getBranchColumn(){
+		return BranchHandler.getBranchColumn(connection);
+	}
+
+	/* Select all tuples in freezer */
+	public Vector<Vector<String>> getAllFreezer(){
+		return StorageHandler.getAllFreezer(connection);
+	}
+
+	/* Select all tuples in refrigerator */
+	public Vector<Vector<String>> getAllRefrigerator(){
+		return StorageHandler.getAllRefrigerator(connection);
+	}
+
+	/* Select all tuples in shelf */
+	public Vector<Vector<String>> getAllShelf(){
+		return StorageHandler.getAllShelf(connection);
+	}
+
+	/* Column names in freezer / refrigerator / shelf */
+	public Vector<String> getStorageColumn(){
+		return StorageHandler.getStorageColumn(connection);
+	}
+
 	/* Select all tuples in dishes */
 	public Vector<Vector<String>> getAllDishes(){
 		return DishesHandler.getAllDishes(connection);
