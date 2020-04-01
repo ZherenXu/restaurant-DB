@@ -164,7 +164,12 @@ public class UpdateWindow extends JFrame implements ActionListener{
         gb.setConstraints(backBtn, c);
         contentPane.add(backBtn);
 
+        updateDishBtn.addActionListener(this);
+        updateOrderBtn.addActionListener(this);
         backBtn.addActionListener(this);
+
+        updateDishBtn.setActionCommand("dish");
+        updateOrderBtn.setActionCommand("order");
         backBtn.setActionCommand("back");
 
         pack();
@@ -180,9 +185,13 @@ public class UpdateWindow extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-        if (cmd.equals("back")) {
-            dispose();
-            new MenuWindow(dbhandler);
+        switch(cmd){
+            case "back":
+                dispose();
+                new MenuWindow(dbhandler);
+                break;
+            default:
+                break;
         }
     }
 }

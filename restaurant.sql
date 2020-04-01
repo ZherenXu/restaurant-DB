@@ -26,20 +26,20 @@ CREATE TABLE FoodSupplier
  Email           CHAR(40)    UNIQUE
 );
  
--- INSERT INTO FoodSupplier 
--- VALUES ('ABC Inc','1234 40th Ave','7789199119','abc@gmail.com'); 
- 
--- INSERT INTO FoodSupplier 
--- VALUES ('XYZ Corp', '1235 41st Ave', '6041231234', 'xyz@hotmail.com'); 
- 
--- INSERT INTO FoodSupplier 
--- VALUES ('JKL Limited Co', '1236 42nd Ave', '7789981314', 'jkl@gmail.com'); 
- 
 -- INSERT INTO FoodSupplier
--- VALUES ('ILoveFood Company', '1237 43rd Ave', '7785201314', 'ilv@gmail.com'); 
- 
--- INSERT INTO FoodSupplier 
--- VALUES ('FoodSup','1238 44th Ave','7786666666','fs@gmail.com'); 
+-- VALUES ('ABC Inc','1234 40th Ave','7789199119','abc@gmail.com');
+
+-- INSERT INTO FoodSupplier
+-- VALUES ('XYZ Corp', '1235 41st Ave', '6041231234', 'xyz@hotmail.com');
+
+-- INSERT INTO FoodSupplier
+-- VALUES ('JKL Limited Co', '1236 42nd Ave', '7789981314', 'jkl@gmail.com');
+
+-- INSERT INTO FoodSupplier
+-- VALUES ('ILoveFood Company', '1237 43rd Ave', '7785201314', 'ilv@gmail.com');
+
+-- INSERT INTO FoodSupplier
+-- VALUES ('FoodSup','1238 44th Ave','7786666666','fs@gmail.com');
  
 CREATE TABLE Category
 (
@@ -49,16 +49,16 @@ CREATE TABLE Category
  
 -- INSERT INTO Category
 -- VALUES ('Tomato','Vegetable');
- 
+
 -- INSERT INTO Category
 -- VALUES ('Egg','Protein');
- 
+
 -- INSERT INTO Category
 -- VALUES ('Rice Noodle','Grains');
- 
+
 -- INSERT INTO Category
 -- VALUES ('Grapeseed Oil','Oil');
- 
+
 -- INSERT INTO Category
 -- VALUES ('Beef','Meat');
  
@@ -84,37 +84,30 @@ CREATE TABLE Storage(
  PosID           INTEGER PRIMARY KEY
 );
  
--- INSERT INTO Storage VALUES (1); 
--- INSERT INTO Storage VALUES (2); 
--- INSERT INTO Storage VALUES (3); 
--- INSERT INTO Storage VALUES (11); 
--- INSERT INTO Storage VALUES (12); 
--- INSERT INTO Storage VALUES (13); 
--- INSERT INTO Storage VALUES (22); 
--- INSERT INTO Storage VALUES (23); 
--- INSERT INTO Storage VALUES (24); 
+-- INSERT INTO Storage VALUES (1);
+-- INSERT INTO Storage VALUES (2);
+-- INSERT INTO Storage VALUES (3);
+-- INSERT INTO Storage VALUES (11);
+-- INSERT INTO Storage VALUES (12);
+-- INSERT INTO Storage VALUES (13);
+-- INSERT INTO Storage VALUES (22);
+-- INSERT INTO Storage VALUES (23);
+-- INSERT INTO Storage VALUES (24);
  
 CREATE TABLE Freezer(
  PosID           INTEGER PRIMARY KEY,
  FreezerTemp     FLOAT, 
  FOREIGN KEY (PosID) REFERENCES Storage
 );
-
-CREATE OR REPLACE TRIGGER FreezerTrigger
-    BEFORE INSERT ON FREEZER
-    FOR EACH ROW
-    BEGIN
-        INSERT INTO STORAGE VALUES ( :new.POSID);
-    end;
  
--- INSERT INTO Freezer 
--- VALUES (11, -30.1); 
+INSERT INTO Freezer 
+VALUES (11, -30.1); 
  
--- INSERT INTO Freezer 
--- VALUES (12, -31.0); 
+INSERT INTO Freezer 
+VALUES (12, -31.0); 
  
--- INSERT INTO Freezer 
--- VALUES (13, -29.5); 
+INSERT INTO Freezer 
+VALUES (13, -29.5); 
  
  
 CREATE TABLE Refrigerator(
@@ -129,13 +122,13 @@ CREATE OR REPLACE TRIGGER RefTrigger
     BEGIN
         INSERT INTO STORAGE VALUES ( :new.POSID);
     end;
- 
+
 -- INSERT INTO Refrigerator
 -- VALUES (1, 2.1);
- 
+
 -- INSERT INTO Refrigerator
 -- VALUES (2, 1.9);
- 
+
 -- INSERT INTO Refrigerator
 -- VALUES (3, 2.4);
  
@@ -173,15 +166,15 @@ CREATE TABLE Ingredients
   FOREIGN KEY (Name)  REFERENCES Category ON DELETE CASCADE 
 );
  
--- INSERT INTO Ingredients 
+-- INSERT INTO Ingredients
 -- VALUES('00121201231074812345','Tomato',TO_DATE('2019-09-01','YYYY-MM-DD'),1,1,'122485123');
--- INSERT INTO Ingredients 
+-- INSERT INTO Ingredients
 -- VALUES('01201203102412301235','Rice Noodle',TO_DATE('2019-09-01','YYYY-MM-DD'),2,22,'144235334');
--- INSERT INTO Ingredients 
+-- INSERT INTO Ingredients
 -- VALUES('21356012761034901344','Egg',TO_DATE('2019-10-02','YYYY-MM-DD'),3,3,'213875983');
--- INSERT INTO Ingredients 
+-- INSERT INTO Ingredients
 -- VALUES('12351269403176134753','Grapeseed Oil', TO_DATE('2019-09-01','YYYY-MM-DD'), 4, 24,'625785354');
--- INSERT INTO Ingredients 
+-- INSERT INTO Ingredients
 -- VALUES('12446346034576371342','Beef',TO_DATE('2019-09-01','YYYY-MM-DD'),5,13,'543938433');
  
 CREATE TABLE Branch(
@@ -221,16 +214,16 @@ CREATE TABLE Orders(
  
 -- INSERT INTO Orders
 -- VALUES (1234,'2019-09-01 19:01:13');
- 
+
 -- INSERT INTO Orders
 -- VALUES (1155,'2019-09-01 18:30:43');
- 
+
 -- INSERT INTO Orders
 -- VALUES (0012,'2019-10-02 12:30:55');
- 
+
 -- INSERT INTO Orders
 -- VALUES (0004,'2019-11-30 13:04:39');
- 
+
 -- INSERT INTO Orders
 -- VALUES (2384,'2020-01-31 11:38:25');
  
@@ -242,15 +235,15 @@ CREATE TABLE Dishes(
  FOREIGN KEY (OrderNumber) REFERENCES Orders ON DELETE CASCADE 
 );
 
--- INSERT INTO Dishes 
+-- INSERT INTO Dishes
 -- VALUES('Pan fried egg', 1155, NULL);
--- INSERT INTO Dishes 
+-- INSERT INTO Dishes
 -- VALUES('Chili rice noodle', 1155, 'less spicy');
--- INSERT INTO Dishes 
+-- INSERT INTO Dishes
 -- VALUES('Grilled beef tognue', 0004, Null);
--- INSERT INTO Dishes 
+-- INSERT INTO Dishes
 -- VALUES('Tomato soup', 2384, 'more sugar');
--- INSERT INTO Dishes 
+-- INSERT INTO Dishes
 -- VALUES('Tomato soup', 0012, 'less sugar');
  
  
@@ -264,16 +257,16 @@ CREATE TABLE Consume(
  CONSTRAINT fk_dishes FOREIGN KEY (DishesName, OrderNumber) REFERENCES Dishes(Name, OrderNumber) ON DELETE CASCADE
 );
  
--- INSERT INTO Consume 
--- VALUES ('Pan fried egg', 1155, '21356012761034901344', 2); 
--- INSERT INTO Consume 
--- VALUES ('Pan fried egg', 1155, '12351269403176134753', 1); 
--- INSERT INTO Consume 
--- VALUES ('Chili rice noodle', 1155, '01201203102412301235', 2); 
--- INSERT INTO Consume 
--- VALUES ('Grilled beef tognue', 0004, '12446346034576371342', 2); 
--- INSERT INTO Consume 
--- VALUES ('Tomato soup', 0012, '00121201231074812345', 2); 
+-- INSERT INTO Consume
+-- VALUES ('Pan fried egg', 1155, '21356012761034901344', 2);
+-- INSERT INTO Consume
+-- VALUES ('Pan fried egg', 1155, '12351269403176134753', 1);
+-- INSERT INTO Consume
+-- VALUES ('Chili rice noodle', 1155, '01201203102412301235', 2);
+-- INSERT INTO Consume
+-- VALUES ('Grilled beef tognue', 0004, '12446346034576371342', 2);
+-- INSERT INTO Consume
+-- VALUES ('Tomato soup', 0012, '00121201231074812345', 2);
  
   
 CREATE TABLE Chef(
@@ -297,19 +290,19 @@ CREATE TABLE ChefAddress(
   SIN             CHAR(9) PRIMARY KEY,
   BranchAddress   CHAR(40)    NOT NULL,
   FOREIGN KEY (BranchAddress) REFERENCES Branch ON DELETE CASCADE, 
-  FOREIGN KEY (SIN) REFERENCES Chef ON DELETE CASCADE 
+  FOREIGN KEY (SIN) REFERENCES Chef ON DELETE CASCADE
 );
  
--- INSERT INTO ChefAddress 
--- VALUES ('122985423', '1234 40th Ave'); 
 -- INSERT INTO ChefAddress
--- VALUES ('144225344', '1235 41st Ave'); 
+-- VALUES ('122985423', '1234 40th Ave');
 -- INSERT INTO ChefAddress
--- VALUES ('213605003', '1236 42nd Ave'); 
+-- VALUES ('144225344', '1235 41st Ave');
 -- INSERT INTO ChefAddress
--- VALUES ('625785404', '1235 41st Ave'); 
+-- VALUES ('213605003', '1236 42nd Ave');
 -- INSERT INTO ChefAddress
--- VALUES ('543938233', '1234 40th Ave'); 
+-- VALUES ('625785404', '1235 41st Ave');
+-- INSERT INTO ChefAddress
+-- VALUES ('543938233', '1234 40th Ave');
 
  
 CREATE TABLE Has(
@@ -320,15 +313,15 @@ CREATE TABLE Has(
   FOREIGN KEY (PosId) REFERENCES Storage
 );
  
--- INSERT INTO Has VALUES ('1234 40th Ave', 1); 
--- INSERT INTO Has VALUES ('1235 41st Ave', 2);  
--- INSERT INTO Has VALUES ('1234 40th Ave', 3);   
--- INSERT INTO Has VALUES ('1235 41st Ave', 11);  
--- INSERT INTO Has VALUES ('1234 40th Ave', 12);  
--- INSERT INTO Has VALUES ('1235 41st Ave', 13);   
+-- INSERT INTO Has VALUES ('1234 40th Ave', 1);
+-- INSERT INTO Has VALUES ('1235 41st Ave', 2);
+-- INSERT INTO Has VALUES ('1234 40th Ave', 3);
+-- INSERT INTO Has VALUES ('1235 41st Ave', 11);
+-- INSERT INTO Has VALUES ('1234 40th Ave', 12);
+-- INSERT INTO Has VALUES ('1235 41st Ave', 13);
 -- INSERT INTO Has VALUES ('1234 40th Ave', 22);
--- INSERT INTO Has VALUES ('1236 42nd Ave', 23);  
--- INSERT INTO Has VALUES ('1236 42nd Ave', 24);  
+-- INSERT INTO Has VALUES ('1236 42nd Ave', 23);
+-- INSERT INTO Has VALUES ('1236 42nd Ave', 24);
 
  
 CREATE TABLE Cook(

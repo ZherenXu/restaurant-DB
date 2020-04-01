@@ -475,29 +475,6 @@ public class InsertWindow extends JFrame implements ActionListener{
         gb.setConstraints(insertProvideBtn, c);
         contentPane.add(insertProvideBtn);
 
-        ////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////
-        // Branch button
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(branchBtn, c);
-        contentPane.add(branchBtn);
-        // Shelf button
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(shelfBtn, c);
-        contentPane.add(shelfBtn);
-        // Refrigerator button
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refrigeratorBtn, c);
-        contentPane.add(refrigeratorBtn);
-        // freezer button
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(freezerBtn, c);
-        contentPane.add(freezerBtn);
-
         // Refresh button
         c.gridwidth = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -522,6 +499,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         insertProvideBtn.addActionListener(this);
         backBtn.addActionListener(this);
         refreshBtn.addActionListener(this);
+
 
         insertDishBtn.setActionCommand("dish");
         insertOrderBtn.setActionCommand("order");
