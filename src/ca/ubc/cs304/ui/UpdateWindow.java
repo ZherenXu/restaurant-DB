@@ -20,28 +20,46 @@ public class UpdateWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
 
+    JTextField chefSINField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField chefAddressField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField chefContactNumberField = new JTextField(TEXT_FIELD_WIDTH);
+
+    JTextField foodSupplierCompanyNameField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField foodSupplierEmailField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField foodSupplierContactNumberField = new JTextField(TEXT_FIELD_WIDTH);
+
+    JTextField deliveryPeopleSINField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField deliveryPeopleContactNumberField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField deliveryPeopleAddressField = new JTextField(TEXT_FIELD_WIDTH);
+
+    JTextField branchAddressField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField branchManagerNameField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField branchContactNumberField = new JTextField(TEXT_FIELD_WIDTH);
+
     public UpdateWindow(DatabaseConnectionHandler dbhandler) {
         super("Update Window");
         this.dbhandler = dbhandler;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel titleLabel = new JLabel("UPDATE DATA");
-        JLabel insertOrderLabel = new JLabel("Order:");
-        JLabel chefLabel = new JLabel(" Chef: ");
-        JLabel dishLabel = new JLabel(" Dish: ");
-        JLabel orderNumLabel = new JLabel(" Order #: ");
-        JLabel insertDishLabel = new JLabel("Dish:");
-        JLabel ingredientLabel = new JLabel("ingredient: ");
-        JLabel dishChefLabel = new JLabel("Chef: ");
+        JLabel updateChefLabel = new JLabel("Chef:  SIN: ");
+        JLabel updateChefAddressLabel = new JLabel("New Address: ");
+        JLabel updateChefContactNumberLabel = new JLabel("New Contact Number: ");
+        JLabel updateFoodSupplierLabel = new JLabel("Food Supplier:  Company Name: ");
+        JLabel updateFoodSupplierEmailLabel = new JLabel("New Email: ");
+        JLabel updateFoodSupplierContactNumberLabel = new JLabel("New Contact Number: ");
+        JLabel updateDeliveryPeopleLabel = new JLabel("Delivery People:  SIN: ");
+        JLabel updateDeliveryPeopleContactNumberLabel = new JLabel("New Contact Number: ");
+        JLabel updateDeliveryPeopleAddressLabel = new JLabel("New Address: ");
+        JLabel updateBranchLabel = new JLabel("Branch:  Address:");
+        JLabel updateBranchManagerNameLabel = new JLabel("New Manager Name: ");
+        JLabel updateBranchContactNumberLabel = new JLabel("New Contact Number: ");
 
-        JTextField chefField = new JTextField(TEXT_FIELD_WIDTH);
-        JTextField orderDishField = new JPasswordField(TEXT_FIELD_WIDTH);
-        JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
-        JTextField ingredientField = new JTextField(TEXT_FIELD_WIDTH);
-        JTextField dishChefField = new JTextField(TEXT_FIELD_WIDTH);
-
-        JButton updateOrderBtn = new JButton("Update");
-        JButton updateDishBtn = new JButton("Update");
+        JButton updateChefBtn = new JButton("Update");
+        JButton updateFoodSupplierBtn = new JButton("Update");
+        JButton updateDeliveryPeopleBtn = new JButton("Update");
+        JButton updateBranchBtn = new JButton("Update");
+        JButton refreshBtn = new JButton("Refresh");
         JButton backBtn = new JButton("Back");
 
         // Set the Window
@@ -61,110 +79,217 @@ public class UpdateWindow extends JFrame implements ActionListener{
         c.insets = new Insets(10, 10, 10, 10);
         gb.setConstraints(titleLabel, c);
         contentPane.add(titleLabel);
-
         ////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////UPDATE ORDERS///////////////////////////////
-        // Order label
-        insertOrderLabel.setFont(insertOrderLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        /////////////////////////////////////CHEF///////////////////////////////////
+        // CHEF SIN label
+        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertOrderLabel, c);
-        contentPane.add(insertOrderLabel);
+        gb.setConstraints(updateChefLabel, c);
+        contentPane.add(updateChefLabel);
 
-        // Order# label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(orderNumLabel, c);
-        contentPane.add(orderNumLabel);
-
-        // Order# text field
+        // Chef SIN text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderNumField, c);
-        contentPane.add(orderNumField);
+        gb.setConstraints(chefSINField, c);
+        contentPane.add(chefSINField);
 
-        // Chef(order) label
+        // Chef Address label
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(chefLabel, c);
-        contentPane.add(chefLabel);
+        gb.setConstraints(updateChefAddressLabel, c);
+        contentPane.add(updateChefAddressLabel);
 
-        // Chef(order) text field
+        // Chef Address text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(chefField, c);
-        contentPane.add(chefField);
+        gb.setConstraints(chefAddressField, c);
+        contentPane.add(chefAddressField);
 
-        // Dish(order) label
+        // Contact Number label
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(dishLabel, c);
-        contentPane.add(dishLabel);
+        gb.setConstraints(updateChefContactNumberLabel, c);
+        contentPane.add(updateChefContactNumberLabel);
 
-        // Dish(order) text field
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        // Contact Number field
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderDishField, c);
-        contentPane.add(orderDishField);
+        gb.setConstraints(chefContactNumberField, c);
+        contentPane.add(chefContactNumberField);
 
-        // Update order button
+        // Chef button
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(updateOrderBtn, c);
-        contentPane.add(updateOrderBtn);
-
+        c.insets = new Insets(1, 0, 10, 10);
+        gb.setConstraints(updateChefBtn, c);
+        contentPane.add(updateChefBtn);
         ////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////UPDATE DISHES/////////////////////////////////
-        // Dish label
-        insertDishLabel.setFont(insertDishLabel.getFont().deriveFont(Font.BOLD));
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        ///////////////////////////////FOOD SUPPLIER////////////////////////////////
+        // FoodSupplier Company Name label
+        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);
-        gb.setConstraints(insertDishLabel, c);
-        contentPane.add(insertDishLabel);
+        gb.setConstraints(updateFoodSupplierLabel, c);
+        contentPane.add(updateFoodSupplierLabel);
 
-        // Ingredient label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(ingredientLabel, c);
-        contentPane.add(ingredientLabel);
-
-        // Ingredient text field
+        // FoodSupplier Company Name text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(ingredientField, c);
-        contentPane.add(ingredientField);
+        gb.setConstraints(foodSupplierCompanyNameField, c);
+        contentPane.add(foodSupplierCompanyNameField);
 
-        // Chef(dish) label
+        // FoodSupplier Email label
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(dishChefLabel, c);
-        contentPane.add(dishChefLabel);
+        gb.setConstraints(updateFoodSupplierEmailLabel, c);
+        contentPane.add(updateFoodSupplierEmailLabel);
 
-        // Chef(dish) text field
+        // FoodSupplier Email text field
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(dishChefField, c);
-        contentPane.add(dishChefField);
+        gb.setConstraints(foodSupplierEmailField, c);
+        contentPane.add(foodSupplierEmailField);
 
-        // Update dish button
+        // Contact Number label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(updateFoodSupplierContactNumberLabel, c);
+        contentPane.add(updateFoodSupplierContactNumberLabel);
+
+        // Contact Number field
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(foodSupplierContactNumberField, c);
+        contentPane.add(foodSupplierContactNumberField);
+
+        // FoodSupplier button
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(updateDishBtn, c);
-        contentPane.add(updateDishBtn);
+        c.insets = new Insets(1, 0, 10, 10);
+        gb.setConstraints(updateFoodSupplierBtn, c);
+        contentPane.add(updateFoodSupplierBtn);
+        ////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////DELIVERY PEOPLE///////////////////////////////
+        // DeliveryPeople SIN label
+        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_START;
+        c.insets = new Insets(10, 10, 3, 0);
+        gb.setConstraints(updateDeliveryPeopleLabel, c);
+        contentPane.add(updateDeliveryPeopleLabel);
 
+        // DeliveryPeople SIN text field
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(deliveryPeopleSINField, c);
+        contentPane.add(deliveryPeopleSINField);
+
+        // Contact Number label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(updateDeliveryPeopleContactNumberLabel, c);
+        contentPane.add(updateDeliveryPeopleContactNumberLabel);
+
+        // Contact Number field
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(deliveryPeopleContactNumberField, c);
+        contentPane.add(deliveryPeopleContactNumberField);
+
+        // DeliveryPeople Email label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(updateDeliveryPeopleAddressLabel, c);
+        contentPane.add(updateDeliveryPeopleAddressLabel);
+
+        // DeliveryPeople Email text field
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(deliveryPeopleAddressField, c);
+        contentPane.add(deliveryPeopleAddressField);
+
+        // DeliveryPeople button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(1, 0, 10, 10);
+        gb.setConstraints(updateDeliveryPeopleBtn, c);
+        contentPane.add(updateDeliveryPeopleBtn);
+        ////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////BRANCH///////////////////////////////////
+        // Branch Address label
+        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_START;
+        c.insets = new Insets(10, 10, 3, 0);
+        gb.setConstraints(updateBranchLabel, c);
+        contentPane.add(updateBranchLabel);
+
+        // Branch Address field
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(branchAddressField, c);
+        contentPane.add(branchAddressField);
+
+        // Branch ManagerName label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(updateBranchManagerNameLabel, c);
+        contentPane.add(updateBranchManagerNameLabel);
+
+        // Branch ManagerName field
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(branchManagerNameField, c);
+        contentPane.add(branchManagerNameField);
+
+        // Branch ContactNumber label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(updateBranchContactNumberLabel, c);
+        contentPane.add(updateBranchContactNumberLabel);
+
+        // Branch ContactNumber field
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(branchContactNumberField, c);
+        contentPane.add(branchContactNumberField);
+
+        // Branch button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(1, 0, 10, 10);
+        gb.setConstraints(updateBranchBtn, c);
+        contentPane.add(updateBranchBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
+        // Refresh button
+        c.gridwidth = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(refreshBtn, c);
+        contentPane.add(refreshBtn);
+
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(backBtn, c);
         contentPane.add(backBtn);
 
+
+        updateChefBtn.addActionListener(this);
+        updateFoodSupplierBtn.addActionListener(this);
+        updateDeliveryPeopleBtn.addActionListener(this);
+        updateBranchBtn.addActionListener(this);
+        refreshBtn.addActionListener(this);
         backBtn.addActionListener(this);
+
+        updateChefBtn.setActionCommand("chef");
+        updateFoodSupplierBtn.setActionCommand("food supplier");
+        updateDeliveryPeopleBtn.setActionCommand("delivery people");
+        updateBranchBtn.setActionCommand("branch");
+        refreshBtn.setActionCommand("refresh");
         backBtn.setActionCommand("back");
 
         pack();
@@ -180,9 +305,23 @@ public class UpdateWindow extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-        if (cmd.equals("back")) {
-            dispose();
-            new MenuWindow(dbhandler);
+        switch(cmd){
+            case "chef":
+                //break;
+            case "food supplier":
+                //break;
+            case "delivery people":
+                //break;
+            case "branch":
+                //break;
+            case "back":
+                dispose();
+                new MenuWindow(dbhandler);
+                break;
+            case "refresh":
+                //break;
+            default:
+                break;
         }
     }
 }
