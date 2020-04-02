@@ -102,4 +102,25 @@ public class DeliveryPeopleHandler {
 
         return column;
     }
+
+    protected static void updateDeliveryPeople(String sin, String contact, String address, Connection connection) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE DELIVERYPEOPLE SET ContactNumber = ?, Address = ? WHERE SIN = ?");
+            ps.setString(1, contact);
+            ps.setString(2, address);
+            ps.setString(3, sin);
+
+            int rowCount = ps.executeUpdate();
+            if (rowCount == 0) {
+                System.out.println(WARNING_TAG + " Delivery people " + sin + " does not exist!");
+            }
+
+            connection.commit();
+
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            DatabaseConnectionHandler.rollbackConnection();
+        }
+    }
 }

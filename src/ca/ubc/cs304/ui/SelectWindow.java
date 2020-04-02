@@ -252,6 +252,34 @@ public class SelectWindow extends JFrame implements ActionListener {
         gb.setConstraints(backBtn, c);
         contentPane.add(backBtn);
 
+        JButton branchBtn = new JButton("  Branch    ");
+        JButton shelfBtn = new JButton("   Shelf    ");
+        JButton refrigeratorBtn = new JButton("Refrigerator");
+        JButton freezerBtn = new JButton("  Freezer   ");
+
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        // Branch button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(branchBtn, c);
+        contentPane.add(branchBtn);
+        // Shelf button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(shelfBtn, c);
+        contentPane.add(shelfBtn);
+        // Refrigerator button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(refrigeratorBtn, c);
+        contentPane.add(refrigeratorBtn);
+        // freezer button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(freezerBtn, c);
+        contentPane.add(freezerBtn);
+
         backBtn.addActionListener(this);
         refreshBtn.addActionListener(this);
         findChefBtn.addActionListener(this);
@@ -262,6 +290,11 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectOrderNumberBtn.addActionListener(this);
         selectDishesBtn.addActionListener(this);
         selectIngredientsBtn.addActionListener(this);
+        branchBtn.addActionListener(this);
+        shelfBtn.addActionListener(this);
+        refrigeratorBtn.addActionListener(this);
+        freezerBtn.addActionListener(this);
+
         backBtn.setActionCommand("back");
         refreshBtn.setActionCommand("refresh");
 
@@ -274,6 +307,11 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectOrderNumberBtn.setActionCommand("select order number");
         selectDishesBtn.setActionCommand("select dishes");
         selectIngredientsBtn.setActionCommand("select ingredients");
+
+        branchBtn.setActionCommand("branch");
+        shelfBtn.setActionCommand("shelf");
+        refreshBtn.setActionCommand("refrigerator");
+        freezerBtn.setActionCommand("freezer");
 
         pack();
 
@@ -306,7 +344,7 @@ public class SelectWindow extends JFrame implements ActionListener {
                 break;
             case "select order number":
                 try {
-                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                     java.util.Date startDate = formatter.parse(orderNumberDateStartField.getText());
                     java.util.Date endDate = formatter.parse(orderNumberDateEndField.getText());
                     tb.updateTable(dbhandler.findOrder(new Timestamp(startDate.getTime()), new Timestamp(endDate.getTime()), orderNumberBranchField.getText()), dbhandler.orderColumn(), "Orders");
@@ -323,6 +361,18 @@ public class SelectWindow extends JFrame implements ActionListener {
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
+                break;
+            case "branch":
+                tb.updateTable(dbhandler.getAllBranch(),dbhandler.getBranchColumn(),"Branches");
+                break;
+            case "shelf":
+                tb.updateTable(dbhandler.getAllShelf(), dbhandler.getStorageColumn(), "Shelves");
+                break;
+            case "refrigerator":
+                tb.updateTable(dbhandler.getAllRefrigerator(), dbhandler.getStorageColumn(), "Refrigerators");
+                break;
+            case "freezer":
+                tb.updateTable(dbhandler.getAllFreezer(), dbhandler.getStorageColumn(), "Freezers");
                 break;
             case "refresh":
                 //break;

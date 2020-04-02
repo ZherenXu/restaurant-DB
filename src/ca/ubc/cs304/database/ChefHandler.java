@@ -32,7 +32,7 @@ public class ChefHandler {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO CHEFADDRESS VALUES (?,?)");
-            ps.setString(1, aModel.getHomeAddress());
+            ps.setString(1, aModel.getSIN());
             ps.setString(2, aModel.getBranchAddress());
 
             ps.executeUpdate();
@@ -78,7 +78,7 @@ public class ChefHandler {
                             "C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, " +
                             "CA.BranchAddress AS BranchAddress" +
                     "FROM CHEF C, CHEFADDRESS CA " +
-                    "WHERE C.HomeAddress = CA.HomeAddress");
+                    "WHERE C.SIN = CA.SIN");
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -110,7 +110,7 @@ public class ChefHandler {
                             "C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, " +
                             "CA.BranchAddress AS BranchAddress" +
                             "FROM CHEF C, CHEFADDRESS CA " +
-                            "WHERE C.HomeAddress = CA.HomeAddress");
+                            "WHERE C.SIN = CA.SIN");
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -128,5 +128,26 @@ public class ChefHandler {
         }
 
         return column;
+    }
+
+    protected static void updateChef(String sin, String contact, String address, Connection connection) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE CHEF SET contactNumber = ?, HomeAddress = ? WHERE SIN = ?");
+            ps.setString(1, contact);
+            ps.setString(2, address);
+            ps.setString(3, sin);
+
+            int rowCount = ps.executeUpdate();
+            if (rowCount == 0) {
+                System.out.println(WARNING_TAG + " Chef " + sin + " does not exist!");
+            }
+
+            connection.commit();
+
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            DatabaseConnectionHandler.rollbackConnection();
+        }
     }
 }

@@ -102,4 +102,25 @@ public class FoodSupplierHandler {
 
         return column;
     }
+
+    protected static void updateFoodSupplier(String company, String contact, String email, Connection connection) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE FOODSUPPLIER SET ContactNumber = ?, Email = ? WHERE CompanyName = ?");
+            ps.setString(1, contact);
+            ps.setString(2, email);
+            ps.setString(3, company);
+
+            int rowCount = ps.executeUpdate();
+            if (rowCount == 0) {
+                System.out.println(WARNING_TAG + " Food supplier " + company + " does not exist!");
+            }
+
+            connection.commit();
+
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            DatabaseConnectionHandler.rollbackConnection();
+        }
+    }
 }

@@ -1,16 +1,16 @@
 package ca.ubc.cs304.model;
 
 public class ChefAddressModel {
-    private final String homeAddress;
+    private final String SIN;
     private final String branchAddress;
 
-    public ChefAddressModel(String homeAddress, String branchAddress) {
-        this.homeAddress = homeAddress;
+    public ChefAddressModel(String SIN, String branchAddress) {
+        this.SIN = SIN;
         this.branchAddress = branchAddress;
     }
 
-    public String getHomeAddress() {
-        return homeAddress;
+    public String getSIN() {
+        return SIN;
     }
 
     public String getBranchAddress() {
