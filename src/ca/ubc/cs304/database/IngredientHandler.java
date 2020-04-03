@@ -15,9 +15,9 @@ public class IngredientHandler {
     protected static void insertIngredient(IngredientsModel iModel, CategoryModel cModel, Connection connection){
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM ORDERS");
-
-            if(!rs.next()){
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM ORDERS");
+//
+//            if(!rs.next()){
                 PreparedStatement ps1 = connection.prepareStatement("INSERT INTO CATEGORY VALUES (?,?)");
                 ps1.setString(1, cModel.getName());
                 ps1.setString(2, cModel.getType());
@@ -37,9 +37,9 @@ public class IngredientHandler {
                 connection.commit();
 
                 ps2.close();
-            }
+//            }
 
-            rs.close();
+//            rs.close();
             stmt.close();
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
