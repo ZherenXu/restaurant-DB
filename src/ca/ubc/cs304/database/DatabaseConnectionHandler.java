@@ -97,6 +97,9 @@ public class DatabaseConnectionHandler {
 	public void deleteFoodSupplier(String company_name){
 		FoodSupplierHandler.deleteFoodSupplier(company_name, connection);
 	}
+	public void deleteIngredient(String lotNumber){
+		IngredientHandler.deleteIngredient(lotNumber, connection);
+	}
 
 	/* Update tuples in database */
 	public void updateBranch(String address, String contact, String manager){

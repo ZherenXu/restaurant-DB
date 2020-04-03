@@ -56,6 +56,25 @@ public class IngredientHandler {
         return;
     }
 
+    protected static void deleteIngredient(String lotNumber, Connection connection) {
+        try {
+            String delete = "delete from INGREDIENTS where lotNumber = \'" + lotNumber + "\'";
+            PreparedStatement ps = connection.prepareStatement(delete);
+
+            int rowCount = ps.executeUpdate();
+            if (rowCount == 0) {
+                System.out.println(WARNING_TAG + " ingredient " + lotNumber + " does not exist!");
+            }
+
+            connection.commit();
+
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            rollbackConnection();
+        }
+    }
+
     protected static Vector<Vector<String>> getAllIngreidents(Connection connection) {
         Vector<Vector<String>> Ingredients = new Vector<>();
 
