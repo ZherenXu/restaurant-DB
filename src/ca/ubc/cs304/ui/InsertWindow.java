@@ -186,7 +186,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         ////////////////////////////INSERT INGREDIENTS//////////////////////////////
 
         // Attributes label
-        insertIngredientAttributeLabel.setFont(insertIngredientAttributeLabel.getFont().deriveFont(Font.BOLD,12));
+        insertIngredientAttributeLabel.setFont(insertIngredientAttributeLabel.getFont().deriveFont(Font.BOLD,11));
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);

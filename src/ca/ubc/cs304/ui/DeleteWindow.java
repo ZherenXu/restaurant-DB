@@ -44,9 +44,14 @@ public class DeleteWindow extends JFrame implements ActionListener{
         JLabel foodSupplierCompanyNameLabel = new JLabel("Company Name: ");
 
         JButton deleteOrderBtn = new JButton("Delete");
+        JButton orderShowOrderBtn = new JButton("Show orders");
+        JButton orderShowDishesBtn = new JButton("Show dishes");
         JButton deleteChefBtn = new JButton("Delete");
+        JButton showChefBtn = new JButton("Show");
         JButton deleteDeliveryPeopleBtn = new JButton("Delete");
+        JButton showDeliveryPeopleBtn = new JButton("Show");
         JButton deleteFoodSupplierBtn = new JButton("Delete");
+        JButton showFoodSupplierBtn = new JButton("Show");
         JButton refreshBtn = new JButton("Refresh");
         JButton backBtn = new JButton("Back");
 
@@ -91,12 +96,25 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(orderNumField);
 
         // Delete order button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(deleteOrderBtn, c);
         contentPane.add(deleteOrderBtn);
 
+        // show order button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(orderShowOrderBtn, c);
+        contentPane.add(orderShowOrderBtn);
+
+        // show dishes button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(orderShowDishesBtn, c);
+        contentPane.add(orderShowDishesBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////DELETE CHEF///////////////////////////////
         // Chef label
@@ -119,12 +137,19 @@ public class DeleteWindow extends JFrame implements ActionListener{
         gb.setConstraints(chefSINField, c);
         contentPane.add(chefSINField);
 
-        // Delete order button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        // Delete chef button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(deleteChefBtn, c);
         contentPane.add(deleteChefBtn);
+
+        // show chef button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showChefBtn, c);
+        contentPane.add(showChefBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////DELETE DELIVERY PEOPLE///////////////////////////
@@ -149,11 +174,18 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(deliveryPeopleSINField);
 
         // Delete delivery people button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(deleteDeliveryPeopleBtn, c);
         contentPane.add(deleteDeliveryPeopleBtn);
+
+        // show delivery people button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showDeliveryPeopleBtn, c);
+        contentPane.add(showDeliveryPeopleBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////DELETE FOOD SUPPLIER////////////////////////////
@@ -178,12 +210,18 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(foodSupplierCompanyNameField);
 
         // Delete food supplier button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(deleteFoodSupplierBtn, c);
         contentPane.add(deleteFoodSupplierBtn);
 
+        // show food supplier button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showFoodSupplierBtn, c);
+        contentPane.add(showFoodSupplierBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
         // Refresh button
@@ -204,12 +242,23 @@ public class DeleteWindow extends JFrame implements ActionListener{
         deleteChefBtn.addActionListener(this);
         deleteDeliveryPeopleBtn.addActionListener(this);
         deleteFoodSupplierBtn.addActionListener(this);
+        orderShowOrderBtn.addActionListener(this);
+        orderShowDishesBtn.addActionListener(this);
+        showChefBtn.addActionListener(this);
+        showDeliveryPeopleBtn.addActionListener(this);
+        showFoodSupplierBtn.addActionListener(this);
+
         backBtn.setActionCommand("back");
         refreshBtn.setActionCommand("refresh");
         deleteOrderBtn.setActionCommand("order");
         deleteChefBtn.setActionCommand("chef");
         deleteDeliveryPeopleBtn.setActionCommand("delivery people");
         deleteFoodSupplierBtn.setActionCommand("food supplier");
+        orderShowOrderBtn.setActionCommand("show order");
+        orderShowDishesBtn.setActionCommand("show dished");
+        showChefBtn.setActionCommand("show chef");
+        showDeliveryPeopleBtn.setActionCommand("show delivery_people");
+        showFoodSupplierBtn.setActionCommand("show food_supplier");
 
         pack();
 
@@ -241,6 +290,16 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 dbhandler.deleteFoodSupplier(foodSupplierCompanyNameField.getText());
                 choose = 4;
                 break;
+            case "show order":
+                //break;
+            case "show dished":
+                //break;
+            case "show chef":
+                //break;
+            case "show delivery_people":
+                //break;
+            case "show food_supplier":
+                //break;
             case "back":
                 choose = 0;
                 dispose();
