@@ -301,7 +301,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
                 break;
             case "back":
-                choose = 0;
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
