@@ -680,7 +680,6 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
-                choose = 10;
                 break;
             default:
                 break;
