@@ -66,17 +66,17 @@ public class InsertWindow extends JFrame implements ActionListener{
         JLabel dishOrderNumLabel = new JLabel("      Order #                       " +
                                                         "Dish                      " +
                                                         "Teste Preference");
-        JLabel insertIngredientAttributeLabel = new JLabel("       Lot#                                   " +
-                                                                "Name                  " +
-                                                                "Date(dd-mm-yyyy hh:mm:ss)    " +
+        JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                               " +
+                                                                    "Name             " +
+                                                                "Date(dd-mm-yyyy hh:mm:ss)       " +
                                                                 "Quantity                           " +
                                                                 "Type                                " +
                                                                 "PosID                               " +
                                                                 "SIN");
-        JLabel insertCookAttributeLabel = new JLabel("            SIN                           " +
+        JLabel insertCookAttributeLabel = new JLabel("            SIN                       " +
                                                             "Dish Name                     " +
                                                             "Order#");
-        JLabel insertChefAttributeLabel = new JLabel("      Name                                  " +
+        JLabel insertChefAttributeLabel = new JLabel("      Name                            " +
                                                             "SIN                           " +
                                                             "Contact Number            " +
                                                             "Home Address           " +
@@ -85,12 +85,12 @@ public class InsertWindow extends JFrame implements ActionListener{
                                                                     "Name                           " +
                                                                     "Contact Number                 " +
                                                                     "Address");
-        JLabel insertConsumeAttributeLabel = new JLabel("   Dish Name                          " +
+        JLabel insertConsumeAttributeLabel = new JLabel("   Dish Name                     " +
                                                             "Order#                             " +
                                                             "Lot#                               " +
                                                             "Quantity");
         JLabel insertFoodSupplierAttributeLabel = new JLabel("Company Name                  " +
-                                                                "Address                       " +
+                                                                "Address                  " +
                                                                 "Contact Number                    " +
                                                                 "Email                            ");
         JLabel insertProvideAttributeLabel = new JLabel("Company Name                       " +
@@ -186,6 +186,7 @@ public class InsertWindow extends JFrame implements ActionListener{
         ////////////////////////////INSERT INGREDIENTS//////////////////////////////
 
         // Attributes label
+        insertIngredientAttributeLabel.setFont(insertIngredientAttributeLabel.getFont().deriveFont(Font.BOLD,12));
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
@@ -475,6 +476,8 @@ public class InsertWindow extends JFrame implements ActionListener{
         gb.setConstraints(insertProvideBtn, c);
         contentPane.add(insertProvideBtn);
 
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
         // Refresh button
         c.gridwidth = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);

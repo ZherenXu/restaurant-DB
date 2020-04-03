@@ -56,6 +56,10 @@ public class SelectWindow extends JFrame implements ActionListener {
         JButton selectIngredientsBtn = new JButton("Select");
         JButton refreshBtn = new JButton("Refresh");
         JButton backBtn = new JButton("Back");
+        JButton branchBtn = new JButton("  Branch    ");
+        JButton shelfBtn = new JButton("   Shelf    ");
+        JButton refrigeratorBtn = new JButton("Refrigerator");
+        JButton freezerBtn = new JButton("  Freezer   ");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -164,28 +168,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         gb.setConstraints(orderNumberDateEndField, c);
         contentPane.add(orderNumberDateEndField);
 
-        // Time Start
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(orderNumberTimeStartLabel, c);
-        contentPane.add(orderNumberTimeStartLabel);
-
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderNumberTimeStartField, c);
-        contentPane.add(orderNumberTimeStartField);
-
-        // Time End
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(1, 10, 1, 0);
-        gb.setConstraints(orderNumberTimeEndLabel, c);
-        contentPane.add(orderNumberTimeEndLabel);
-
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.insets = new Insets(1, 0, 1, 10);
-        gb.setConstraints(orderNumberTimeEndField, c);
-        contentPane.add(orderNumberTimeEndField);
-
         // Select button
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_END;
@@ -237,30 +219,11 @@ public class SelectWindow extends JFrame implements ActionListener {
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(selectIngredientsBtn, c);
         contentPane.add(selectIngredientsBtn);
-
-        ////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
-
-        // Back button
-        c.gridwidth = GridBagConstraints.PAGE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(backBtn, c);
-        contentPane.add(backBtn);
-
-        JButton branchBtn = new JButton("  Branch    ");
-        JButton shelfBtn = new JButton("   Shelf    ");
-        JButton refrigeratorBtn = new JButton("Refrigerator");
-        JButton freezerBtn = new JButton("  Freezer   ");
-
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
         // Branch button
         c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(branchBtn, c);
         contentPane.add(branchBtn);
@@ -279,6 +242,20 @@ public class SelectWindow extends JFrame implements ActionListener {
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(freezerBtn, c);
         contentPane.add(freezerBtn);
+
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        // Refresh button
+        c.gridwidth = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(refreshBtn, c);
+        contentPane.add(refreshBtn);
+
+        // Back button
+        c.gridwidth = GridBagConstraints.PAGE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(backBtn, c);
+        contentPane.add(backBtn);
 
         backBtn.addActionListener(this);
         refreshBtn.addActionListener(this);
