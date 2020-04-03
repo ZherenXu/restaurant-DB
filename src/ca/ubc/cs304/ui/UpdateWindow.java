@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 public class UpdateWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
+    private TableWindow tb = new TableWindow();
 
     JTextField chefSINField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField chefAddressField = new JTextField(TEXT_FIELD_WIDTH);
@@ -307,19 +308,27 @@ public class UpdateWindow extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         switch(cmd){
             case "chef":
-                //break;
+                dbhandler.updateChef(chefSINField.getText(), chefContactNumberField.getText(), chefAddressField.getText());
+                tb.updateTable(dbhandler.getAllChef(),dbhandler.getChefColumn(), "Chefs");
+                break;
             case "food supplier":
-                //break;
+                dbhandler.updateFoodSupplier(foodSupplierCompanyNameField.getText(), foodSupplierContactNumberField.getText(), foodSupplierEmailField.getText());
+                tb.updateTable(dbhandler.getAllFoodSupplier(), dbhandler.getFoodSupplierColumn(), "Food Suppliers");
+                break;
             case "delivery people":
-                //break;
+                dbhandler.updateDeliveryPeople(deliveryPeopleSINField.getText(), deliveryPeopleContactNumberField.getText(), deliveryPeopleAddressField.getText());
+                tb.updateTable(dbhandler.getAllDeliveryPeople(), dbhandler.getDeliveryPeopleColumn(), "Delivery People");
+                break;
             case "branch":
-                //break;
+                dbhandler.updateBranch(branchAddressField.getText(),branchContactNumberField.getText(), branchManagerNameField.getText());
+                tb.updateTable(dbhandler.getAllBranch(), dbhandler.getBranchColumn(), "Branches");
+                break;
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
             case "refresh":
-                //break;
+                break;
             default:
                 break;
         }

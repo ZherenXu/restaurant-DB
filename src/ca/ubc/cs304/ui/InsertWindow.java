@@ -544,7 +544,7 @@ public class InsertWindow extends JFrame implements ActionListener{
                 break;
             case "ingredient":
                 try {
-                    DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss ");
+                    DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                     java.util.Date date = formatter.parse(ingredientsDateField.getText());
                     IngredientsModel ingred = new IngredientsModel(ingredientsLotField.getText(),
                             ingredientsNameField.getText(),
@@ -559,7 +559,6 @@ public class InsertWindow extends JFrame implements ActionListener{
                 } catch(Exception g){
                     System.out.println("Exception :" + g);
                 }
-
                 break;
             case "cook":
                 CookModel cook = new CookModel(cookSINField.getText(), cookDishNameField.getText(), Integer.valueOf(cookOrderNumberField.getText()));
@@ -601,6 +600,7 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
+                choose = 10;
                 break;
             case "refresh":
                 break;
@@ -634,6 +634,8 @@ public class InsertWindow extends JFrame implements ActionListener{
                 break;
             case 9:
                 tb.updateTable(dbhandler.getAllProvide(),dbhandler.getProvideColumn(), "Provide");
+                break;
+            case 10:
                 break;
             default:
                 break;

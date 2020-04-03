@@ -35,8 +35,8 @@ public class FoodSupplierHandler {
 
     protected static void deleteFoodSupplier(String CompanyName, Connection connection) {
         try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM FOODSUPPLIER WHERE CompanyName = ?");
-            ps.setString(1, CompanyName);
+            String delete = "delete from FOODSUPPLIER where COMPANYNAME = \'" + CompanyName + "\'";
+            PreparedStatement ps = connection.prepareStatement(delete);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
