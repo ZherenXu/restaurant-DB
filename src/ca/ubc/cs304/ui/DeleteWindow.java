@@ -291,38 +291,26 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 choose = 4;
                 break;
             case "show order":
-                //break;
+                tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
+                break;
             case "show dished":
-                //break;
+                tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dishes");
+                break;
             case "show chef":
-                //break;
+                tb.updateTable(dbhandler.getAllChef(), dbhandler.getChefColumn(), "Chefs");
+                break;
             case "show delivery_people":
-                //break;
+                tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
+                break;
             case "show food_supplier":
-                //break;
+                tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
+                break;
             case "back":
                 choose = 0;
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
             case "refresh":
-                break;
-            default:
-                break;
-        }
-
-        switch(choose) {
-            case 1:
-                tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
-                break;
-            case 2:
-                tb.updateTable(dbhandler.getAllChef(), dbhandler.getChefColumn(), "Chefs");
-                break;
-            case 3:
-                tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
-                break;
-            case 4:
-                tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
                 break;
             default:
                 break;
