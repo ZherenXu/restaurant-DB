@@ -83,6 +83,15 @@ public class DatabaseConnectionHandler {
 	public void insertOrder(OrdersModel model){
 		OrderHandler.insertOrder(model, connection);
 	}
+	public void insertFreezer(FreezerModel model){
+		StorageHandler.insertFreezer(model, connection);
+	}
+	public void insertRefrigerator(RefrigeratorModel model){
+		StorageHandler.insertRefrigerator(model, connection);
+	}
+	public void insertShelf(ShelfModel model){
+		StorageHandler.insertShelf(model, connection);
+	}
 
 	/* Delete tuples in database */
 	public void deleteOrder(int OrderNumber){
@@ -114,7 +123,6 @@ public class DatabaseConnectionHandler {
 	public void updateChef(String sin, String contact, String address){
 		ChefHandler.updateChef(sin, contact, address, connection);
 	}
-
 
 	/* Select all tuples in one table in database */
 	public Vector<Vector<String>> getAllOrder(){
@@ -156,7 +164,10 @@ public class DatabaseConnectionHandler {
 	public Vector<Vector<String>> getAllProvide(){
 		return ProvideHandler.getAllProvide(connection);
 	}
-
+	public Vector<Vector<String>> getAllStorage(){
+		return StorageHandler.getAllStorage(connection);
+	}
+	
 	/* Column names of a specific table */
 	public Vector<String> getOrderColumn(){
 		return OrderHandler.getOrderColumn(connection);
