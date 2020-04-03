@@ -40,8 +40,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         JLabel orderNumberBranchLabel = new JLabel("Branch: ");
         JLabel orderNumberDateStartLabel = new JLabel("Date                                        Start: ");
         JLabel orderNumberDateEndLabel = new JLabel("End: ");
-        JLabel orderNumberTimeStartLabel = new JLabel("Time                                        Start: ");
-        JLabel orderNumberTimeEndLabel = new JLabel("End: ");
         JLabel findDishesLabel = new JLabel("Find Dishes");
         JLabel dishesLotNumberLabel = new JLabel("Lot#: ");
         JLabel findIngredientsByAllChefLabel = new JLabel("Find Ingredients Used By All Chefs");
@@ -54,7 +52,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         JButton selectOrderNumberBtn = new JButton("Select");
         JButton selectDishesBtn = new JButton("Select");
         JButton selectIngredientsBtn = new JButton("Select");
-        JButton refreshBtn = new JButton("Refresh");
         JButton backBtn = new JButton("Back");
         JButton branchBtn = new JButton("  Branch    ");
         JButton shelfBtn = new JButton("   Shelf    ");
@@ -245,12 +242,6 @@ public class SelectWindow extends JFrame implements ActionListener {
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
-
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -258,7 +249,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         contentPane.add(backBtn);
 
         backBtn.addActionListener(this);
-        refreshBtn.addActionListener(this);
         findChefBtn.addActionListener(this);
         findIngredientBtn.addActionListener(this);
         findDeliveryPeopleBtn.addActionListener(this);
@@ -273,7 +263,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         freezerBtn.addActionListener(this);
 
         backBtn.setActionCommand("back");
-        refreshBtn.setActionCommand("refresh");
 
         findChefBtn.setActionCommand("find chef");
         findIngredientBtn.setActionCommand("find ingredient");
@@ -287,7 +276,7 @@ public class SelectWindow extends JFrame implements ActionListener {
 
         branchBtn.setActionCommand("branch");
         shelfBtn.setActionCommand("shelf");
-        refreshBtn.setActionCommand("refrigerator");
+        refrigeratorBtn.setActionCommand("refrigerator");
         freezerBtn.setActionCommand("freezer");
 
         pack();
@@ -336,6 +325,7 @@ public class SelectWindow extends JFrame implements ActionListener {
                 tb.updateTable(dbhandler.division(), dbhandler.divisionColumn(), "Ingredients");
                 break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
@@ -351,8 +341,6 @@ public class SelectWindow extends JFrame implements ActionListener {
             case "freezer":
                 tb.updateTable(dbhandler.getAllFreezer(), dbhandler.getStorageColumn(), "Freezers");
                 break;
-            case "refresh":
-                //break;
             default:
                 break;
         }

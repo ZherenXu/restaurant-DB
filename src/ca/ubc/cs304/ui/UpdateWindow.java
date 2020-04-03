@@ -44,23 +44,22 @@ public class UpdateWindow extends JFrame implements ActionListener{
 
         JLabel titleLabel = new JLabel("UPDATE DATA");
         JLabel updateChefLabel = new JLabel("Chef:  SIN: ");
-        JLabel updateChefAddressLabel = new JLabel("New Address: ");
-        JLabel updateChefContactNumberLabel = new JLabel("New Contact Number: ");
+        JLabel updateChefAddressLabel = new JLabel("            New Address: ");
+        JLabel updateChefContactNumberLabel = new JLabel("            New Contact Number: ");
         JLabel updateFoodSupplierLabel = new JLabel("Food Supplier:  Company Name: ");
-        JLabel updateFoodSupplierEmailLabel = new JLabel("New Email: ");
-        JLabel updateFoodSupplierContactNumberLabel = new JLabel("New Contact Number: ");
+        JLabel updateFoodSupplierEmailLabel = new JLabel("            New Email: ");
+        JLabel updateFoodSupplierContactNumberLabel = new JLabel("            New Contact Number: ");
         JLabel updateDeliveryPeopleLabel = new JLabel("Delivery People:  SIN: ");
-        JLabel updateDeliveryPeopleContactNumberLabel = new JLabel("New Contact Number: ");
-        JLabel updateDeliveryPeopleAddressLabel = new JLabel("New Address: ");
+        JLabel updateDeliveryPeopleContactNumberLabel = new JLabel("            New Contact Number: ");
+        JLabel updateDeliveryPeopleAddressLabel = new JLabel("            New Address: ");
         JLabel updateBranchLabel = new JLabel("Branch:  Address:");
-        JLabel updateBranchManagerNameLabel = new JLabel("New Manager Name: ");
-        JLabel updateBranchContactNumberLabel = new JLabel("New Contact Number: ");
+        JLabel updateBranchManagerNameLabel = new JLabel("            New Manager Name: ");
+        JLabel updateBranchContactNumberLabel = new JLabel("            New Contact Number: ");
 
         JButton updateChefBtn = new JButton("Update");
         JButton updateFoodSupplierBtn = new JButton("Update");
         JButton updateDeliveryPeopleBtn = new JButton("Update");
         JButton updateBranchBtn = new JButton("Update");
-        JButton refreshBtn = new JButton("Refresh");
         JButton backBtn = new JButton("Back");
 
         // Set the Window
@@ -83,7 +82,6 @@ public class UpdateWindow extends JFrame implements ActionListener{
         ////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////CHEF///////////////////////////////////
         // CHEF SIN label
-        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);
@@ -129,7 +127,6 @@ public class UpdateWindow extends JFrame implements ActionListener{
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////FOOD SUPPLIER////////////////////////////////
         // FoodSupplier Company Name label
-        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);
@@ -175,7 +172,6 @@ public class UpdateWindow extends JFrame implements ActionListener{
         ////////////////////////////////////////////////////////////////////////////
         //////////////////////////////DELIVERY PEOPLE///////////////////////////////
         // DeliveryPeople SIN label
-        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);
@@ -221,7 +217,6 @@ public class UpdateWindow extends JFrame implements ActionListener{
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////BRANCH///////////////////////////////////
         // Branch Address label
-        updateChefLabel.setFont(updateChefLabel.getFont().deriveFont(Font.BOLD));
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);
@@ -266,12 +261,6 @@ public class UpdateWindow extends JFrame implements ActionListener{
         contentPane.add(updateBranchBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
-
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -283,14 +272,12 @@ public class UpdateWindow extends JFrame implements ActionListener{
         updateFoodSupplierBtn.addActionListener(this);
         updateDeliveryPeopleBtn.addActionListener(this);
         updateBranchBtn.addActionListener(this);
-        refreshBtn.addActionListener(this);
         backBtn.addActionListener(this);
 
         updateChefBtn.setActionCommand("chef");
         updateFoodSupplierBtn.setActionCommand("food supplier");
         updateDeliveryPeopleBtn.setActionCommand("delivery people");
         updateBranchBtn.setActionCommand("branch");
-        refreshBtn.setActionCommand("refresh");
         backBtn.setActionCommand("back");
 
         pack();
@@ -324,10 +311,9 @@ public class UpdateWindow extends JFrame implements ActionListener{
                 tb.updateTable(dbhandler.getAllBranch(), dbhandler.getBranchColumn(), "Branches");
                 break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
-                break;
-            case "refresh":
                 break;
             default:
                 break;

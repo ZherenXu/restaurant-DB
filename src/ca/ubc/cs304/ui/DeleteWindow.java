@@ -26,6 +26,7 @@ public class DeleteWindow extends JFrame implements ActionListener{
     JTextField chefSINField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField deliveryPeopleSINField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField foodSupplierCompanyNameField = new JTextField(TEXT_FIELD_WIDTH);
+    JTextField ingredientLotNumberField = new JTextField(TEXT_FIELD_WIDTH);
 
     public DeleteWindow(DatabaseConnectionHandler dbhandler) {
         super("Delete Window");
@@ -41,6 +42,8 @@ public class DeleteWindow extends JFrame implements ActionListener{
         JLabel deliveryPeopleSINLabel = new JLabel(" SIN: ");
         JLabel deleteFoodSupplierLabel = new JLabel("Food Supplier:");
         JLabel foodSupplierCompanyNameLabel = new JLabel("Company Name: ");
+        JLabel deleteIngredientLabel = new JLabel("Ingredient:");
+        JLabel ingredientLotNumberLabel = new JLabel("Lot#:");
 
         JButton deleteOrderBtn = new JButton("Delete");
         JButton orderShowOrderBtn = new JButton("Show orders");
@@ -51,7 +54,8 @@ public class DeleteWindow extends JFrame implements ActionListener{
         JButton showDeliveryPeopleBtn = new JButton("Show");
         JButton deleteFoodSupplierBtn = new JButton("Delete");
         JButton showFoodSupplierBtn = new JButton("Show");
-        JButton refreshBtn = new JButton("Refresh");
+        JButton deleteIngredientBtn = new JButton("Delete");
+        JButton showIngredientBtn = new JButton("Show");
         JButton backBtn = new JButton("Back");
 
         // Set the Window
@@ -221,14 +225,44 @@ public class DeleteWindow extends JFrame implements ActionListener{
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(showFoodSupplierBtn, c);
         contentPane.add(showFoodSupplierBtn);
-        ////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
 
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////DELETE INGREDIENT////////////////////////////
+        // Ingredient label
+        deleteFoodSupplierLabel.setFont(deleteFoodSupplierLabel.getFont().deriveFont(Font.BOLD));
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
+        c.insets = new Insets(10, 10, 3, 0);
+        gb.setConstraints(deleteIngredientLabel, c);
+        contentPane.add(deleteIngredientLabel);
+
+        // Lot Number label
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 10, 1, 0);
+        gb.setConstraints(ingredientLotNumberLabel, c);
+        contentPane.add(ingredientLotNumberLabel);
+
+        // Lot Number field
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(1, 0, 1, 10);
+        gb.setConstraints(ingredientLotNumberField, c);
+        contentPane.add(ingredientLotNumberField);
+
+        // Delete ingredient button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(deleteIngredientBtn, c);
+        contentPane.add(deleteIngredientBtn);
+
+        // show ingredient button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showIngredientBtn, c);
+        contentPane.add(showIngredientBtn);
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -236,28 +270,30 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(backBtn);
 
         backBtn.addActionListener(this);
-        refreshBtn.addActionListener(this);
         deleteOrderBtn.addActionListener(this);
         deleteChefBtn.addActionListener(this);
         deleteDeliveryPeopleBtn.addActionListener(this);
         deleteFoodSupplierBtn.addActionListener(this);
+        deleteIngredientBtn.addActionListener(this);
         orderShowOrderBtn.addActionListener(this);
         orderShowDishesBtn.addActionListener(this);
         showChefBtn.addActionListener(this);
         showDeliveryPeopleBtn.addActionListener(this);
         showFoodSupplierBtn.addActionListener(this);
+        showIngredientBtn.addActionListener(this);
 
         backBtn.setActionCommand("back");
-        refreshBtn.setActionCommand("refresh");
         deleteOrderBtn.setActionCommand("order");
         deleteChefBtn.setActionCommand("chef");
         deleteDeliveryPeopleBtn.setActionCommand("delivery people");
         deleteFoodSupplierBtn.setActionCommand("food supplier");
+        deleteIngredientBtn.setActionCommand("ingredient");
         orderShowOrderBtn.setActionCommand("show order");
         orderShowDishesBtn.setActionCommand("show dished");
         showChefBtn.setActionCommand("show chef");
         showDeliveryPeopleBtn.setActionCommand("show delivery_people");
         showFoodSupplierBtn.setActionCommand("show food_supplier");
+        showIngredientBtn.setActionCommand("show ingredient");
 
         pack();
 
@@ -300,7 +336,14 @@ public class DeleteWindow extends JFrame implements ActionListener{
             case "show food_supplier":
                 tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
                 break;
+            case "ingredient":
+                dbhandler.deleteIngredient(ingredientLotNumberField.getText());
+                break;
+            case "show ingredient":
+                tb.updateTable(dbhandler.getAllIngredients(), dbhandler.getIngredientsColumn(), "Ingredients");
+                break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
                 break;

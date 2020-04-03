@@ -209,6 +209,7 @@ public class StatWindow extends JFrame implements ActionListener{
                 tb.updateTable(dbhandler.ICountDishes(),dbhandler.ICountColumn(),"# of Dishes Used by Certain Ingredients");
                 break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
                 break;

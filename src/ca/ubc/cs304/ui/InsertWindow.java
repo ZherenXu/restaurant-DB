@@ -21,7 +21,6 @@ public class InsertWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
     private TableWindow tb = new TableWindow();
-    private int choose = 0;
     private JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     private JTextField dishOrderNumField = new JTextField(TEXT_FIELD_WIDTH);
     private JTextField dishField = new JTextField(TEXT_FIELD_WIDTH);
@@ -62,10 +61,10 @@ public class InsertWindow extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // LABELS
-        JLabel orderNumLabel = new JLabel(" Order #: ");
+        JLabel orderNumLabel = new JLabel("     Order # ");
         JLabel dishOrderNumLabel = new JLabel("      Order #                       " +
                                                         "Dish                      " +
-                                                        "Teste Preference");
+                                                        "Taste Preference");
         JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                               " +
                                                                     "Name             " +
                                                                 "Date(dd-mm-yyyy hh:mm:ss)       " +
@@ -107,11 +106,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         JButton insertFoodSupplierBtn = new JButton("Insert Food Supplier");
         JButton insertProvideBtn = new JButton("Insert Provide");
         JButton backBtn = new JButton("Back");
-        JButton refreshBtn = new JButton("Refresh");
-        JButton branchBtn = new JButton("  Branch    ");
-        JButton shelfBtn = new JButton("   Shelf    ");
-        JButton refrigeratorBtn = new JButton("Refrigerator");
-        JButton freezerBtn = new JButton("  Freezer   ");
+        JButton showOrderBtn = new JButton("Show");
+        JButton showDishBtn = new JButton("Show");
+        JButton showIngredientBtn = new JButton("Show");
+        JButton showCookBtn = new JButton("Show");
+        JButton showChefBtn = new JButton("Show");
+        JButton showDeliveryPeopleBtn = new JButton("Show");
+        JButton showConsumeBtn = new JButton("Show");
+        JButton showFoodSupplierBtn = new JButton("Show");
+        JButton showProvideBtn = new JButton("Show");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -127,9 +130,9 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT ORDERS///////////////////////////////
-
         // Order# label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(orderNumLabel, c);
         contentPane.add(orderNumLabel);
@@ -141,11 +144,17 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(orderNumField);
 
         // Insert order button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertOrderBtn, c);
         contentPane.add(insertOrderBtn);
+
+        // show order button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showOrderBtn, c);
+        contentPane.add(showOrderBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         //////////////////////////////INSERT DISHES/////////////////////////////////
@@ -176,12 +185,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(tastePreferenceField);
 
         // Insert dish button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertDishBtn, c);
         contentPane.add(insertDishBtn);
 
+        // show dish button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showDishBtn, c);
+        contentPane.add(showDishBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT INGREDIENTS//////////////////////////////
 
@@ -236,12 +251,16 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(ingredientsSINField);
 
         // Insert ingredient button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertIngredientBtn, c);
         contentPane.add(insertIngredientBtn);
 
+        // show ingredient button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showIngredientBtn, c);
+        contentPane.add(showIngredientBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT COOK//////////////////////////////
 
@@ -271,11 +290,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(cookOrderNumberField);
 
         // Insert cook button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertCookBtn, c);
         contentPane.add(insertCookBtn);
+
+        // show cook button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showCookBtn, c);
+        contentPane.add(showCookBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT CHEF/////////////////////////////////
@@ -318,15 +344,20 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(chefBranchAddressField);
 
         // Insert chef button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertChefBtn, c);
         contentPane.add(insertChefBtn);
 
+        // show chef button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showChefBtn, c);
+        contentPane.add(showChefBtn);
+
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////INSERT DELIVERY PEOPLE///////////////////////////
-
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
@@ -359,15 +390,19 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(deliveryPeopleAddressField);
 
         // Insert delivery people button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertDeliveryPeopleBtn, c);
         contentPane.add(insertDeliveryPeopleBtn);
 
+        // show delivery people button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showDeliveryPeopleBtn, c);
+        contentPane.add(showDeliveryPeopleBtn);
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////INSERT CONSUME///////////////////////////////
-
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
@@ -400,12 +435,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(consumeQuantityField);
 
         // Insert Consume button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertConsumeBtn, c);
         contentPane.add(insertConsumeBtn);
 
+        // show Consume button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showConsumeBtn, c);
+        contentPane.add(showConsumeBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT FOOD SUPPLIER////////////////////////////
 
@@ -441,12 +482,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(foodSupplierEmailField);
 
         // Insert Food Supplier button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertFoodSupplierBtn, c);
         contentPane.add(insertFoodSupplierBtn);
 
+        // Show Food Supplier button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showFoodSupplierBtn, c);
+        contentPane.add(showFoodSupplierBtn);
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////INSERT PROVIDE///////////////////////////////
 
@@ -470,20 +517,20 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(provideLotNumberField);
 
         // Insert Provide button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertProvideBtn, c);
         contentPane.add(insertProvideBtn);
 
-        ////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
+        // Show Provide button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
-
+        gb.setConstraints(showProvideBtn, c);
+        contentPane.add(showProvideBtn);
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -501,7 +548,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         insertFoodSupplierBtn.addActionListener(this);
         insertProvideBtn.addActionListener(this);
         backBtn.addActionListener(this);
-        refreshBtn.addActionListener(this);
+        showOrderBtn.addActionListener(this);
+        showDishBtn.addActionListener(this);
+        showIngredientBtn.addActionListener(this);
+        showCookBtn.addActionListener(this);
+        showChefBtn.addActionListener(this);
+        showDeliveryPeopleBtn.addActionListener(this);
+        showConsumeBtn.addActionListener(this);
+        showFoodSupplierBtn.addActionListener(this);
+        showProvideBtn.addActionListener(this);
 
 
         insertDishBtn.setActionCommand("dish");
@@ -514,7 +569,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         insertFoodSupplierBtn.setActionCommand("food supplier");
         insertProvideBtn.setActionCommand("provide");
         backBtn.setActionCommand("back");
-        refreshBtn.setActionCommand("refresh");
+        showOrderBtn.setActionCommand("showOrder");
+        showDishBtn.setActionCommand("showDish");
+        showIngredientBtn.setActionCommand("showIngredient");
+        showCookBtn.setActionCommand("showCook");
+        showChefBtn.setActionCommand("showChef");
+        showDeliveryPeopleBtn.setActionCommand("showDeliveryPeople");
+        showConsumeBtn.setActionCommand("showConsume");
+        showFoodSupplierBtn.setActionCommand("showFoodSupplier");
+        showProvideBtn.setActionCommand("showProvide");
 
         pack();
 
@@ -535,12 +598,10 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "order":
                 OrdersModel order = new OrdersModel(Integer.valueOf(orderNumField.getText()), new Timestamp(System.currentTimeMillis()));
                 dbhandler.insertOrder(order);
-                choose = 1;
                 break;
             case "dish":
                 DishesModel dish = new DishesModel(dishField.getText(), Integer.valueOf(dishOrderNumField.getText()), tastePreferenceField.getText());
                 dbhandler.insertDish(dish);
-                choose = 2;
                 break;
             case "ingredient":
                 try {
@@ -555,7 +616,6 @@ public class InsertWindow extends JFrame implements ActionListener{
                     );
                     CategoryModel cate = new CategoryModel(ingredientsNameField.getText(),ingredientsTypeField.getText());
                     dbhandler.insertIngredient(ingred, cate);
-                    choose = 3;
                 } catch(Exception g){
                     System.out.println("Exception :" + g);
                 }
@@ -563,19 +623,16 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "cook":
                 CookModel cook = new CookModel(cookSINField.getText(), cookDishNameField.getText(), Integer.valueOf(cookOrderNumberField.getText()));
                 dbhandler.insertCook(cook);
-                choose = 4;
                 break;
             case "chef":
                 ChefModel chef = new ChefModel(chefNameField.getText(), chefSINField.getText(), chefContactNumberField.getText(),chefHomeAddressField.getText());
                 ChefAddressModel chefAddr = new ChefAddressModel(chefSINField.getText(),chefBranchAddressField.getText());
                 dbhandler.insertChef(chef,chefAddr);
-                choose = 5;
                 break;
             case "delivery people":
                 DeliveryPeopleModel delivPep = new DeliveryPeopleModel(deliveryPeopleSINField.getText(), deliveryPeopleNameField.getText(),
                         deliveryPeopleContactNumberField.getText(), deliveryPeopleAddressField.getText());
                 dbhandler.insertDeliveryPeople(delivPep);
-                choose = 6;
                 break;
             case "consume":
                 ConsumeModel consume = new ConsumeModel(consumeDishNameField.getText(),
@@ -583,59 +640,47 @@ public class InsertWindow extends JFrame implements ActionListener{
                         Integer.valueOf(consumeQuantityField.getText())
                 );
                 dbhandler.insertConsume(consume);
-                choose = 7;
                 break;
             case "food supplier":
                 FoodSupplierModel fSupplier = new FoodSupplierModel(foodSupplierCompanyNameField.getText(),foodSupplierAddressField.getText(),
                 foodSupplierContactNumberField.getText(),foodSupplierEmailField.getText());
                 dbhandler.insertFoodSupplier(fSupplier);
-                choose = 8;
                 break;
             case "provide":
-
                 ProvideModel provide = new ProvideModel(provideCompanyNameField.getText(),provideLotNumberField.getText());
                 dbhandler.insertProvide(provide);
-                choose = 9;
                 break;
-            case "back":
-                dispose();
-                new MenuWindow(dbhandler);
-                choose = 10;
-                break;
-            case "refresh":
-                break;
-            default:
-                break;
-        }
-        switch(choose) {
-            case 1:
+            case "showOrder":
                 tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
                 break;
-            case 2:
+            case "showDish":
                 tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dishes");
                 break;
-            case 3:
+            case "showIngredient":
                 tb.updateTable(dbhandler.getAllIngredients(),dbhandler.getIngredientsColumn(),"Ingredients");
                 break;
-            case 4:
+            case "showCook":
                 tb.updateTable(dbhandler.getAllCook(),dbhandler.getCookColumn(),"Cook");
                 break;
-            case 5:
+            case "showChef":
                 tb.updateTable(dbhandler.getAllChef(),dbhandler.getChefColumn(),"Chefs");
                 break;
-            case 6:
+            case "showDeliveryPeople":
                 tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
                 break;
-            case 7:
+            case "showConsume":
                 tb.updateTable(dbhandler.getAllConsume(),dbhandler.getConsumeColumn(),"Consume");
                 break;
-            case 8:
+            case "showFoodSupplier":
                 tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food suppliers");
                 break;
-            case 9:
+            case "showProvide":
                 tb.updateTable(dbhandler.getAllProvide(),dbhandler.getProvideColumn(), "Provide");
                 break;
-            case 10:
+            case "back":
+                tb.closeTable();
+                dispose();
+                new MenuWindow(dbhandler);
                 break;
             default:
                 break;
