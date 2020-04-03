@@ -13,7 +13,7 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findChefByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> chefInfo = new Vector<>();
         try {
-            String select = "SELECT CH.Name AS Name, CH.ContactNumber AS ContactNumber,\n" +
+            String select = "SELECT DISTINCT CH.SIN AS SIN, CH.Name AS Name, CH.ContactNumber AS ContactNumber,\n" +
                     "       CA.branchAddress AS Branch\n" +
                     "FROM CHEF CH, CHEFADDRESS CA, COOK C\n" +
                     "WHERE C.SIN = CH.SIN AND CH.SIN = CA.SIN AND C.OrderNumber = \'" + OrderNumber +"\'";
@@ -22,6 +22,7 @@ public class SelectHandler {
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString("sin"));
                 tuple.add(rs.getString("Name"));
                 tuple.add(rs.getString("ContactNumber"));
                 tuple.add(rs.getString("Branch"));
@@ -43,7 +44,7 @@ public class SelectHandler {
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "SELECT CH.Name AS Name, CH.ContactNumber AS ContactNumber, " +
+                    "SELECT DISTINCT CH.SIN AS SIN, CH.Name AS Name, CH.ContactNumber AS ContactNumber, " +
                             "CA.branchAddress AS Branch " +
                             "FROM CHEF CH, CHEFADDRESS CA, COOK C");
 
@@ -123,7 +124,7 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findDeliveryByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> deliveryInfo = new Vector<>();
         try {
-            String select = "SELECT D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address\n" +
+            String select = "SELECT DISTINCT D.SIN AS SIN, D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address\n" +
                     "FROM INGREDIENTS I, CONSUME C, DELIVERYPEOPLE D\n" +
                     "WHERE C.lotNumber = I.lotNumber AND I.SIN = D.SIN\n" +
                     "  AND C.OrderNumber = \'" + OrderNumber + "\'";
@@ -132,6 +133,7 @@ public class SelectHandler {
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString("sin"));
                 tuple.add(rs.getString("Name"));
                 tuple.add(rs.getString("ContactNumber"));
                 tuple.add(rs.getString("Address"));
@@ -152,7 +154,7 @@ public class SelectHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            String select =  "SELECT D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address\n" +
+            String select =  "SELECT D.SIN AS SIN, D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address\n" +
                     "FROM INGREDIENTS I, CONSUME C, DELIVERYPEOPLE D\n" +
                     "WHERE C.lotNumber = I.lotNumber AND I.SIN = D.SIN\n";
             ResultSet rs = stmt.executeQuery(select);
@@ -178,7 +180,7 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findSupplierByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> supplierInfo = new Vector<>();
         try {
-            String select = "SELECT F.CompanyName AS Company, F.ContactNumber AS ContactNumber,\n" +
+            String select = "SELECT DISTINCT F.CompanyName AS Company, F.ContactNumber AS ContactNumber,\n" +
                     "       F.Address AS Address, F.Email AS Email\n" +
                     "FROM FOODSUPPLIER F, CONSUME C, PROVIDE P\n" +
                     "WHERE C.lotNumber = P.lotNumber AND P.CompanyName = F.CompanyName\n" +
@@ -314,15 +316,13 @@ public class SelectHandler {
             System.out.println(timeStart);
             System.out.println(timeEnd);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String string1  = dateFormat.format(timeStart);
             System.out.println(string1);
 
             String string2  = dateFormat.format(timeEnd);
             System.out.println(string2);
 
-            string1 ="2019-01-01 00:00:00";
-            string2 ="2019-10-01 00:00:00";
 
 
             String order = "SELECT DISTINCT O.orderNumber AS OrderNumber\n" +
@@ -434,7 +434,7 @@ public class SelectHandler {
     protected static Vector<Vector<String>> division(Connection connection) {
         Vector<Vector<String>> ingredients = new Vector<>();
         try {
-            String div = "SELECT I.Name AS Name\n" +
+            String div = "SELECT DISTINCT I.Name AS Name\n" +
                     "FROM INGREDIENTS I\n" +
                     "WHERE NOT EXISTS(\n" +
                     "    SELECT CH.SIN\n" +

@@ -17,8 +17,9 @@ public class StatisticHandler {
                     "GROUP BY I1.name\n" +
                     "HAVING SUM(C1.quantity) <= ALL(\n" +
                     "    SELECT SUM(C2.quantity)\n" +
-                    "    FROM CONSUME C2\n" +
-                    "    GROUP BY C2.lotNumber)";
+                    "    FROM CONSUME C2, INGREDIENTS I2\n" +
+                    "    WHERE I2.LOTNUMBER = C2.LOTNUMBER\n" +
+                    "    GROUP BY I2.name)";
             ResultSet rs = stmt.executeQuery(minQuery);
 
             while(rs.next()) {
@@ -47,8 +48,9 @@ public class StatisticHandler {
                     "GROUP BY I1.name\n" +
                     "HAVING SUM(C1.quantity) >= ALL(\n" +
                     "    SELECT SUM(C2.quantity)\n" +
-                    "    FROM CONSUME C2\n" +
-                    "    GROUP BY C2.lotNumber)";
+                    "    FROM CONSUME C2, INGREDIENTS I2\n" +
+                    "    WHERE I2.LOTNUMBER = C2.LOTNUMBER\n" +
+                    "    GROUP BY I2.name)";
             ResultSet rs = stmt.executeQuery(maxQuery);
 
             while(rs.next()) {
