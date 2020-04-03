@@ -598,6 +598,7 @@ public class InsertWindow extends JFrame implements ActionListener{
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
+                choose = 10;
                 break;
             case "refresh":
                 break;
@@ -631,6 +632,8 @@ public class InsertWindow extends JFrame implements ActionListener{
                 break;
             case 9:
                 tb.updateTable(dbhandler.getAllProvide(),dbhandler.getProvideColumn(), "Provide");
+                break;
+            case 10:
                 break;
             default:
                 break;
