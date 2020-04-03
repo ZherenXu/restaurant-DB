@@ -251,7 +251,6 @@ public class SelectHandler {
                     "FROM INGREDIENTS I, CONSUME C, temp T\n" +
                     "WHERE C.lotNumber = I.lotNumber AND I.PosID = T.id AND C.OrderNumber = \'" + OrderNumber + "\'";
             PreparedStatement stmt = connection.prepareStatement(select);
-            stmt.setInt(1, OrderNumber);
             ResultSet rs = stmt.executeQuery();
             System.out.println("rs: " + rs);
 
