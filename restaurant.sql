@@ -183,7 +183,7 @@ CREATE TABLE Ingredients
   Name                CHAR(20),
   ProductionDate      DATE,
   Quantity            INTEGER,
-  PosId               INTEGER UNIQUE,
+  PosId               INTEGER,
   SIN                 CHAR(9),
   FOREIGN KEY (PosId) REFERENCES Storage,
   FOREIGN KEY (SIN)   REFERENCES DeliveryPeople   ON DELETE CASCADE,
