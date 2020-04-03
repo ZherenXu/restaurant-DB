@@ -24,4 +24,8 @@ public class TableWindow {
         dataFrame.setSize(300,200);
         dataFrame.setVisible(true);
     }
+
+    public void closeTable(){
+        dataFrame.setVisible(false);
+    }
 }

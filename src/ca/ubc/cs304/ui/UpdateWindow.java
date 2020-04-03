@@ -311,6 +311,7 @@ public class UpdateWindow extends JFrame implements ActionListener{
                 tb.updateTable(dbhandler.getAllBranch(), dbhandler.getBranchColumn(), "Branches");
                 break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
                 break;

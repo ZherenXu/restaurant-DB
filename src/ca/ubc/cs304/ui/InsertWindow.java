@@ -678,6 +678,7 @@ public class InsertWindow extends JFrame implements ActionListener{
                 tb.updateTable(dbhandler.getAllProvide(),dbhandler.getProvideColumn(), "Provide");
                 break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
                 break;

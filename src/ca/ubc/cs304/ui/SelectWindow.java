@@ -325,6 +325,7 @@ public class SelectWindow extends JFrame implements ActionListener {
                 tb.updateTable(dbhandler.division(), dbhandler.divisionColumn(), "Ingredients");
                 break;
             case "back":
+                tb.closeTable();
                 dispose();
                 new MenuWindow(dbhandler);
                 break;
