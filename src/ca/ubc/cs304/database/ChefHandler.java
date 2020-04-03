@@ -28,13 +28,18 @@ public class ChefHandler {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
 
             rollbackConnection();
+            return;
         }
 
         try {
+            System.out.println("insert chef address");
+            System.out.println("sin: " + aModel.getSIN());
+            System.out.println("branch: " + aModel.getBranchAddress());
             PreparedStatement ps = connection.prepareStatement("INSERT INTO CHEFADDRESS VALUES (?,?)");
             ps.setString(1, aModel.getSIN());
             ps.setString(2, aModel.getBranchAddress());
 
+            System.out.println(("debug"));
             ps.executeUpdate();
             connection.commit();
 
@@ -53,8 +58,8 @@ public class ChefHandler {
         System.out.println("sin: " + Sin);
 
         try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM CHEF WHERE SIN = ?");
-            ps.setString(1, Sin);
+            String delete = "delete from CHEF where sin = \'" + Sin + "\'";
+            PreparedStatement ps = connection.prepareStatement(delete);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
@@ -74,13 +79,9 @@ public class ChefHandler {
         Vector<Vector<String>> Chef = new Vector<>();
 
         try {
+            String select = "SELECT C.Name AS Name, C.SIN AS SIN,C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, CA.BranchAddress AS BranchAddress FROM CHEF C, CHEFADDRESS CA WHERE C.SIN = CA.SIN";
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT C.Name AS Name, C.SIN AS SIN, " +
-                            "C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, " +
-                            "CA.BranchAddress AS BranchAddress" +
-                    "FROM CHEF C, CHEFADDRESS CA " +
-                    "WHERE C.SIN = CA.SIN");
+            ResultSet rs = stmt.executeQuery(select);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -107,12 +108,8 @@ public class ChefHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT C.Name AS Name, C.SIN AS SIN, " +
-                            "C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, " +
-                            "CA.BranchAddress AS BranchAddress" +
-                            "FROM CHEF C, CHEFADDRESS CA " +
-                            "WHERE C.SIN = CA.SIN");
+            String select = "SELECT C.Name AS Name, C.SIN AS SIN,C.ContactNumber AS ContactNumber, C.HomeAddress AS HomeAddress, CA.BranchAddress AS BranchAddress FROM CHEF C, CHEFADDRESS CA WHERE C.SIN = CA.SIN";
+            ResultSet rs = stmt.executeQuery(select);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();

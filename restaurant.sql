@@ -84,6 +84,16 @@ CREATE TABLE Storage(
  PosID           INTEGER PRIMARY KEY
 );
  
+-- INSERT INTO Storage VALUES (1); 
+-- INSERT INTO Storage VALUES (2); 
+-- INSERT INTO Storage VALUES (3); 
+-- INSERT INTO Storage VALUES (11); 
+-- INSERT INTO Storage VALUES (12); 
+-- INSERT INTO Storage VALUES (13); 
+-- INSERT INTO Storage VALUES (22); 
+-- INSERT INTO Storage VALUES (23); 
+-- INSERT INTO Storage VALUES (24); 
+ 
 CREATE TABLE Freezer(
  PosID           INTEGER PRIMARY KEY,
  FreezerTemp     FLOAT, 
@@ -301,8 +311,9 @@ INSERT INTO Chef
 VALUES ('Godzilla','543938233','7831097230','776 BroadWay');
 
 CREATE TABLE ChefAddress(
-  SIN             CHAR(9) PRIMARY KEY,
+  SIN             CHAR(9),
   BranchAddress   CHAR(40)    NOT NULL,
+  PRIMARY KEY (SIN, BranchAddress), 
   FOREIGN KEY (BranchAddress) REFERENCES Branch ON DELETE CASCADE, 
   FOREIGN KEY (SIN) REFERENCES Chef ON DELETE CASCADE 
 );
