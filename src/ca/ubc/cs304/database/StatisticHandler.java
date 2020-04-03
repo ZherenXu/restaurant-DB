@@ -11,19 +11,18 @@ public class StatisticHandler {
         Vector<Vector<String>> min = new Vector<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT C1.lotNumber AS lotNumber, I1.name AS name, SUM(C1.quantity) AS quantity" +
-                            "FROM CONSUME C1, INGREDIENTS I1 " +
-                            "WHERE I1.lotNumber = C1.lotNumber" +
-                            "GROUP BY C1.lotNumber " +
-                            "HAVING SUM(C1.quantity) = MIN(" +
-                            "SELECT SUM(C2.quantity) " +
-                            "FROM CONSUME C2" +
-                            "GROUP BY C2.lotNumber)");
+            String minQuery = "SELECT I1.name AS name, SUM(C1.quantity) AS quantity\n" +
+                    "FROM CONSUME C1, INGREDIENTS I1\n" +
+                    "WHERE I1.lotNumber = C1.lotNumber\n" +
+                    "GROUP BY I1.name\n" +
+                    "HAVING SUM(C1.quantity) <= ALL(\n" +
+                    "    SELECT SUM(C2.quantity)\n" +
+                    "    FROM CONSUME C2\n" +
+                    "    GROUP BY C2.lotNumber)";
+            ResultSet rs = stmt.executeQuery(minQuery);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
-                tuple.add(rs.getString("lotNumber"));
                 tuple.add(rs.getString("name"));
                 tuple.add(Integer.toString(rs.getInt("quantity")));
 
@@ -42,19 +41,18 @@ public class StatisticHandler {
         Vector<Vector<String>> max = new Vector<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT C1.lotNumber AS lotNumber, I1.name AS name, SUM(C1.quantity) AS quantity" +
-                            "FROM CONSUME C1, INGREDIENTS I1 " +
-                            "WHERE I1.lotNumber = C1.lotNumber" +
-                            "GROUP BY C1.lotNumber " +
-                            "HAVING SUM(C1.quantity) = MAX(" +
-                            "SELECT SUM(C2.quantity) " +
-                            "FROM CONSUME C2" +
-                            "GROUP BY C2.lotNumber)");
+            String maxQuery = "SELECT I1.name AS name, SUM(C1.quantity) AS quantity\n" +
+                    "FROM CONSUME C1, INGREDIENTS I1\n" +
+                    "WHERE I1.lotNumber = C1.lotNumber\n" +
+                    "GROUP BY I1.name\n" +
+                    "HAVING SUM(C1.quantity) >= ALL(\n" +
+                    "    SELECT SUM(C2.quantity)\n" +
+                    "    FROM CONSUME C2\n" +
+                    "    GROUP BY C2.lotNumber)";
+            ResultSet rs = stmt.executeQuery(maxQuery);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
-                tuple.add(rs.getString("lotNumber"));
                 tuple.add(rs.getString("name"));
                 tuple.add(Integer.toString(rs.getInt("quantity")));
 
@@ -74,11 +72,9 @@ public class StatisticHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT C1.lotNumber AS lotNumber, I1.name AS name, SUM(C1.quantity) AS quantity" +
-                            "FROM CONSUME C1, INGREDIENTS I1 " +
-                            "WHERE I1.lotNumber = C1.lotNumber" +
-                            "GROUP BY C1.lotNumber");
+            String query = "SELECT I1.name AS name, C1.quantity AS quantity\n" +
+                    "FROM CONSUME C1, INGREDIENTS I1\n";
+            ResultSet rs = stmt.executeQuery(query);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -126,7 +122,7 @@ public class StatisticHandler {
         float avg;
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT AVG(RoomTemp) AS avgTemp FROM REFRIGERATOR");
+            ResultSet rs = stmt.executeQuery("SELECT AVG(RefrigeratorTemp) AS avgTemp FROM REFRIGERATOR");
             if(!rs.next()){
                 System.out.println(EXCEPTION_TAG + " " + "There is no tuples in the table");
                 avg = (float)999.999;
@@ -149,7 +145,7 @@ public class StatisticHandler {
         float avg;
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT AVG(RoomTemp) AS avgTemp FROM FREEZER");
+            ResultSet rs = stmt.executeQuery("SELECT AVG(FreezerTemp) AS avgTemp FROM FREEZER");
             if(!rs.next()){
                 System.out.println(EXCEPTION_TAG + " " + "There is no tuples in the table");
                 avg = (float)999.999;
@@ -171,11 +167,11 @@ public class StatisticHandler {
         Vector<Vector<String>> summary = new Vector<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.name AS ingredient, COUNT(DISTINCT C.dishesName) AS numOfDishes" +
-                            "FROM INGREDIENTS I, CONSUME C" +
-                            "WHERE I.lotNumber = C.lotNumber" +
-                            "GROUP BY I.name");
+            String count = "SELECT I.name AS ingredient, COUNT(DISTINCT C.dishesName) AS numOfDishes\n" +
+                    "FROM INGREDIENTS I, CONSUME C\n" +
+                    "WHERE I.lotNumber = C.lotNumber\n" +
+                    "GROUP BY I.name";
+            ResultSet rs = stmt.executeQuery(count);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -198,11 +194,11 @@ public class StatisticHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.name AS ingredient, COUNT(DISTINCT C.dishesName) AS numOfDishes" +
-                            "FROM INGREDIENTS I, CONSUME C" +
-                            "WHERE I.lotNumber = C.lotNumber" +
-                            "GROUP BY I.name");
+            String count = "SELECT I.name AS ingredient, COUNT(DISTINCT C.dishesName) AS numOfDishes\n" +
+                    "FROM INGREDIENTS I, CONSUME C\n" +
+                    "WHERE I.lotNumber = C.lotNumber\n" +
+                    "GROUP BY I.name";
+            ResultSet rs = stmt.executeQuery(count);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -227,11 +223,11 @@ public class StatisticHandler {
         Vector<Vector<String>> summary = new Vector<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.SIN AS sin, D.name AS name, COUNT(I.lotNumber) AS frequency" +
-                            "FROM INGREDIENTS I, DELEVERYPEOPLE D" +
-                            "WHERE I.sin = D.sin" +
-                            "GROUP BY I.sin");
+            String count = "SELECT D.sin,D.name,COUNT(I.lotNumber) AS frequency\n" +
+                    "FROM INGREDIENTS I, DELIVERYPEOPLE D\n" +
+                    "WHERE I.sin = D.sin\n" +
+                    "GROUP BY D.sin, D.name";
+            ResultSet rs = stmt.executeQuery(count);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -254,12 +250,12 @@ public class StatisticHandler {
         Vector<String> column = new Vector<>();
 
         try {
+            String count = "SELECT D.sin,D.name,COUNT(I.lotNumber) AS frequency\n" +
+                    "FROM INGREDIENTS I, DELIVERYPEOPLE D\n" +
+                    "WHERE I.sin = D.sin\n" +
+                    "GROUP BY D.sin, D.name";
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.SIN AS sin, D.name AS name, COUNT(I.lotNumber) AS frequency" +
-                            "FROM INGREDIENTS I, DELEVERYPEOPLE D" +
-                            "WHERE I.sin = D.sin" +
-                            "GROUP BY I.sin");
+            ResultSet rs = stmt.executeQuery(count);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
