@@ -21,7 +21,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
     private TableWindow tb = new TableWindow();
-    private int choose = 0;
 
     JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField chefSINField = new JTextField(TEXT_FIELD_WIDTH);
@@ -276,53 +275,34 @@ public class DeleteWindow extends JFrame implements ActionListener{
         switch(cmd){
             case "order":
                 dbhandler.deleteOrder(Integer.valueOf(orderNumField.getText()));
-                choose = 1;
                 break;
             case "chef":
                 dbhandler.deleteChef(chefSINField.getText());
-                choose = 2;
                 break;
             case "delivery people":
                 dbhandler.deleteDeliveryPeople(deliveryPeopleSINField.getText());
-                choose = 3;
                 break;
             case "food supplier":
                 dbhandler.deleteFoodSupplier(foodSupplierCompanyNameField.getText());
-                choose = 4;
                 break;
             case "show order":
-                //break;
-            case "show dished":
-                //break;
-            case "show chef":
-                //break;
-            case "show delivery_people":
-                //break;
-            case "show food_supplier":
-                //break;
-            case "back":
-                choose = 0;
-                dispose();
-                new MenuWindow(dbhandler);
-                break;
-            case "refresh":
-                break;
-            default:
-                break;
-        }
-
-        switch(choose) {
-            case 1:
                 tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
                 break;
-            case 2:
+            case "show dished":
+                tb.updateTable(dbhandler.getAllDishes(), dbhandler.getDishesColumn(), "Dishes");
+                break;
+            case "show chef":
                 tb.updateTable(dbhandler.getAllChef(), dbhandler.getChefColumn(), "Chefs");
                 break;
-            case 3:
+            case "show delivery_people":
                 tb.updateTable(dbhandler.getAllDeliveryPeople(),dbhandler.getDeliveryPeopleColumn(),"Delivery People");
                 break;
-            case 4:
+            case "show food_supplier":
                 tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
+                break;
+            case "back":
+                dispose();
+                new MenuWindow(dbhandler);
                 break;
             default:
                 break;
