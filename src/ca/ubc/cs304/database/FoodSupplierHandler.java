@@ -105,10 +105,11 @@ public class FoodSupplierHandler {
 
     protected static void updateFoodSupplier(String company, String contact, String email, Connection connection) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE FOODSUPPLIER SET ContactNumber = ?, Email = ? WHERE CompanyName = ?");
-            ps.setString(1, contact);
-            ps.setString(2, email);
-            ps.setString(3, company);
+            String update = "UPDATE FOODSUPPLIER " +
+                    "SET ContactNumber = \'" + contact + "\', Email = \'" + email + "\' " +
+                    "WHERE CompanyName = \'" + company + "\'";
+            PreparedStatement ps = connection.prepareStatement(update);
+
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {

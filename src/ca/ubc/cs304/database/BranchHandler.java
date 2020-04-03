@@ -58,10 +58,10 @@ public class BranchHandler {
 
     protected static void updateBranch(String address, String contact, String manager, Connection connection) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE BRANCH SET contact = ?, ManagerName = ? WHERE address = ?");
-            ps.setString(1, contact);
-            ps.setString(2, manager);
-            ps.setString(3, address);
+            String update = "UPDATE BRANCH SET contact = \'" + contact + "\', " +
+                    "ManagerName = \'" + manager + "\'" +
+                    " WHERE address = \'" + address + "\'";
+            PreparedStatement ps = connection.prepareStatement(update);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
