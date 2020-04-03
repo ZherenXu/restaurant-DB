@@ -62,10 +62,10 @@ public class InsertWindow extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // LABELS
-        JLabel orderNumLabel = new JLabel(" Order #: ");
+        JLabel orderNumLabel = new JLabel("     Order # ");
         JLabel dishOrderNumLabel = new JLabel("      Order #                       " +
                                                         "Dish                      " +
-                                                        "Teste Preference");
+                                                        "Taste Preference");
         JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                               " +
                                                                     "Name             " +
                                                                 "Date(dd-mm-yyyy hh:mm:ss)       " +
@@ -107,11 +107,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         JButton insertFoodSupplierBtn = new JButton("Insert Food Supplier");
         JButton insertProvideBtn = new JButton("Insert Provide");
         JButton backBtn = new JButton("Back");
-        JButton refreshBtn = new JButton("Refresh");
-        JButton branchBtn = new JButton("  Branch    ");
-        JButton shelfBtn = new JButton("   Shelf    ");
-        JButton refrigeratorBtn = new JButton("Refrigerator");
-        JButton freezerBtn = new JButton("  Freezer   ");
+        JButton showOrderBtn = new JButton("Show");
+        JButton showDishBtn = new JButton("Show");
+        JButton showIngredientBtn = new JButton("Show");
+        JButton showCookBtn = new JButton("Show");
+        JButton showChefBtn = new JButton("Show");
+        JButton showDeliveryPeopleBtn = new JButton("Show");
+        JButton showConsumeBtn = new JButton("Show");
+        JButton showFoodSupplierBtn = new JButton("Show");
+        JButton showProvideBtn = new JButton("Show");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -127,9 +131,9 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT ORDERS///////////////////////////////
-
         // Order# label
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
         gb.setConstraints(orderNumLabel, c);
         contentPane.add(orderNumLabel);
@@ -141,11 +145,17 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(orderNumField);
 
         // Insert order button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertOrderBtn, c);
         contentPane.add(insertOrderBtn);
+
+        // show order button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showOrderBtn, c);
+        contentPane.add(showOrderBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         //////////////////////////////INSERT DISHES/////////////////////////////////
@@ -176,12 +186,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(tastePreferenceField);
 
         // Insert dish button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertDishBtn, c);
         contentPane.add(insertDishBtn);
 
+        // show dish button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showDishBtn, c);
+        contentPane.add(showDishBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT INGREDIENTS//////////////////////////////
 
@@ -236,12 +252,16 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(ingredientsSINField);
 
         // Insert ingredient button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertIngredientBtn, c);
         contentPane.add(insertIngredientBtn);
 
+        // show ingredient button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showIngredientBtn, c);
+        contentPane.add(showIngredientBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT COOK//////////////////////////////
 
@@ -271,11 +291,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(cookOrderNumberField);
 
         // Insert cook button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertCookBtn, c);
         contentPane.add(insertCookBtn);
+
+        // show cook button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showCookBtn, c);
+        contentPane.add(showCookBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////INSERT CHEF/////////////////////////////////
@@ -318,15 +345,20 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(chefBranchAddressField);
 
         // Insert chef button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertChefBtn, c);
         contentPane.add(insertChefBtn);
 
+        // show chef button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showChefBtn, c);
+        contentPane.add(showChefBtn);
+
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////INSERT DELIVERY PEOPLE///////////////////////////
-
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
@@ -359,15 +391,19 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(deliveryPeopleAddressField);
 
         // Insert delivery people button
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.anchor = GridBagConstraints.LINE_END;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertDeliveryPeopleBtn, c);
         contentPane.add(insertDeliveryPeopleBtn);
 
+        // show delivery people button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showDeliveryPeopleBtn, c);
+        contentPane.add(showDeliveryPeopleBtn);
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////INSERT CONSUME///////////////////////////////
-
         // Attributes label
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
@@ -400,12 +436,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(consumeQuantityField);
 
         // Insert Consume button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertConsumeBtn, c);
         contentPane.add(insertConsumeBtn);
 
+        // show Consume button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showConsumeBtn, c);
+        contentPane.add(showConsumeBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////INSERT FOOD SUPPLIER////////////////////////////
 
@@ -441,12 +483,18 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(foodSupplierEmailField);
 
         // Insert Food Supplier button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertFoodSupplierBtn, c);
         contentPane.add(insertFoodSupplierBtn);
 
+        // Show Food Supplier button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(showFoodSupplierBtn, c);
+        contentPane.add(showFoodSupplierBtn);
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////INSERT PROVIDE///////////////////////////////
 
@@ -470,20 +518,20 @@ public class InsertWindow extends JFrame implements ActionListener{
         contentPane.add(provideLotNumberField);
 
         // Insert Provide button
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(insertProvideBtn, c);
         contentPane.add(insertProvideBtn);
 
-        ////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
+        // Show Provide button
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
-
+        gb.setConstraints(showProvideBtn, c);
+        contentPane.add(showProvideBtn);
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -501,7 +549,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         insertFoodSupplierBtn.addActionListener(this);
         insertProvideBtn.addActionListener(this);
         backBtn.addActionListener(this);
-        refreshBtn.addActionListener(this);
+        showOrderBtn.addActionListener(this);
+        showDishBtn.addActionListener(this);
+        showIngredientBtn.addActionListener(this);
+        showCookBtn.addActionListener(this);
+        showChefBtn.addActionListener(this);
+        showDeliveryPeopleBtn.addActionListener(this);
+        showConsumeBtn.addActionListener(this);
+        showFoodSupplierBtn.addActionListener(this);
+        showProvideBtn.addActionListener(this);
 
 
         insertDishBtn.setActionCommand("dish");
@@ -514,7 +570,15 @@ public class InsertWindow extends JFrame implements ActionListener{
         insertFoodSupplierBtn.setActionCommand("food supplier");
         insertProvideBtn.setActionCommand("provide");
         backBtn.setActionCommand("back");
-        refreshBtn.setActionCommand("refresh");
+        showOrderBtn.setActionCommand("showOrder");
+        showDishBtn.setActionCommand("showDish");
+        showIngredientBtn.setActionCommand("showIngredient");
+        showCookBtn.setActionCommand("showCook");
+        showChefBtn.setActionCommand("showChef");
+        showDeliveryPeopleBtn.setActionCommand("showDeliveryPeople");
+        showConsumeBtn.setActionCommand("showConsume");
+        showFoodSupplierBtn.setActionCommand("showFoodSupplier");
+        showProvideBtn.setActionCommand("showProvide");
 
         pack();
 
@@ -597,12 +661,28 @@ public class InsertWindow extends JFrame implements ActionListener{
                 dbhandler.insertProvide(provide);
                 choose = 9;
                 break;
+            case "showOrder":
+                break;
+            case "showDish":
+                break;
+            case "showIngredient":
+                break;
+            case "showCook":
+                break;
+            case "showChef":
+                break;
+            case "showDeliveryPeople":
+                break;
+            case "showConsume":
+                break;
+            case "showFoodSupplier":
+                break;
+            case "showProvide":
+                break;
             case "back":
                 dispose();
                 new MenuWindow(dbhandler);
                 choose = 10;
-                break;
-            case "refresh":
                 break;
             default:
                 break;

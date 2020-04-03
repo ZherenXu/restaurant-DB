@@ -52,7 +52,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
         JButton showDeliveryPeopleBtn = new JButton("Show");
         JButton deleteFoodSupplierBtn = new JButton("Delete");
         JButton showFoodSupplierBtn = new JButton("Show");
-        JButton refreshBtn = new JButton("Refresh");
         JButton backBtn = new JButton("Back");
 
         // Set the Window
@@ -224,12 +223,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(showFoodSupplierBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
-        // Refresh button
-        c.gridwidth = GridBagConstraints.LINE_END;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refreshBtn, c);
-        contentPane.add(refreshBtn);
-
         // Back button
         c.gridwidth = GridBagConstraints.PAGE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -237,7 +230,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
         contentPane.add(backBtn);
 
         backBtn.addActionListener(this);
-        refreshBtn.addActionListener(this);
         deleteOrderBtn.addActionListener(this);
         deleteChefBtn.addActionListener(this);
         deleteDeliveryPeopleBtn.addActionListener(this);
@@ -249,7 +241,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
         showFoodSupplierBtn.addActionListener(this);
 
         backBtn.setActionCommand("back");
-        refreshBtn.setActionCommand("refresh");
         deleteOrderBtn.setActionCommand("order");
         deleteChefBtn.setActionCommand("chef");
         deleteDeliveryPeopleBtn.setActionCommand("delivery people");
@@ -304,8 +295,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 choose = 0;
                 dispose();
                 new MenuWindow(dbhandler);
-                break;
-            case "refresh":
                 break;
             default:
                 break;
