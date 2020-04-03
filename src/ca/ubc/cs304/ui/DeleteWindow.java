@@ -21,7 +21,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
     private static final int TEXT_FIELD_WIDTH = 10;
     private DatabaseConnectionHandler dbhandler;
     private TableWindow tb = new TableWindow();
-    private int choose = 0;
 
     JTextField orderNumField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField chefSINField = new JTextField(TEXT_FIELD_WIDTH);
@@ -276,19 +275,15 @@ public class DeleteWindow extends JFrame implements ActionListener{
         switch(cmd){
             case "order":
                 dbhandler.deleteOrder(Integer.valueOf(orderNumField.getText()));
-                choose = 1;
                 break;
             case "chef":
                 dbhandler.deleteChef(chefSINField.getText());
-                choose = 2;
                 break;
             case "delivery people":
                 dbhandler.deleteDeliveryPeople(deliveryPeopleSINField.getText());
-                choose = 3;
                 break;
             case "food supplier":
                 dbhandler.deleteFoodSupplier(foodSupplierCompanyNameField.getText());
-                choose = 4;
                 break;
             case "show order":
                 tb.updateTable(dbhandler.getAllOrder(), dbhandler.getOrderColumn(), "Orders");
@@ -309,8 +304,6 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 choose = 0;
                 dispose();
                 new MenuWindow(dbhandler);
-                break;
-            case "refresh":
                 break;
             default:
                 break;
