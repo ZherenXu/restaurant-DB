@@ -3,6 +3,7 @@ package ca.ubc.cs304.database;
 import oracle.sql.TIMESTAMP;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 public class SelectHandler {
@@ -310,17 +311,31 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findOrder(Timestamp timeStart, Timestamp timeEnd, String location, Connection connection) {
         Vector<Vector<String>> orders = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT O.orderNumber AS OrderNumber" +
-                            "FROM ORDERS O, HAS H, INGREDIENTS I, Consume C" +
-                            "WHERE O.orderNumber = C.orderNumber" +
-                            "AND C.lotNumber = I.lotNumber " +
-                            "AND I.PosID = H.PosID " +
-                            "AND H.Address = ? " +
-                            "AND O.Time BETWEEN ? AND ?");
-            stmt.setString(1, location);
-            stmt.setTimestamp(2, timeStart);
-            stmt.setTimestamp(3, timeEnd);
+            System.out.println(timeStart);
+            System.out.println(timeEnd);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String string1  = dateFormat.format(timeStart);
+            System.out.println(string1);
+
+            String string2  = dateFormat.format(timeEnd);
+            System.out.println(string2);
+
+            string1 ="2019-01-01 00:00:00";
+            string2 ="2019-10-01 00:00:00";
+
+
+            String order = "SELECT DISTINCT O.orderNumber AS OrderNumber\n" +
+                    "FROM ORDERS O, HAS H, INGREDIENTS I, Consume C\n" +
+                    "WHERE O.orderNumber = C.orderNumber\n" +
+                    "  AND C.lotNumber = I.lotNumber\n" +
+                    "  AND I.PosID = H.PosID\n" +
+                    "  AND H.Address = \'"+ location + "\'\n" +
+                    "  AND O.Time BETWEEN \'"+ string1 + "\' AND \'" + string2 + "\'";
+            PreparedStatement stmt = connection.prepareStatement(order);
+//            stmt.setString(1, location);
+//            stmt.setTimestamp(2, timeStart);
+//            stmt.setTimestamp(3, timeEnd);
 
             ResultSet rs = stmt.executeQuery();
 
@@ -344,8 +359,8 @@ public class SelectHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT orderNumber FROM ORDERS");
+            String col = "SELECT orderNumber FROM ORDERS";
+            ResultSet rs = stmt.executeQuery(col);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -368,11 +383,10 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findDishesByIngredient(String lotNumber, Connection connection) {
         Vector<Vector<String>> dishes = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT OrderNumber, DishesName" +
-                            "FROM Consume" +
-                            "WHERE lotNumber = ?");
-            stmt.setString(1, lotNumber);
+            String select = "SELECT OrderNumber, DishesName\n" +
+                    "FROM Consume\n" +
+                    "WHERE lotNumber = \'" + lotNumber + "\'";
+            PreparedStatement stmt = connection.prepareStatement(select);
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
@@ -396,9 +410,8 @@ public class SelectHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT OrderNumber, DishesName" +
-                            "FROM Consume");
+            String select = "SELECT OrderNumber, DishesName FROM Consume";
+            ResultSet rs = stmt.executeQuery(select);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -421,17 +434,17 @@ public class SelectHandler {
     protected static Vector<Vector<String>> division(Connection connection) {
         Vector<Vector<String>> ingredients = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT I.Name AS Name " +
-                            "FROM INGREDIENTS I " +
-                            "WHERE NOT EXISTS " +
-                                "(SELECT CK.SIN " +
-                                "FROM COOK CK " +
-                                "WHERE NOT EXISTS( " +
-                                    "SELECT C.LOTNUMBER " +
-                                    "FROM CONSUME C, INGREDIENTS I2 " +
-                                    "WHERE C.DISHESNAME = CK.DISHNAME AND C.ORDERNUMBER = CK.ORDERNUMBER " +
-                                    "AND C.LOTNUMBER = I2.LOTNUMBER AND I.NAME = I2.NAME))");
+            String div = "SELECT I.Name AS Name\n" +
+                    "FROM INGREDIENTS I\n" +
+                    "WHERE NOT EXISTS(\n" +
+                    "    SELECT CH.SIN\n" +
+                    "    FROM CHEF CH\n" +
+                    "    WHERE NOT EXISTS(\n" +
+                    "        SELECT C.LOTNUMBER, I2.NAME\n" +
+                    "        FROM CONSUME C, INGREDIENTS I2, COOK CK\n" +
+                    "        WHERE C.DISHESNAME = CK.DISHNAME AND C.ORDERNUMBER = CK.ORDERNUMBER\n" +
+                    "          AND C.LOTNUMBER = I2.LOTNUMBER AND CK.SIN = CH.SIN AND I2.NAME = I.NAME))";
+            PreparedStatement stmt = connection.prepareStatement(div);
 
             ResultSet rs = stmt.executeQuery();
 
