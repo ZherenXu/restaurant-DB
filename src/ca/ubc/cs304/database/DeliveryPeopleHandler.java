@@ -35,8 +35,8 @@ public class DeliveryPeopleHandler {
 
     protected static void deleteDeliveryPeople(String Sin, Connection connection) {
         try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM DELIVERYPEOPLE WHERE SIN = ?");
-            ps.setString(1, Sin);
+            String delete = "delete from DELIVERYPEOPLE where SIN = \'" + Sin + "\'";
+            PreparedStatement ps = connection.prepareStatement(delete);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
