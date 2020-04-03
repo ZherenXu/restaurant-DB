@@ -12,13 +12,11 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findChefByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> chefInfo = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT CH.Name AS Name, CH.ContactNumber AS ContactNumber, " +
-                            "CA.branchAddress AS Branch " +
-                            "FROM CHEF CH, CHEFADDRESS CA, COOK C" +
-                            "WHERE C.SIN = CH.SIN AND CH.SIN = CA.SIN" +
-                            "AND C.OrderNumber = ?");
-            stmt.setInt(1, OrderNumber);
+            String select = "SELECT CH.Name AS Name, CH.ContactNumber AS ContactNumber,\n" +
+                    "       CA.branchAddress AS Branch\n" +
+                    "FROM CHEF CH, CHEFADDRESS CA, COOK C\n" +
+                    "WHERE C.SIN = CH.SIN AND CH.SIN = CA.SIN AND C.OrderNumber = \'" + OrderNumber +"\'";
+            PreparedStatement stmt = connection.prepareStatement(select);
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
@@ -69,13 +67,11 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findIngredientByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> ingredientInfo = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT I.name AS Name, I.lotNumber AS lotNumber, " +
-                            "I.ProductionDate AS ProductionDate" +
-                            "FROM INGREDIENTS I, CONSUME C" +
-                            "WHERE C.lotNumber = I.lotNumber" +
-                            "AND C.OrderNumber = ?");
-            stmt.setInt(1, OrderNumber);
+            String select = "SELECT I.name AS Name, I.lotNumber AS lotNumber,\n" +
+                    "       I.ProductionDate AS ProductionDate\n" +
+                    "FROM INGREDIENTS I, CONSUME C\n" +
+                    "WHERE C.lotNumber = I.lotNumber AND C.OrderNumber = \'" + OrderNumber + "\'";
+            PreparedStatement stmt = connection.prepareStatement(select);
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
@@ -100,10 +96,10 @@ public class SelectHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.name AS Name, I.lotNumber AS lotNumber, " +
-                            "I.ProductionDate AS ProductionDate" +
-                            "FROM INGREDIENTS I, CONSUME C");
+            String select = "SELECT I.name AS Name, I.lotNumber AS lotNumber,\n" +
+                    "       I.ProductionDate AS ProductionDate\n" +
+                    "FROM INGREDIENTS I, CONSUME C\n";
+            ResultSet rs = stmt.executeQuery(select);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -126,12 +122,11 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findDeliveryByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> deliveryInfo = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address" +
-                            "FROM INGREDIENTS I, CONSUME C, DELIVERYPEOPLE D" +
-                            "WHERE C.lotNumber = I.lotNumber AND I.SIN = D.SIN" +
-                            "AND C.OrderNumber = ?");
-            stmt.setInt(1, OrderNumber);
+            String select = "SELECT D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address\n" +
+                    "FROM INGREDIENTS I, CONSUME C, DELIVERYPEOPLE D\n" +
+                    "WHERE C.lotNumber = I.lotNumber AND I.SIN = D.SIN\n" +
+                    "  AND C.OrderNumber = \'" + OrderNumber + "\'";
+            PreparedStatement stmt = connection.prepareStatement(select);
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
@@ -156,10 +151,10 @@ public class SelectHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address" +
-                            "FROM INGREDIENTS I, CONSUME C, DELIVERYPEOPLE D" +
-                            "WHERE C.lotNumber = I.lotNumber AND I.SIN = D.SIN");
+            String select =  "SELECT D.Name AS Name, D.ContactNumber AS ContactNumber, D.Address AS Address\n" +
+                    "FROM INGREDIENTS I, CONSUME C, DELIVERYPEOPLE D\n" +
+                    "WHERE C.lotNumber = I.lotNumber AND I.SIN = D.SIN\n";
+            ResultSet rs = stmt.executeQuery(select);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -182,13 +177,12 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findSupplierByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> supplierInfo = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT F.CompanyName AS Company, F.ContactNumber AS ContactNumber, " +
-                            "F.Address AS Address, F.Email AS Email" +
-                            "FROM FOODSUPPLIER F, CONSUME C, PROVIDE P" +
-                            "WHERE C.lotNumber = P.lotNumber AND P.CompanyName = F.CompanyName" +
-                            "AND C.OrderNumber = ?");
-            stmt.setInt(1, OrderNumber);
+            String select = "SELECT F.CompanyName AS Company, F.ContactNumber AS ContactNumber,\n" +
+                    "       F.Address AS Address, F.Email AS Email\n" +
+                    "FROM FOODSUPPLIER F, CONSUME C, PROVIDE P\n" +
+                    "WHERE C.lotNumber = P.lotNumber AND P.CompanyName = F.CompanyName\n" +
+                    "  AND C.OrderNumber = \'" + OrderNumber + "\'";
+            PreparedStatement stmt = connection.prepareStatement(select);
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
@@ -214,10 +208,10 @@ public class SelectHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT F.CompanyName AS Company, F.ContactNumber AS ContactNumber, " +
-                            "F.Address AS Address, F.Email AS Email" +
-                            "FROM FOODSUPPLIER F, CONSUME C, PROVIDE P");
+            String select = "SELECT F.CompanyName AS Company, F.ContactNumber AS ContactNumber,\n" +
+                    "       F.Address AS Address, F.Email AS Email\n" +
+                    "FROM FOODSUPPLIER F, CONSUME C, PROVIDE P\n";
+            ResultSet rs = stmt.executeQuery(select);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -240,18 +234,26 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findTempByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> tempInfo = new Vector<>();
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "CREATE VIEW temp(id, temp) AS " +
-                            "(SELECT * FROM FREEZER UNION " +
-                            "SELECT * FROM SHELF UNION " +
-                            "SELECT * FROM REFRIGERATOR); " +
-                            "SELECT I.name AS Name, T.id AS PosID, T.temp AS Temperature, " +
-                            "FROM INGREDIENTS I, CONSUME C, temp T" +
-                            "WHERE C.lotNumber = I.lotNumber AND I.PosID = T.id" +
-                            "AND C.OrderNumber = ?; " +
-                            "DROP VIEW Temp");
+            System.out.println("Ordernumber: " + OrderNumber);
+            String view = "CREATE VIEW temp(id, temp) AS\n" +
+                    "    (SELECT * FROM FREEZER UNION\n" +
+                    "    SELECT * FROM SHELF UNION\n" +
+                    "    SELECT * FROM REFRIGERATOR)";
+            Statement stmt1 = connection.createStatement();
+            stmt1.executeQuery(view);
+            connection.commit();
+
+            stmt1.close();
+
+            System.out.println("view created ");
+
+            String select = "SELECT I.name AS Name, T.id AS PosID, T.temp AS Temperature\n" +
+                    "FROM INGREDIENTS I, CONSUME C, temp T\n" +
+                    "WHERE C.lotNumber = I.lotNumber AND I.PosID = T.id AND C.OrderNumber = \'" + OrderNumber + "\'";
+            PreparedStatement stmt = connection.prepareStatement(select);
             stmt.setInt(1, OrderNumber);
             ResultSet rs = stmt.executeQuery();
+            System.out.println("rs: " + rs);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -261,9 +263,16 @@ public class SelectHandler {
 
                 tempInfo.add(tuple);
             }
+            connection.commit();
 
             rs.close();
             stmt.close();
+
+            String drop = "DROP VIEW Temp";
+            Statement stmt2 = connection.createStatement();
+            stmt2.executeQuery(drop);
+            stmt2.close();
+
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
@@ -273,15 +282,13 @@ public class SelectHandler {
     protected static Vector<String> tempOrderColumn(Connection connection){
         Vector<String> column = new Vector<>();
 
+        System.out.println("try to get column");
         try {
+            String select = "SELECT I.name AS Name, F.PosID AS PosID, F.freezertemp AS Temperature\n" +
+                    "FROM INGREDIENTS I, freezer F";
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "CREATE VIEW temp(id, temp) AS " +
-                            "(SELECT * FROM FREEZER UNION " +
-                            "SELECT * FROM SHELF UNION " +
-                            "SELECT * FROM REFRIGERATOR); " +
-                            "SELECT I.name AS Name, T.id AS PosID, T.temp AS Temperature, " +
-                            "FROM INGREDIENTS I, CONSUME C, temp T");
+            ResultSet rs = stmt.executeQuery(select);
+            System.out.println("get column");
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
