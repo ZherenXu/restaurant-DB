@@ -24,6 +24,18 @@ public class FoodSupplierHandler {
             connection.commit();
 
             ps.close();
+
+            PreparedStatement ps1 = connection.prepareStatement("SELECT * FROM FOODSUPPLIER WHERE CompanyName=?");
+            ps1.setString(1, "test");
+            ResultSet rs = ps1.executeQuery();
+            if(rs.next()){
+                System.out.println("rs: " + rs.getString("CompanyName"));
+            }
+            else{
+                System.out.println("no result");
+            }
+            rs.close();
+            ps1.close();
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
 
@@ -34,9 +46,23 @@ public class FoodSupplierHandler {
     }
 
     protected static void deleteFoodSupplier(String CompanyName, Connection connection) {
+        System.out.println("company name: " + CompanyName);
         try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM FOODSUPPLIER WHERE CompanyName = ?");
-            ps.setString(1, CompanyName);
+            String tryString = "select * from FOODSUPPLIER where COMPANYNAME = \'"+CompanyName+"\'";
+            PreparedStatement ps1 = connection.prepareStatement(tryString);
+//            ps1.setString(1, "test");
+            ResultSet rs = ps1.executeQuery();
+            connection.commit();
+            if(rs.next()){
+                System.out.println("rs: " + rs.getString("CompanyName"));
+            }
+            else{
+                System.out.println("no result");
+            }
+            rs.close();
+            ps1.close();
+            String delete = "delete from FOODSUPPLIER where COMPANYNAME = \'" + CompanyName + "\'";
+            PreparedStatement ps = connection.prepareStatement(delete);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {

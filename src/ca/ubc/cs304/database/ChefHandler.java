@@ -41,6 +41,7 @@ public class ChefHandler {
             ps.close();
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            System.out.println("chef address insert failure");
             deleteChef(model.getSin(), connection);
             rollbackConnection();
         }
@@ -49,6 +50,7 @@ public class ChefHandler {
     }
 
     protected static void deleteChef(String Sin, Connection connection) {
+        System.out.println("sin: " + Sin);
 
         try {
             PreparedStatement ps = connection.prepareStatement("DELETE FROM CHEF WHERE SIN = ?");
