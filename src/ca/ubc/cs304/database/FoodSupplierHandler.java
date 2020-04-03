@@ -34,7 +34,6 @@ public class FoodSupplierHandler {
     }
 
     protected static void deleteFoodSupplier(String CompanyName, Connection connection) {
-        System.out.println("company name: " + CompanyName);
         try {
             String delete = "delete from FOODSUPPLIER where COMPANYNAME = \'" + CompanyName + "\'";
             PreparedStatement ps = connection.prepareStatement(delete);
