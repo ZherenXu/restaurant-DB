@@ -131,10 +131,10 @@ public class ChefHandler {
 
     protected static void updateChef(String sin, String contact, String address, Connection connection) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE CHEF SET contactNumber = ?, HomeAddress = ? WHERE SIN = ?");
-            ps.setString(1, contact);
-            ps.setString(2, address);
-            ps.setString(3, sin);
+            String update = "UPDATE CHEF SET contactNumber = \'" + contact + "\', " +
+                    "HomeAddress = \'" + address + "\' " +
+                    "WHERE SIN = \'" + sin +"\'";
+            PreparedStatement ps = connection.prepareStatement(update);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {

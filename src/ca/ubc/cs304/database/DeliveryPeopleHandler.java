@@ -105,10 +105,10 @@ public class DeliveryPeopleHandler {
 
     protected static void updateDeliveryPeople(String sin, String contact, String address, Connection connection) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE DELIVERYPEOPLE SET ContactNumber = ?, Address = ? WHERE SIN = ?");
-            ps.setString(1, contact);
-            ps.setString(2, address);
-            ps.setString(3, sin);
+            String update = "UPDATE DELIVERYPEOPLE SET ContactNumber = \'" + contact + "\', " +
+                    "Address = \'" + address + "\'" +
+                    " WHERE SIN = \'" + sin + "\'";
+            PreparedStatement ps = connection.prepareStatement(update);
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {

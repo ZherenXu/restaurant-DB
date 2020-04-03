@@ -14,10 +14,12 @@ public class IngredientHandler {
     private static final String WARNING_TAG = "[WARNING]";
     protected static void insertIngredient(IngredientsModel iModel, CategoryModel cModel, Connection connection){
         try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM ORDERS");
+            String delete = "DELETE FROM CATEGORY WHERE name = \'"+ cModel.getName() + "\'";
+            PreparedStatement ps = connection.prepareStatement(delete);
+            ps.executeUpdate();
+            ps.close();
+            System.out.println("21");
 
-            if(!rs.next()){
                 PreparedStatement ps1 = connection.prepareStatement("INSERT INTO CATEGORY VALUES (?,?)");
                 ps1.setString(1, cModel.getName());
                 ps1.setString(2, cModel.getType());
@@ -25,6 +27,12 @@ public class IngredientHandler {
                 connection.commit();
 
                 ps1.close();
+                System.out.println(iModel.getLotNumber());
+                System.out.println(iModel.getName());
+                System.out.println(iModel.getProductionDate());
+                System.out.println(iModel.getQuantity());
+                System.out.println(iModel.getPosID());
+                System.out.println(iModel.getSin());
 
                 PreparedStatement ps2 = connection.prepareStatement("INSERT INTO INGREDIENTS VALUES (?,?,?,?,?,?)");
                 ps2.setString(1, iModel.getLotNumber());
@@ -35,12 +43,10 @@ public class IngredientHandler {
                 ps2.setString(6, iModel.getSin());
                 ps2.executeUpdate();
                 connection.commit();
+                System.out.println("debug");
 
                 ps2.close();
-            }
 
-            rs.close();
-            stmt.close();
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
 
@@ -55,12 +61,12 @@ public class IngredientHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.LotNumber AS LotNumber, I.Name AS Name, " +
-                            "C.Type AS Type, I.ProductionDate AS ProductionDate, " +
-                            "I.Quantity AS Quantity, I.PosID AS StoragePosition, I.SIN AS DeliveryPeopleSIN" +
-                            " FROM INGREDIENTS I, CATEGORY C" +
-                            "WHERE I.Name = C.Name");
+            String ingredient = "SELECT I.LotNumber AS LotNumber, I.Name AS Name,\n" +
+                    "       C.Type AS Type, I.ProductionDate AS ProductionDate,\n" +
+                    "       I.Quantity AS Quantity, I.PosID AS StoragePosition, I.SIN AS DeliveryPeopleSIN\n" +
+                    " FROM INGREDIENTS I, CATEGORY C\n" +
+                    " WHERE I.Name = C.Name";
+            ResultSet rs = stmt.executeQuery(ingredient);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -89,12 +95,12 @@ public class IngredientHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT I.LotNumber AS LotNumber, I.Name AS Name, " +
-                    "C.Type AS Type, I.ProductionDate AS ProductionDate, " +
-                    "I.Quantity AS Quantity, I.PosID AS StoragePosition, I.SIN AS DeliveryPeopleSIN" +
-                    " FROM INGREDIENTS I, CATEGORY C" +
-                    "WHERE I.Name = C.Name");
+            String ingredient = "SELECT I.LotNumber AS LotNumber, I.Name AS Name,\n" +
+                    "       C.Type AS Type, I.ProductionDate AS ProductionDate,\n" +
+                    "       I.Quantity AS Quantity, I.PosID AS StoragePosition, I.SIN AS DeliveryPeopleSIN\n" +
+                    " FROM INGREDIENTS I, CATEGORY C\n" +
+                    " WHERE I.Name = C.Name";
+            ResultSet rs = stmt.executeQuery(ingredient);
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
