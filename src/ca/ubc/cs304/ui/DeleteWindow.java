@@ -337,8 +337,10 @@ public class DeleteWindow extends JFrame implements ActionListener{
                 tb.updateTable(dbhandler.getAllFoodSupplier(),dbhandler.getFoodSupplierColumn(),"Food Suppliers");
                 break;
             case "ingredient":
+                dbhandler.deleteIngredient(ingredientLotNumberField.getText());
                 break;
             case "show ingredient":
+                tb.updateTable(dbhandler.getAllIngredients(), dbhandler.getIngredientsColumn(), "Ingredients");
                 break;
             case "back":
                 tb.closeTable();
