@@ -86,11 +86,7 @@ public class DishesHandler {
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
                 tuple.add(rs.getString("Name"));
-                System.out.println("Dishes name: " + tuple.get(0));
-
                 tuple.add(Integer.toString(rs.getInt("OrderNumber")));
-                System.out.println("Order Number: " + tuple.get(1));
-
                 String taste = rs.getString("TastePreference");
 
                 if(taste == null){
@@ -99,7 +95,6 @@ public class DishesHandler {
                 else{
                     tuple.add(taste);
                 }
-                System.out.println("taste preference: " + tuple.get(2));
 
                 Dishes.add(tuple);
             }

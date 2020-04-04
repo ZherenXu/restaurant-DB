@@ -18,7 +18,6 @@ public class IngredientHandler {
             PreparedStatement ps = connection.prepareStatement(delete);
             ps.executeUpdate();
             ps.close();
-            System.out.println("21");
 
                 PreparedStatement ps1 = connection.prepareStatement("INSERT INTO CATEGORY VALUES (?,?)");
                 ps1.setString(1, cModel.getName());
@@ -27,12 +26,6 @@ public class IngredientHandler {
                 connection.commit();
 
                 ps1.close();
-                System.out.println(iModel.getLotNumber());
-                System.out.println(iModel.getName());
-                System.out.println(iModel.getProductionDate());
-                System.out.println(iModel.getQuantity());
-                System.out.println(iModel.getPosID());
-                System.out.println(iModel.getSin());
 
                 PreparedStatement ps2 = connection.prepareStatement("INSERT INTO INGREDIENTS VALUES (?,?,?,?,?,?)");
                 ps2.setString(1, iModel.getLotNumber());
@@ -43,7 +36,6 @@ public class IngredientHandler {
                 ps2.setString(6, iModel.getSin());
                 ps2.executeUpdate();
                 connection.commit();
-                System.out.println("debug");
 
                 ps2.close();
 

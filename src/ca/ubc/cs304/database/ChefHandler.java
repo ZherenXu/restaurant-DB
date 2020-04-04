@@ -32,21 +32,16 @@ public class ChefHandler {
         }
 
         try {
-            System.out.println("insert chef address");
-            System.out.println("sin: " + aModel.getSIN());
-            System.out.println("branch: " + aModel.getBranchAddress());
             PreparedStatement ps = connection.prepareStatement("INSERT INTO CHEFADDRESS VALUES (?,?)");
             ps.setString(1, aModel.getSIN());
             ps.setString(2, aModel.getBranchAddress());
 
-            System.out.println(("debug"));
             ps.executeUpdate();
             connection.commit();
 
             ps.close();
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-            System.out.println("chef address insert failure");
             deleteChef(model.getSin(), connection);
             rollbackConnection();
         }
@@ -55,8 +50,6 @@ public class ChefHandler {
     }
 
     protected static void deleteChef(String Sin, Connection connection) {
-        System.out.println("sin: " + Sin);
-
         try {
             String delete = "delete from CHEF where sin = \'" + Sin + "\'";
             PreparedStatement ps = connection.prepareStatement(delete);

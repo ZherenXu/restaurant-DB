@@ -237,7 +237,6 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findTempByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> tempInfo = new Vector<>();
         try {
-            System.out.println("Ordernumber: " + OrderNumber);
             String view = "CREATE VIEW temp(id, temp) AS\n" +
                     "    (SELECT * FROM FREEZER UNION\n" +
                     "    SELECT * FROM SHELF UNION\n" +
@@ -248,14 +247,11 @@ public class SelectHandler {
 
             stmt1.close();
 
-            System.out.println("view created ");
-
             String select = "SELECT I.name AS Name, T.id AS PosID, T.temp AS Temperature\n" +
                     "FROM INGREDIENTS I, CONSUME C, temp T\n" +
                     "WHERE C.lotNumber = I.lotNumber AND I.PosID = T.id AND C.OrderNumber = \'" + OrderNumber + "\'";
             PreparedStatement stmt = connection.prepareStatement(select);
             ResultSet rs = stmt.executeQuery();
-            System.out.println("rs: " + rs);
 
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
@@ -284,13 +280,11 @@ public class SelectHandler {
     protected static Vector<String> tempOrderColumn(Connection connection){
         Vector<String> column = new Vector<>();
 
-        System.out.println("try to get column");
         try {
             String select = "SELECT I.name AS Name, F.PosID AS PosID, F.freezertemp AS Temperature\n" +
                     "FROM INGREDIENTS I, freezer F";
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(select);
-            System.out.println("get column");
 
             // get info on ResultSet
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -313,17 +307,9 @@ public class SelectHandler {
     protected static Vector<Vector<String>> findOrder(Timestamp timeStart, Timestamp timeEnd, String location, Connection connection) {
         Vector<Vector<String>> orders = new Vector<>();
         try {
-            System.out.println(timeStart);
-            System.out.println(timeEnd);
-
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String string1  = dateFormat.format(timeStart);
-            System.out.println(string1);
-
             String string2  = dateFormat.format(timeEnd);
-            System.out.println(string2);
-
-
 
             String order = "SELECT DISTINCT O.orderNumber AS OrderNumber\n" +
                     "FROM ORDERS O, HAS H, INGREDIENTS I, Consume C\n" +

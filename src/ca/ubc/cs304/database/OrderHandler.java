@@ -35,10 +35,8 @@ public class OrderHandler {
 
     protected static void deleteOrder(int OrderNumber, Connection connection) {
         try {
-            System.out.println("printed");
             PreparedStatement ps = connection.prepareStatement("DELETE FROM ORDERS WHERE OrderNumber = ?");
             ps.setInt(1, OrderNumber);
-            System.out.println("deleted");
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
@@ -46,7 +44,6 @@ public class OrderHandler {
             }
 
             connection.commit();
-            System.out.println("commited");
 
             ps.close();
         } catch (SQLException e) {
@@ -65,10 +62,7 @@ public class OrderHandler {
             while(rs.next()) {
                 Vector<String> tuple = new Vector<>();
                 tuple.add(Integer.toString(rs.getInt("OrderNumber")));
-                System.out.println("Order number: " + tuple.get(0));
-
                 tuple.add(rs.getTimestamp("Time").toString());
-                System.out.println("Time: " + tuple.get(1));
 
                 Orders.add(tuple);
             }
