@@ -38,13 +38,13 @@ public class StatWindow extends JFrame implements ActionListener{
         JLabel countNumLabel = new JLabel("Count Number:");
         JLabel resultLabel = new JLabel("Result: ");
 
-        JButton maxOfConsumeBtn = new JButton("Max of Consume Quantity");
-        JButton minOfConsumeBtn = new JButton("Min of Consume Quantity");
+        JButton maxOfConsumeBtn = new JButton("Popular ingredients among customers");
+        JButton minOfConsumeBtn = new JButton("Unpopular ingredients among customers");
         JButton aveShelfTempBtn = new JButton("Average Temperature in Shelf");
         JButton aveRefrigeratorTempBtn = new JButton("Average Temperature in Refrigerator");
         JButton aveFreezerTempBtn = new JButton("Average Temperature in Freezer");
-        JButton countIngredientsDeliveryBtn = new JButton("# of Ingredients for Delivery People");
-        JButton countDishByIngredientsBtn = new JButton("# of Dishes Used by Certain Ingredients");
+        JButton countIngredientsDeliveryBtn = new JButton("Delivering frequency for each Delivery People");
+        JButton countDishByIngredientsBtn = new JButton("# of Dishes Used by each Ingredient");
         JButton backBtn = new JButton("Back");
 
         TableWindow tb = new TableWindow();

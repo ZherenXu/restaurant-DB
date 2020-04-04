@@ -35,29 +35,29 @@ public class SelectWindow extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel titleLabel = new JLabel("SELECT DATA");
-        JLabel findByOrderNumberLabel = new JLabel("Find By Order Number:");
+        JLabel findByOrderNumberLabel = new JLabel("Find other information by order number:");
         JLabel findTheOrderNumberLabel = new JLabel("Find The Order Number");
         JLabel orderNumberBranchLabel = new JLabel("Branch: ");
         JLabel orderNumberDateStartLabel = new JLabel("Date(dd-mm-yyyy hh:mm:ss)             Start: ");
         JLabel orderNumberDateEndLabel = new JLabel("End: ");
         JLabel findDishesLabel = new JLabel("Find Dishes");
-        JLabel dishesLotNumberLabel = new JLabel("Lot#: ");
+        JLabel dishesLotNumberLabel = new JLabel("Lot Number: ");
         JLabel findIngredientsByAllChefLabel = new JLabel("Find Ingredients Used By All Chefs");
 
-        JButton findChefBtn = new JButton("Chef Name & Contact Number");
-        JButton findIngredientBtn = new JButton("Ingredient Name");
-        JButton findDeliveryPeopleBtn = new JButton("Delivery People Name & Contact Number");
-        JButton findFoodSupplierBtn = new JButton("Food Supplier Company Name & Contact Number");
+        JButton findChefBtn = new JButton("Chef information");
+        JButton findIngredientBtn = new JButton("Ingredient information");
+        JButton findDeliveryPeopleBtn = new JButton("Delivery People information");
+        JButton findFoodSupplierBtn = new JButton("Food Supplier information");
         JButton findStorageTemperatureBtn = new JButton("Storage Temperature");
         JButton selectOrderNumberBtn = new JButton("Select");
         JButton selectDishesBtn = new JButton("Select");
         JButton selectIngredientsBtn = new JButton("Select");
         JButton backBtn = new JButton("Back");
-        JButton branchBtn = new JButton("  Branch    ");
+        JButton branchBtn = new JButton(" All Branch Info ");
 //        JButton shelfBtn = new JButton("   Shelf    ");
 //        JButton refrigeratorBtn = new JButton("Refrigerator");
 //        JButton freezerBtn = new JButton("  Freezer   ");
-        JButton storageBtn = new JButton("Storage");
+        JButton storageBtn = new JButton("All Storage Info");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -105,7 +105,7 @@ public class SelectWindow extends JFrame implements ActionListener {
         contentPane.add(findIngredientBtn);
 
         // Find button Delivery People
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(findDeliveryPeopleBtn, c);
         contentPane.add(findDeliveryPeopleBtn);

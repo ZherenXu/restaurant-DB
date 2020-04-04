@@ -43,18 +43,18 @@ public class UpdateWindow extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel titleLabel = new JLabel("UPDATE DATA");
-        JLabel updateChefLabel = new JLabel("Chef:  SIN: ");
-        JLabel updateChefAddressLabel = new JLabel("            New Address: ");
-        JLabel updateChefContactNumberLabel = new JLabel("            New Contact Number: ");
-        JLabel updateFoodSupplierLabel = new JLabel("Food Supplier:  Company Name: ");
-        JLabel updateFoodSupplierEmailLabel = new JLabel("            New Email: ");
-        JLabel updateFoodSupplierContactNumberLabel = new JLabel("            New Contact Number: ");
-        JLabel updateDeliveryPeopleLabel = new JLabel("Delivery People:  SIN: ");
-        JLabel updateDeliveryPeopleContactNumberLabel = new JLabel("            New Contact Number: ");
-        JLabel updateDeliveryPeopleAddressLabel = new JLabel("            New Address: ");
-        JLabel updateBranchLabel = new JLabel("Branch:  Address:");
-        JLabel updateBranchManagerNameLabel = new JLabel("            New Manager Name: ");
-        JLabel updateBranchContactNumberLabel = new JLabel("            New Contact Number: ");
+        JLabel updateChefLabel = new JLabel("Chef:                                           SIN: ");
+        JLabel updateChefAddressLabel = new JLabel("                                     New Address: ");
+        JLabel updateChefContactNumberLabel = new JLabel("                        New Contact Number: ");
+        JLabel updateFoodSupplierLabel = new JLabel("Food Supplier:         Company Name: ");
+        JLabel updateFoodSupplierEmailLabel = new JLabel("                                         New Email: ");
+        JLabel updateFoodSupplierContactNumberLabel = new JLabel("                        New Contact Number: ");
+        JLabel updateDeliveryPeopleLabel = new JLabel("Delivery People:                          SIN: ");
+        JLabel updateDeliveryPeopleContactNumberLabel = new JLabel("                       New Contact Number: ");
+        JLabel updateDeliveryPeopleAddressLabel = new JLabel("                                     New Address: ");
+        JLabel updateBranchLabel = new JLabel("Branch:                                 Address:");
+        JLabel updateBranchManagerNameLabel = new JLabel("                           New Manager Name: ");
+        JLabel updateBranchContactNumberLabel = new JLabel("                         New Contact Number: ");
 
         JButton updateChefBtn = new JButton("Update");
         JButton updateFoodSupplierBtn = new JButton("Update");

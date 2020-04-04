@@ -35,15 +35,15 @@ public class DeleteWindow extends JFrame implements ActionListener{
 
         JLabel titleLabel = new JLabel("DELETE DATA");
         JLabel deleteOrderLabel = new JLabel("Order:");
-        JLabel orderNumLabel = new JLabel(" Order #: ");
+        JLabel orderNumLabel = new JLabel("          Order Number: ");
         JLabel deleteChefLabel = new JLabel("Chef:");
-        JLabel chefSINLabel = new JLabel(" SIN: ");
+        JLabel chefSINLabel = new JLabel("                          SIN: ");
         JLabel deleteDeliveryPeopleLabel = new JLabel("Delivery People:");
-        JLabel deliveryPeopleSINLabel = new JLabel(" SIN: ");
+        JLabel deliveryPeopleSINLabel = new JLabel("                          SIN: ");
         JLabel deleteFoodSupplierLabel = new JLabel("Food Supplier:");
-        JLabel foodSupplierCompanyNameLabel = new JLabel("Company Name: ");
+        JLabel foodSupplierCompanyNameLabel = new JLabel("       Company Name: ");
         JLabel deleteIngredientLabel = new JLabel("Ingredient:");
-        JLabel ingredientLotNumberLabel = new JLabel("Lot#:");
+        JLabel ingredientLotNumberLabel = new JLabel("             Lot Number:");
 
         JButton deleteOrderBtn = new JButton("Delete");
         JButton orderShowOrderBtn = new JButton("Show orders");
@@ -229,7 +229,7 @@ public class DeleteWindow extends JFrame implements ActionListener{
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////DELETE INGREDIENT////////////////////////////
         // Ingredient label
-        deleteFoodSupplierLabel.setFont(deleteFoodSupplierLabel.getFont().deriveFont(Font.BOLD));
+        deleteIngredientLabel.setFont(deleteFoodSupplierLabel.getFont().deriveFont(Font.BOLD));
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10, 10, 3, 0);

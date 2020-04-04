@@ -62,37 +62,37 @@ public class InsertWindow extends JFrame implements ActionListener{
 
         // LABELS
         JLabel orderNumLabel = new JLabel("     Order # ");
-        JLabel dishOrderNumLabel = new JLabel("      Order #                       " +
-                                                        "Dish                      " +
+        JLabel dishOrderNumLabel = new JLabel("      Order #                           " +
+                                                        "Dish                    " +
                                                         "Taste Preference");
-        JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                                 " +
-                                                                    "Name                     " +
-                                                                "Date(dd-mm-yyyy)                  " +
-                                                                "Quantity                             " +
-                                                                "Type                                   " +
-                                                                "PosID                               " +
-                                                                "SIN");
-        JLabel insertCookAttributeLabel = new JLabel("            SIN                       " +
+        JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                             " +
+                                                                    "Name                 " +
+                                                                "Date(dd-mm-yyyy)        " +
+                                                                "Total Quantity                 " +
+                                                                "Type                                      " +
+                                                                "Storage PosID         " +
+                                                                "Delivery people SIN");
+        JLabel insertCookAttributeLabel = new JLabel("      Chef SIN                      " +
                                                             "Dish Name                     " +
                                                             "Order#");
-        JLabel insertChefAttributeLabel = new JLabel("      Name                            " +
-                                                            "SIN                           " +
-                                                            "Contact Number            " +
+        JLabel insertChefAttributeLabel = new JLabel("      Name                               " +
+                                                            "SIN                    " +
+                                                            "Contact Number             " +
                                                             "Home Address           " +
                                                             "Branch Address");
         JLabel insertDeliveryPeopleAttributeLabel = new JLabel("        SIN                               " +
-                                                                    "Name                           " +
+                                                                    "Name                  " +
                                                                     "Contact Number                 " +
                                                                     "Address");
-        JLabel insertConsumeAttributeLabel = new JLabel("   Dish Name                     " +
-                                                            "Order#                             " +
-                                                            "Lot#                               " +
+        JLabel insertConsumeAttributeLabel = new JLabel("   Dish Name                        " +
+                                                            "Order#                         " +
+                                                            "Lot#                           " +
                                                             "Quantity");
         JLabel insertFoodSupplierAttributeLabel = new JLabel("Company Name                  " +
-                                                                "Address                  " +
-                                                                "Contact Number                    " +
+                                                                "Address                " +
+                                                                "Contact Number                  " +
                                                                 "Email                            ");
-        JLabel insertProvideAttributeLabel = new JLabel("Company Name                       " +
+        JLabel insertProvideAttributeLabel = new JLabel("Food supplier company          " +
                                                                 "Lot#");
 
         // BUTTONS
@@ -201,7 +201,6 @@ public class InsertWindow extends JFrame implements ActionListener{
         ////////////////////////////INSERT INGREDIENTS//////////////////////////////
 
         // Attributes label
-        insertIngredientAttributeLabel.setFont(insertIngredientAttributeLabel.getFont().deriveFont(Font.BOLD,11));
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(1, 10, 1, 0);
