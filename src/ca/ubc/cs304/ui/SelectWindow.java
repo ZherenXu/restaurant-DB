@@ -323,6 +323,10 @@ public class SelectWindow extends JFrame implements ActionListener {
                     DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                     java.util.Date startDate = formatter.parse(orderNumberDateStartField.getText());
                     java.util.Date endDate = formatter.parse(orderNumberDateEndField.getText());
+                    Timestamp startTs = new Timestamp(startDate.getTime());
+                    Timestamp endTs = new Timestamp(endDate.getTime());
+                    System.out.println(startTs.toString());
+                    System.out.println(endTs.toString());
                     tb.updateTable(dbhandler.findOrder(new Timestamp(startDate.getTime()), new Timestamp(endDate.getTime()), orderNumberBranchField.getText()), dbhandler.orderColumn(), "Orders");
                 } catch(Exception g){
                     System.out.println("Exception :" + g);
@@ -352,6 +356,7 @@ public class SelectWindow extends JFrame implements ActionListener {
 //                tb.updateTable(dbhandler.getAllFreezer(), dbhandler.getStorageColumn(), "Freezers");
 //                break;
             case "storage":
+                tb.updateTable(dbhandler.getAllStorage(),dbhandler.getStorageColumn(), "Storage");
                 break;
             default:
                 break;
