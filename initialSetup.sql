@@ -70,15 +70,15 @@ CREATE TABLE DeliveryPeople(
 );
  
 INSERT INTO DeliveryPeople
-VALUES('122485123','Delivery Guy',7781234321,'1234 Delivery Street');
+VALUES('122485123','Delivery Guy','7781234321','1234 Delivery Street');
 INSERT INTO DeliveryPeople
-VALUES('144235334','Guy Delivery',7783211234,'1235 Guy Street');
+VALUES('144235334','Guy Delivery','7783211234','1235 Guy Street');
 INSERT INTO DeliveryPeople
-VALUES('213875983','James Li',7783167788,'1623 77th Ave');
+VALUES('213875983','James Li','7783167788','1623 77th Ave');
 INSERT INTO DeliveryPeople
-VALUES('625785354','Bruce Bian',7782332333,'1320 Landsdowne St.');
+VALUES('625785354','Bruce Bian','7782332333','1320 Landsdowne St.');
 INSERT INTO DeliveryPeople
-VALUES('543938433','Barry Xu',6046166612,'666 BoradWay');
+VALUES('543938433','Barry Xu','6046166612','666 BoradWay');
  
 CREATE TABLE Storage(
  PosID           INTEGER PRIMARY KEY

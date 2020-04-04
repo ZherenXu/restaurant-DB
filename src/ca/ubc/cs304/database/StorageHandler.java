@@ -1,14 +1,7 @@
 package ca.ubc.cs304.database;
 
-import ca.ubc.cs304.model.FoodSupplierModel;
-import ca.ubc.cs304.model.FreezerModel;
-import ca.ubc.cs304.model.RefrigeratorModel;
-import ca.ubc.cs304.model.ShelfModel;
-
 import java.sql.*;
 import java.util.Vector;
-
-import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection;
 
 public class StorageHandler {
 

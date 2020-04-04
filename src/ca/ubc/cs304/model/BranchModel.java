@@ -16,14 +16,4 @@ public class BranchModel {
 	public String getAddress() {
 		return address;
 	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public String getManagerName() {
-		return managerName;
-	}
-
-
 }
