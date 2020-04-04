@@ -122,15 +122,6 @@ public class DatabaseConnectionHandler {
 	public Vector<Vector<String>> getAllBranch(){
 		return BranchHandler.getAllBranch(connection);
 	}
-	public Vector<Vector<String>> getAllFreezer(){
-		return StorageHandler.getAllFreezer(connection);
-	}
-	public Vector<Vector<String>> getAllRefrigerator(){
-		return StorageHandler.getAllRefrigerator(connection);
-	}
-	public Vector<Vector<String>> getAllShelf(){
-		return StorageHandler.getAllShelf(connection);
-	}
 	public Vector<Vector<String>> getAllDishes(){
 		return DishesHandler.getAllDishes(connection);
 	}
@@ -287,88 +278,6 @@ public class DatabaseConnectionHandler {
 		return SelectHandler.divisionColumn(connection);
 	}
 
-
-	public void insertBranch(BranchModel model) {
-//		try {
-//			PreparedStatement ps = connection.prepareStatement("INSERT INTO branch VALUES (?,?,?,?,?)");
-//			ps.setInt(1, model.getId());
-//			ps.setString(2, model.getName());
-//			ps.setString(3, model.getAddress());
-//			ps.setString(4, model.getCity());
-//			if (model.getPhoneNumber() == 0) {
-//				ps.setNull(5, java.sql.Types.INTEGER);
-//			} else {
-//				ps.setInt(5, model.getPhoneNumber());
-//			}
-//
-//			ps.executeUpdate();
-//			connection.commit();
-//
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-		return;
-	}
-	
-	public BranchModel[] getBranchInfo() {
-		ArrayList<BranchModel> result = new ArrayList<BranchModel>();
-		
-		try {
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM branch");
-		
-//    		// get info on ResultSet
-//    		ResultSetMetaData rsmd = rs.getMetaData();
-//
-//    		System.out.println(" ");
-//
-//    		// display column names;
-//    		for (int i = 0; i < rsmd.getColumnCount(); i++) {
-//    			// get column name and print it
-//    			System.out.printf("%-15s", rsmd.getColumnName(i + 1));
-//    		}
-			
-			while(rs.next()) {
-//				BranchModel model = new BranchModel(rs.getString("branch_addr"),
-//													rs.getString("branch_city"),
-//													rs.getInt("branch_id"),
-//													rs.getString("branch_name"),
-//													rs.getInt("branch_phone"));
-//				result.add(model);
-				break;
-			}
-
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-		}	
-		
-		return result.toArray(new BranchModel[result.size()]);
-	}
-	
-//	public void updateBranch(int id, String name) {
-//		try {
-//		  PreparedStatement ps = connection.prepareStatement("UPDATE branch SET branch_name = ? WHERE branch_id = ?");
-//		  ps.setString(1, name);
-//		  ps.setInt(2, id);
-//
-//		  int rowCount = ps.executeUpdate();
-//		  if (rowCount == 0) {
-//		      System.out.println(WARNING_TAG + " Branch " + id + " does not exist!");
-//		  }
-//
-//		  connection.commit();
-//
-//		  ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-//	}
-	
 	public boolean login(String username, String password) {
 		try {
 			if (connection != null) {
