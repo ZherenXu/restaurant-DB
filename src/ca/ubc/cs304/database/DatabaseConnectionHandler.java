@@ -36,25 +36,6 @@ public class DatabaseConnectionHandler {
 		}
 	}
 
-	public void deleteBranch(int branchId) {
-		try {
-			PreparedStatement ps = connection.prepareStatement("DELETE FROM branch WHERE branch_id = ?");
-			ps.setInt(1, branchId);
-			
-			int rowCount = ps.executeUpdate();
-			if (rowCount == 0) {
-				System.out.println(WARNING_TAG + " Branch " + branchId + " does not exist!");
-			}
-			
-			connection.commit();
-	
-			ps.close();
-		} catch (SQLException e) {
-			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-			rollbackConnection();
-		}
-	}
-
 	/* Insert tuples in database */
 	public void insertChef(ChefModel model, ChefAddressModel aModel){
 		ChefHandler.insertChef(model, aModel, connection);
