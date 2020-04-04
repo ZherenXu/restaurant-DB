@@ -65,11 +65,11 @@ public class InsertWindow extends JFrame implements ActionListener{
         JLabel dishOrderNumLabel = new JLabel("      Order #                       " +
                                                         "Dish                      " +
                                                         "Taste Preference");
-        JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                               " +
-                                                                    "Name             " +
-                                                                "Date(dd-mm-yyyy hh:mm:ss)       " +
-                                                                "Quantity                           " +
-                                                                "Type                                " +
+        JLabel insertIngredientAttributeLabel = new JLabel("        Lot#                                 " +
+                                                                    "Name                     " +
+                                                                "Date(dd-mm-yyyy)                  " +
+                                                                "Quantity                             " +
+                                                                "Type                                   " +
                                                                 "PosID                               " +
                                                                 "SIN");
         JLabel insertCookAttributeLabel = new JLabel("            SIN                       " +

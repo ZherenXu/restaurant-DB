@@ -38,7 +38,7 @@ public class SelectWindow extends JFrame implements ActionListener {
         JLabel findByOrderNumberLabel = new JLabel("Find By Order Number:");
         JLabel findTheOrderNumberLabel = new JLabel("Find The Order Number");
         JLabel orderNumberBranchLabel = new JLabel("Branch: ");
-        JLabel orderNumberDateStartLabel = new JLabel("Date                                        Start: ");
+        JLabel orderNumberDateStartLabel = new JLabel("Date(dd-mm-yyyy hh:mm:ss)             Start: ");
         JLabel orderNumberDateEndLabel = new JLabel("End: ");
         JLabel findDishesLabel = new JLabel("Find Dishes");
         JLabel dishesLotNumberLabel = new JLabel("Lot#: ");
@@ -54,9 +54,10 @@ public class SelectWindow extends JFrame implements ActionListener {
         JButton selectIngredientsBtn = new JButton("Select");
         JButton backBtn = new JButton("Back");
         JButton branchBtn = new JButton("  Branch    ");
-        JButton shelfBtn = new JButton("   Shelf    ");
-        JButton refrigeratorBtn = new JButton("Refrigerator");
-        JButton freezerBtn = new JButton("  Freezer   ");
+//        JButton shelfBtn = new JButton("   Shelf    ");
+//        JButton refrigeratorBtn = new JButton("Refrigerator");
+//        JButton freezerBtn = new JButton("  Freezer   ");
+        JButton storageBtn = new JButton("Storage");
 
         // Set the Window
         JPanel contentPane = new JPanel();
@@ -224,21 +225,28 @@ public class SelectWindow extends JFrame implements ActionListener {
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(branchBtn, c);
         contentPane.add(branchBtn);
-        // Shelf button
+
+        // Storage button
         c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(shelfBtn, c);
-        contentPane.add(shelfBtn);
-        // Refrigerator button
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(refrigeratorBtn, c);
-        contentPane.add(refrigeratorBtn);
-        // freezer button
-        c.gridwidth = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 10, 10, 5);
-        gb.setConstraints(freezerBtn, c);
-        contentPane.add(freezerBtn);
+        gb.setConstraints(storageBtn, c);
+        contentPane.add(storageBtn);
+//        // Shelf button
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(5, 10, 10, 5);
+//        gb.setConstraints(shelfBtn, c);
+//        contentPane.add(shelfBtn);
+//        // Refrigerator button
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(5, 10, 10, 5);
+//        gb.setConstraints(refrigeratorBtn, c);
+//        contentPane.add(refrigeratorBtn);
+//        // freezer button
+//        c.gridwidth = GridBagConstraints.HORIZONTAL;
+//        c.insets = new Insets(5, 10, 10, 5);
+//        gb.setConstraints(freezerBtn, c);
+//        contentPane.add(freezerBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
@@ -258,9 +266,10 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectDishesBtn.addActionListener(this);
         selectIngredientsBtn.addActionListener(this);
         branchBtn.addActionListener(this);
-        shelfBtn.addActionListener(this);
-        refrigeratorBtn.addActionListener(this);
-        freezerBtn.addActionListener(this);
+        storageBtn.addActionListener(this);
+//        shelfBtn.addActionListener(this);
+//        refrigeratorBtn.addActionListener(this);
+//        freezerBtn.addActionListener(this);
 
         backBtn.setActionCommand("back");
 
@@ -275,9 +284,10 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectIngredientsBtn.setActionCommand("select ingredients");
 
         branchBtn.setActionCommand("branch");
-        shelfBtn.setActionCommand("shelf");
-        refrigeratorBtn.setActionCommand("refrigerator");
-        freezerBtn.setActionCommand("freezer");
+        storageBtn.setActionCommand("storage");
+//        shelfBtn.setActionCommand("shelf");
+//        refrigeratorBtn.setActionCommand("refrigerator");
+//        freezerBtn.setActionCommand("freezer");
 
         pack();
 
@@ -332,14 +342,16 @@ public class SelectWindow extends JFrame implements ActionListener {
             case "branch":
                 tb.updateTable(dbhandler.getAllBranch(),dbhandler.getBranchColumn(),"Branches");
                 break;
-            case "shelf":
-                tb.updateTable(dbhandler.getAllShelf(), dbhandler.getStorageColumn(), "Shelves");
-                break;
-            case "refrigerator":
-                tb.updateTable(dbhandler.getAllRefrigerator(), dbhandler.getStorageColumn(), "Refrigerators");
-                break;
-            case "freezer":
-                tb.updateTable(dbhandler.getAllFreezer(), dbhandler.getStorageColumn(), "Freezers");
+//            case "shelf":
+//                tb.updateTable(dbhandler.getAllShelf(), dbhandler.getStorageColumn(), "Shelves");
+//                break;
+//            case "refrigerator":
+//                tb.updateTable(dbhandler.getAllRefrigerator(), dbhandler.getStorageColumn(), "Refrigerators");
+//                break;
+//            case "freezer":
+//                tb.updateTable(dbhandler.getAllFreezer(), dbhandler.getStorageColumn(), "Freezers");
+//                break;
+            case "storage":
                 break;
             default:
                 break;
