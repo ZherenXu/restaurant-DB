@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -57,7 +56,6 @@ public class LoginWindow extends JFrame implements ActionListener {
 		passwordField.setEchoChar('*');
 
 		JButton loginButton = new JButton("Log In");
-		JButton jumpButton = new JButton("Jump To");
 
 		JPanel contentPane = new JPanel();
 		this.setContentPane(contentPane);
@@ -100,18 +98,9 @@ public class LoginWindow extends JFrame implements ActionListener {
 		gb.setConstraints(loginButton, c);
 		contentPane.add(loginButton);
 
-		// place the jump button
-		c.gridwidth = GridBagConstraints.REMAINDER;
-		c.insets = new Insets(5, 10, 10, 10);
-		c.anchor = GridBagConstraints.CENTER;
-		gb.setConstraints(jumpButton, c);
-		contentPane.add(jumpButton);
-
 		// register login button with action event handler
 		loginButton.addActionListener(this);
-		jumpButton.addActionListener(this);
 		loginButton.setActionCommand("Login");
-		jumpButton.setActionCommand("Open");
 
 		// anonymous inner class for closing the window
 		this.addWindowListener(new WindowAdapter() {

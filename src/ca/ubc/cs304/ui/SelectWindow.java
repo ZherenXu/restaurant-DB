@@ -1,18 +1,13 @@
 package ca.ubc.cs304.ui;
 
 import ca.ubc.cs304.database.DatabaseConnectionHandler;
-import ca.ubc.cs304.model.CategoryModel;
-import ca.ubc.cs304.model.IngredientsModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Vector;
 
 import javax.swing.*;
 
@@ -25,8 +20,6 @@ public class SelectWindow extends JFrame implements ActionListener {
     JTextField orderNumberBranchField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField orderNumberDateStartField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField orderNumberDateEndField = new JTextField(TEXT_FIELD_WIDTH);
-    JTextField orderNumberTimeStartField = new JTextField(TEXT_FIELD_WIDTH);
-    JTextField orderNumberTimeEndField = new JTextField(TEXT_FIELD_WIDTH);
     JTextField dishesLotNumberField = new JTextField(TEXT_FIELD_WIDTH);
 
     public SelectWindow(DatabaseConnectionHandler dbhandler) {
@@ -54,9 +47,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         JButton selectIngredientsBtn = new JButton("Select");
         JButton backBtn = new JButton("Back");
         JButton branchBtn = new JButton(" All Branch Info ");
-//        JButton shelfBtn = new JButton("   Shelf    ");
-//        JButton refrigeratorBtn = new JButton("Refrigerator");
-//        JButton freezerBtn = new JButton("  Freezer   ");
         JButton storageBtn = new JButton("All Storage Info");
 
         // Set the Window
@@ -232,21 +222,6 @@ public class SelectWindow extends JFrame implements ActionListener {
         c.insets = new Insets(5, 10, 10, 5);
         gb.setConstraints(storageBtn, c);
         contentPane.add(storageBtn);
-//        // Shelf button
-//        c.gridwidth = GridBagConstraints.HORIZONTAL;
-//        c.insets = new Insets(5, 10, 10, 5);
-//        gb.setConstraints(shelfBtn, c);
-//        contentPane.add(shelfBtn);
-//        // Refrigerator button
-//        c.gridwidth = GridBagConstraints.HORIZONTAL;
-//        c.insets = new Insets(5, 10, 10, 5);
-//        gb.setConstraints(refrigeratorBtn, c);
-//        contentPane.add(refrigeratorBtn);
-//        // freezer button
-//        c.gridwidth = GridBagConstraints.HORIZONTAL;
-//        c.insets = new Insets(5, 10, 10, 5);
-//        gb.setConstraints(freezerBtn, c);
-//        contentPane.add(freezerBtn);
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
@@ -267,27 +242,18 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectIngredientsBtn.addActionListener(this);
         branchBtn.addActionListener(this);
         storageBtn.addActionListener(this);
-//        shelfBtn.addActionListener(this);
-//        refrigeratorBtn.addActionListener(this);
-//        freezerBtn.addActionListener(this);
 
         backBtn.setActionCommand("back");
-
         findChefBtn.setActionCommand("find chef");
         findIngredientBtn.setActionCommand("find ingredient");
         findDeliveryPeopleBtn.setActionCommand("find delivery people");
         findFoodSupplierBtn.setActionCommand("find food supplier");
         findStorageTemperatureBtn.setActionCommand("find storage temperature");
-
         selectOrderNumberBtn.setActionCommand("select order number");
         selectDishesBtn.setActionCommand("select dishes");
         selectIngredientsBtn.setActionCommand("select ingredients");
-
         branchBtn.setActionCommand("branch");
         storageBtn.setActionCommand("storage");
-//        shelfBtn.setActionCommand("shelf");
-//        refrigeratorBtn.setActionCommand("refrigerator");
-//        freezerBtn.setActionCommand("freezer");
 
         pack();
 
@@ -346,15 +312,6 @@ public class SelectWindow extends JFrame implements ActionListener {
             case "branch":
                 tb.updateTable(dbhandler.getAllBranch(),dbhandler.getBranchColumn(),"Branches");
                 break;
-//            case "shelf":
-//                tb.updateTable(dbhandler.getAllShelf(), dbhandler.getStorageColumn(), "Shelves");
-//                break;
-//            case "refrigerator":
-//                tb.updateTable(dbhandler.getAllRefrigerator(), dbhandler.getStorageColumn(), "Refrigerators");
-//                break;
-//            case "freezer":
-//                tb.updateTable(dbhandler.getAllFreezer(), dbhandler.getStorageColumn(), "Freezers");
-//                break;
             case "storage":
                 tb.updateTable(dbhandler.getAllStorage(),dbhandler.getStorageColumn(), "Storage");
                 break;
