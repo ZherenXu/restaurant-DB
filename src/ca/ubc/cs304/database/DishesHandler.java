@@ -37,45 +37,6 @@ public class DishesHandler {
         return;
     }
 
-    protected static void deleteDishes(String name, int OrderNumber, Connection connection) {
-        try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM DISHES WHERE Name = ? AND OrderNumber = ?");
-            ps.setString(1, name);
-            ps.setInt(2, OrderNumber);
-
-            int rowCount = ps.executeUpdate();
-            if (rowCount == 0) {
-                System.out.println(WARNING_TAG + " Dishes " + OrderNumber + ", " + name + " does not exist!");
-            }
-
-            connection.commit();
-
-            ps.close();
-        } catch (SQLException e) {
-            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-            rollbackConnection();
-        }
-    }
-
-    protected static void deleteAllDishes(int OrderNumber, Connection connection) {
-        try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM DISHES WHERE OrderNumber = ?");
-            ps.setInt(1, OrderNumber);
-
-            int rowCount = ps.executeUpdate();
-            if (rowCount == 0) {
-                System.out.println(WARNING_TAG + " Dishes " + OrderNumber + " does not exist!");
-            }
-
-            connection.commit();
-
-            ps.close();
-        } catch (SQLException e) {
-            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-            rollbackConnection();
-        }
-    }
-
     protected static Vector<Vector<String>> getAllDishes(Connection connection) {
         Vector<Vector<String>> Dishes = new Vector<>();
 
