@@ -47,6 +47,9 @@ public class SelectWindow extends JFrame implements ActionListener {
         JButton selectIngredientsBtn = new JButton("Select");
         JButton backBtn = new JButton("Back");
         JButton branchBtn = new JButton(" All Branch Info ");
+        JButton branchContactNumberBtn = new JButton("Branch Contact Info ");
+        JButton branchAddressBtn = new JButton("Branch Address Info ");
+        JButton branchManagerBtn = new JButton("Branch Manager Info ");
         JButton storageBtn = new JButton("All Storage Info");
 
         // Set the Window
@@ -209,7 +212,26 @@ public class SelectWindow extends JFrame implements ActionListener {
         contentPane.add(selectIngredientsBtn);
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
+        // Branch  Contact button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(branchAddressBtn, c);
+        contentPane.add(branchAddressBtn);
+        // Branch Manager button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(branchContactNumberBtn, c);
+        contentPane.add(branchContactNumberBtn);
         // Branch button
+        c.gridwidth = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(5, 10, 10, 5);
+        gb.setConstraints(branchManagerBtn, c);
+        contentPane.add(branchManagerBtn);
+
+        // Branch Address button
         c.gridwidth = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.LINE_END;
         c.insets = new Insets(5, 10, 10, 5);
@@ -242,6 +264,9 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectIngredientsBtn.addActionListener(this);
         branchBtn.addActionListener(this);
         storageBtn.addActionListener(this);
+        branchAddressBtn.addActionListener(this);
+        branchContactNumberBtn.addActionListener(this);
+        branchManagerBtn.addActionListener(this);
 
         backBtn.setActionCommand("back");
         findChefBtn.setActionCommand("find chef");
@@ -254,6 +279,9 @@ public class SelectWindow extends JFrame implements ActionListener {
         selectIngredientsBtn.setActionCommand("select ingredients");
         branchBtn.setActionCommand("branch");
         storageBtn.setActionCommand("storage");
+        branchAddressBtn.setActionCommand("branch_address");
+        branchContactNumberBtn.setActionCommand("branch_contact");
+        branchManagerBtn.setActionCommand("branch_manager");
 
         pack();
 
@@ -314,6 +342,12 @@ public class SelectWindow extends JFrame implements ActionListener {
                 break;
             case "storage":
                 tb.updateTable(dbhandler.getAllStorage(),dbhandler.getStorageColumn(), "Storage");
+                break;
+            case "branch_address":
+                break;
+            case "branch_contact":
+                break;
+            case "branch_manager":
                 break;
             default:
                 break;
