@@ -78,7 +78,7 @@ public class BranchHandler {
         return column;
     }
 
-    protected static Vector<String> getSpecificBranchColumn(String attribute, Connection connection){
+    protected static Vector<String> getSpecificBranchColumn(String attribute){
 
         Vector<String> column = new Vector<>();
         column.add(attribute);

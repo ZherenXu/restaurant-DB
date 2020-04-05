@@ -233,7 +233,7 @@ public class DatabaseConnectionHandler {
 
 	/* Other column names */
 	public Vector<String> SpecificBranchColumn(String attribute){
-		return BranchHandler.getSpecificBranchColumn(attribute, connection);
+		return BranchHandler.getSpecificBranchColumn(attribute);
 	}
 	public Vector<String> ICountColumn(){
 		return StatisticHandler.ICountColumn(connection);
