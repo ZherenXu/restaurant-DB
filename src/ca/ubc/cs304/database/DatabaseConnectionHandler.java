@@ -186,6 +186,10 @@ public class DatabaseConnectionHandler {
 		return StatisticHandler.avgTempFreezer(connection);
 	}
 
+	/* Select specific branch information */
+	public Vector<Vector<String>> getSpecificBranchInfo(String attribute){
+		return BranchHandler.getSpecificBranchInfo(attribute, connection);
+	}
 	/* Number of dishes for each ingredient */
 	public Vector<Vector<String>> ICountDishes(){
 		return StatisticHandler.ICountDishes(connection);
@@ -228,6 +232,9 @@ public class DatabaseConnectionHandler {
 	}
 
 	/* Other column names */
+	public Vector<String> SpecificBranchColumn(String attribute){
+		return BranchHandler.getSpecificBranchColumn(attribute, connection);
+	}
 	public Vector<String> ICountColumn(){
 		return StatisticHandler.ICountColumn(connection);
 	}

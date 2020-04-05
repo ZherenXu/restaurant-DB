@@ -30,6 +30,28 @@ public class BranchHandler {
         return Branch;
     }
 
+    protected static Vector<Vector<String>> getSpecificBranchInfo(String attribute, Connection connection) {
+        Vector<Vector<String>> Branch = new Vector<>();
+
+        try {
+            Statement stmt = connection.createStatement();
+            String proj = "SELECT " + attribute + "FROM BRANCH";
+            ResultSet rs = stmt.executeQuery(proj);
+
+            while(rs.next()) {
+                Vector<String> tuple = new Vector<>();
+                tuple.add(rs.getString(attribute));
+                Branch.add(tuple);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return Branch;
+    }
+
     protected static Vector<String> getBranchColumn(Connection connection){
 
         Vector<String> column = new Vector<>();
@@ -52,6 +74,14 @@ public class BranchHandler {
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
+
+        return column;
+    }
+
+    protected static Vector<String> getSpecificBranchColumn(String attribute, Connection connection){
+
+        Vector<String> column = new Vector<>();
+        column.add(attribute);
 
         return column;
     }
