@@ -1,7 +1,6 @@
 package ca.ubc.cs304.database;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import ca.ubc.cs304.model.*;
@@ -12,10 +11,9 @@ import ca.ubc.cs304.model.*;
 public class DatabaseConnectionHandler {
 	private static final String ORACLE_URL = "jdbc:oracle:thin:@localhost:1522:stu";
 	private static final String EXCEPTION_TAG = "[EXCEPTION]";
-	private static final String WARNING_TAG = "[WARNING]";
-	
+
 	private static Connection connection = null;
-	
+
 	public DatabaseConnectionHandler() {
 		try {
 			// Load the Oracle JDBC driver

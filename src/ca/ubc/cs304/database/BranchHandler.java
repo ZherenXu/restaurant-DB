@@ -35,7 +35,7 @@ public class BranchHandler {
 
         try {
             Statement stmt = connection.createStatement();
-            String proj = "SELECT " + attribute + "FROM BRANCH";
+            String proj = "SELECT " + attribute + " FROM BRANCH";
             ResultSet rs = stmt.executeQuery(proj);
 
             while(rs.next()) {
@@ -81,8 +81,15 @@ public class BranchHandler {
     protected static Vector<String> getSpecificBranchColumn(String attribute){
 
         Vector<String> column = new Vector<>();
-        column.add(attribute);
-
+        if(attribute == "address"){
+            column.add("ADDRESS");
+        }
+        else if(attribute == "contact"){
+            column.add("CONTACT");
+        }
+        else{
+            column.add("MANAGER");
+        }
         return column;
     }
 

@@ -1,6 +1,5 @@
 package ca.ubc.cs304.database;
 
-import oracle.sql.TIMESTAMP;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -8,7 +7,6 @@ import java.util.Vector;
 
 public class SelectHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
-    private static final String WARNING_TAG = "[WARNING]";
 
     protected static Vector<Vector<String>> findChefByOrder(int OrderNumber, Connection connection) {
         Vector<Vector<String>> chefInfo = new Vector<>();

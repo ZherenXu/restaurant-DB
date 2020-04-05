@@ -1,11 +1,8 @@
 package ca.ubc.cs304.database;
 
-import ca.ubc.cs304.model.BranchModel;
 import ca.ubc.cs304.model.OrdersModel;
-import oracle.sql.TIMESTAMP;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection;

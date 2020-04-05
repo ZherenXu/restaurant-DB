@@ -1,6 +1,5 @@
 package ca.ubc.cs304.database;
 
-import ca.ubc.cs304.model.ConsumeModel;
 import ca.ubc.cs304.model.FoodSupplierModel;
 
 import java.sql.*;

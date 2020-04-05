@@ -1,6 +1,5 @@
 package ca.ubc.cs304.database;
 
-import ca.ubc.cs304.model.ConsumeModel;
 import ca.ubc.cs304.model.ProvideModel;
 
 import java.sql.*;
@@ -10,7 +9,6 @@ import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection
 
 public class ProvideHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
-    private static final String WARNING_TAG = "[WARNING]";
 
     protected static void insertProvide(ProvideModel model, Connection connection){
         try {

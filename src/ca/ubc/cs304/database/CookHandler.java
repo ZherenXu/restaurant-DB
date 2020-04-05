@@ -9,7 +9,6 @@ import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection
 
 public class CookHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
-    private static final String WARNING_TAG = "[WARNING]";
 
     protected static void insertCook(CookModel model, Connection connection){
         try {

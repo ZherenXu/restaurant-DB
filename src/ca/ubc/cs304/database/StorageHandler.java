@@ -6,7 +6,6 @@ import java.util.Vector;
 public class StorageHandler {
 
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
-    private static final String WARNING_TAG = "[WARNING]";
 
     protected static Vector<Vector<String>> getAllStorage(Connection connection) {
         Vector<Vector<String>> Shelf = new Vector<>();

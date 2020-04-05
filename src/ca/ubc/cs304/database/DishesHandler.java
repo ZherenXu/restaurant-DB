@@ -1,17 +1,14 @@
 package ca.ubc.cs304.database;
 
-import ca.ubc.cs304.model.BranchModel;
 import ca.ubc.cs304.model.DishesModel;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import static ca.ubc.cs304.database.DatabaseConnectionHandler.rollbackConnection;
 
 public class DishesHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
-    private static final String WARNING_TAG = "[WARNING]";
 
     protected static void insertDish(DishesModel model, Connection connection){
         try {
