@@ -344,10 +344,13 @@ public class SelectWindow extends JFrame implements ActionListener {
                 tb.updateTable(dbhandler.getAllStorage(),dbhandler.getStorageColumn(), "Storage");
                 break;
             case "branch_address":
+                tb.updateTable(dbhandler.getSpecificBranchInfo("address"), dbhandler.SpecificBranchColumn("address"), "Branches");
                 break;
             case "branch_contact":
+                tb.updateTable(dbhandler.getSpecificBranchInfo("contact"), dbhandler.SpecificBranchColumn("contact"), "Branches");
                 break;
             case "branch_manager":
+                tb.updateTable(dbhandler.getSpecificBranchInfo("managername"), dbhandler.SpecificBranchColumn("managername"), "Branches");
                 break;
             default:
                 break;
